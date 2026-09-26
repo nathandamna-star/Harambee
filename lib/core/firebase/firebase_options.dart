@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 abstract final class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform => switch (defaultTargetPlatform) {
     TargetPlatform.android => android,
-    // À compléter avec l'identifiant de l'app iOS enregistrée dans Firebase.
+    TargetPlatform.iOS => ios,
     _ => throw UnsupportedError(
       'Firebase n\'est pas encore configuré pour $defaultTargetPlatform.',
     ),
@@ -19,6 +19,15 @@ abstract final class DefaultFirebaseOptions {
     messagingSenderId: '456682666828',
     projectId: 'harambee-75bab',
     storageBucket: 'harambee-75bab.firebasestorage.app',
+  );
+
+  static const ios = FirebaseOptions(
+    apiKey: 'AIzaSyAaQ7SjHVuWFKYaK2Tt58crd2KlVfevUEA',
+    appId: '1:456682666828:ios:224601586e09ad7266ede9',
+    messagingSenderId: '456682666828',
+    projectId: 'harambee-75bab',
+    storageBucket: 'harambee-75bab.firebasestorage.app',
+    iosBundleId: 'com.harambee.harambee',
   );
 }
 
