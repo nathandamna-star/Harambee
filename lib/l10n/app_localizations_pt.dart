@@ -868,4 +868,365 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get premierMessageTexte =>
       'Faça suas perguntas: disponibilidade, horários, pedidos… O comerciante responderá aqui.';
+
+  @override
+  String get accepterEspeces => 'Aceitar dinheiro';
+
+  @override
+  String get accepterEspecesAide =>
+      'O cliente paga em dinheiro na entrega ou retirada.';
+
+  @override
+  String get actionAccepter => 'Aceitar pedido';
+
+  @override
+  String get actionPreparer => 'Iniciar preparo';
+
+  @override
+  String get actionPrete => 'Pedido pronto';
+
+  @override
+  String get actionEnLivraison => 'Saiu para entrega';
+
+  @override
+  String get actionLivree => 'Pedido entregue';
+
+  @override
+  String get actionRetiree => 'Pedido retirado';
+
+  @override
+  String get activerCommande => 'Ativar pedidos online';
+
+  @override
+  String get activerCommandeAide =>
+      'Seus clientes poderão pedir seus produtos no app.';
+
+  @override
+  String get commandeActiveModifier => 'Pedidos e entrega';
+
+  @override
+  String get commandeEtLivraison => 'Pedidos e entrega';
+
+  @override
+  String get adresseLivraison => 'Endereço de entrega';
+
+  @override
+  String get ajouterTarifPays => 'Adicionar tarifa por país';
+
+  @override
+  String get ajouterAuPanier => 'Adicionar ao carrinho';
+
+  @override
+  String get annulerCommande => 'Cancelar pedido';
+
+  @override
+  String get annulerCommandeTitre => 'Cancelar este pedido?';
+
+  @override
+  String get annulerCommandeTexte =>
+      'O comércio será avisado. Não será possível desfazer.';
+
+  @override
+  String get aucuneCommande => 'Nenhum pedido';
+
+  @override
+  String get aucuneCommandeProAide =>
+      'Ative os pedidos online em \"Pedidos e entrega\" para receber pedidos.';
+
+  @override
+  String get aucuneDate => 'Nenhuma data';
+
+  @override
+  String get augmenter => 'Adicionar um';
+
+  @override
+  String get diminuer => 'Remover um';
+
+  @override
+  String get retirer => 'Remover do carrinho';
+
+  @override
+  String get cmdNouvelle => 'Pedido enviado';
+
+  @override
+  String get cmdAcceptee => 'Aceito';
+
+  @override
+  String get cmdEnPreparation => 'Em preparo';
+
+  @override
+  String get cmdPrete => 'Pronto';
+
+  @override
+  String get cmdEnLivraison => 'Em entrega';
+
+  @override
+  String get cmdLivree => 'Entregue';
+
+  @override
+  String get cmdRetiree => 'Retirado';
+
+  @override
+  String get cmdRefusee => 'Recusado';
+
+  @override
+  String get cmdAnnulee => 'Cancelado';
+
+  @override
+  String get commandeIntrouvable => 'Este pedido não existe.';
+
+  @override
+  String commandeNumero(String numero) {
+    return 'Pedido $numero';
+  }
+
+  @override
+  String commanderMontant(String montant) {
+    return 'Pedir · $montant';
+  }
+
+  @override
+  String get commandes => 'Pedidos';
+
+  @override
+  String get mesCommandes => 'Meus pedidos';
+
+  @override
+  String get commission => 'Comissão';
+
+  @override
+  String get commissionLancement => 'Comissão no lançamento';
+
+  @override
+  String get delaiPreparation => 'Tempo de preparo';
+
+  @override
+  String get dureeLancement => 'Duração';
+
+  @override
+  String get mois => 'meses';
+
+  @override
+  String get enCours => 'Em andamento';
+
+  @override
+  String get terminees => 'Concluídos';
+
+  @override
+  String encoreXPourMinimum(String montant) {
+    return 'Faltam $montant para atingir o pedido mínimo';
+  }
+
+  @override
+  String get erreurCommandeFermee =>
+      'Este comércio não está aceitando pedidos no momento.';
+
+  @override
+  String get erreurHorsZone =>
+      'Seu endereço está fora da área de entrega. Escolha \"Retirada\".';
+
+  @override
+  String get erreurPaiementIndisponible =>
+      'Nenhuma forma de pagamento disponível para este comércio.';
+
+  @override
+  String get erreurProduitIndisponible =>
+      'Um produto do carrinho não está mais disponível. Remova-o e tente novamente.';
+
+  @override
+  String get erreurTarifsManquants =>
+      'Os pedidos online ainda não estão abertos. Tente mais tarde.';
+
+  @override
+  String especesAEncaisser(String montant) {
+    return 'A receber em dinheiro: $montant';
+  }
+
+  @override
+  String get especesLivraison => 'Dinheiro na entrega';
+
+  @override
+  String get especesRetrait => 'Dinheiro na retirada';
+
+  @override
+  String get paiementEspeces => 'Dinheiro';
+
+  @override
+  String get fraisFixes => 'Valor fixo';
+
+  @override
+  String get fraisPourcentage => 'Porcentagem';
+
+  @override
+  String get fraisLivraison => 'Taxa de entrega';
+
+  @override
+  String get fraisPaiement => 'Taxas de pagamento';
+
+  @override
+  String get fraisService => 'Taxa de serviço';
+
+  @override
+  String get fraisServiceAide =>
+      'Esta taxa mantém o Harambee, que continua bem mais barato que as grandes plataformas de entrega.';
+
+  @override
+  String get fraisServicePlateforme => 'Taxa de serviço (Harambee)';
+
+  @override
+  String get inscritsAvant => 'Para comércios cadastrados antes de';
+
+  @override
+  String get instructionsLivraison => 'Instruções (andar, código…)';
+
+  @override
+  String get livraisonGratuiteDes => 'Entrega grátis a partir de';
+
+  @override
+  String get livraisonGratuiteAide =>
+      'Deixe vazio se a entrega for sempre cobrada.';
+
+  @override
+  String get minimumCommande => 'Pedido mínimo';
+
+  @override
+  String get minimumCommandeAide =>
+      'Valor mínimo do carrinho, entrega ou retirada.';
+
+  @override
+  String get minimumLivraison => 'Mínimo para entrega';
+
+  @override
+  String get modeEmporter => 'Retirada';
+
+  @override
+  String get modeLivraison => 'Entrega';
+
+  @override
+  String get modeLivraisonAide => 'Você mesmo entrega ou com seu entregador.';
+
+  @override
+  String get modesCommande => 'Opções oferecidas';
+
+  @override
+  String get montantConfirmeServeur =>
+      'O valor final é confirmado no momento do pedido.';
+
+  @override
+  String get montantNet => 'Valor líquido para você';
+
+  @override
+  String get motifRefusCommandeAide => 'O cliente verá este motivo.';
+
+  @override
+  String get non => 'Não';
+
+  @override
+  String nouvellesCommandes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n novos pedidos',
+      one: '1 novo pedido',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get offerte => 'Grátis';
+
+  @override
+  String get paiement => 'Pagamento';
+
+  @override
+  String get paiementCarte => 'Cartão ou Bancontact';
+
+  @override
+  String get paiementCarteActif =>
+      'Ativado: seus clientes podem pagar com cartão.';
+
+  @override
+  String get paiementCarteBientot => 'Em breve.';
+
+  @override
+  String get panier => 'Carrinho';
+
+  @override
+  String panierDe(String nom) {
+    return 'Carrinho · $nom';
+  }
+
+  @override
+  String get panierVide => 'Seu carrinho está vazio';
+
+  @override
+  String voirPanier(int n, String montant) {
+    return 'Ver carrinho ($n) · $montant';
+  }
+
+  @override
+  String get payeParClient => 'Pago pelo cliente';
+
+  @override
+  String get periodeLancement => 'Período de lançamento';
+
+  @override
+  String get periodeLancementAide =>
+      'Comissão reduzida por alguns meses para os primeiros comércios cadastrados.';
+
+  @override
+  String get plafond => 'Teto (opcional)';
+
+  @override
+  String get positionLivraison => 'Salvar minha localização para entrega';
+
+  @override
+  String positionLivraisonAide(String km) {
+    return 'O comércio entrega num raio de $km km.';
+  }
+
+  @override
+  String get positionLivraisonRequise =>
+      'Salve sua localização para verificar se está na área de entrega.';
+
+  @override
+  String get pourVotreCommerce => 'Para o seu comércio';
+
+  @override
+  String get rayonLivraison => 'Raio de entrega';
+
+  @override
+  String get refuserCommande => 'Recusar pedido';
+
+  @override
+  String get reglagesEnregistres => 'Configurações salvas.';
+
+  @override
+  String get sousTotal => 'Subtotal';
+
+  @override
+  String get tarifParDefaut => 'Tarifa padrão';
+
+  @override
+  String get tarifs => 'Tarifas';
+
+  @override
+  String get tarifsAide =>
+      'Comissão sobre o subtotal (nunca sobre a entrega) e taxa de serviço paga pelo cliente. Uma tarifa por país substitui a padrão.';
+
+  @override
+  String get tarifsEnregistres => 'Tarifas salvas.';
+
+  @override
+  String get telephoneCommandeAide => 'O comércio poderá ligar sobre o pedido.';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get totalVentes => 'Total de vendas';
+
+  @override
+  String get validationModes =>
+      'Escolha pelo menos uma opção: entrega ou retirada.';
 }

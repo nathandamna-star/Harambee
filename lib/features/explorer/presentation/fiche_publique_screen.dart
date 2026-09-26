@@ -17,6 +17,8 @@ import '../../auth/auth_providers.dart';
 import '../../commerce/commerce_providers.dart';
 import '../../commerce/data/pays.dart';
 import '../../commerce/presentation/libelles.dart';
+import '../../commandes/commandes_providers.dart';
+import '../../commandes/presentation/panier_screen.dart';
 import '../../messages/messagerie_providers.dart';
 import '../explorer_providers.dart';
 import 'carte_commerce.dart';
@@ -137,9 +139,35 @@ class _Fiche extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final favori = ref.watch(favorisIdsProvider).contains(commerce.id);
 
+    final panier = ref.watch(paniersProvider)[commerce.id];
+    final locale = Localizations.localeOf(context).toString();
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        bottomNavigationBar: panier == null || panier.estVide
+            ? null
+            : SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                  child: FilledButton.icon(
+                    onPressed: () => context.push(
+                      '${GoRouterState.of(context).uri.path}/panier',
+                    ),
+                    icon: const Icon(Icons.shopping_basket_outlined),
+                    label: Text(
+                      l10n.voirPanier(
+                        panier.nbArticles,
+                        formaterPrix(
+                          panier.sousTotal,
+                          commerce.commande?.devise ?? commerce.devise,
+                          locale,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
         body: NestedScrollView(
           headerSliverBuilder: (context, _) => [
             SliverAppBar(
@@ -371,6 +399,10 @@ class _OngletProduits extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final locale = Localizations.localeOf(context).toString();
+    final uid = ref.watch(utilisateurFirebaseProvider).value?.uid;
+    final peutCommander =
+        commerce.commandeOuverte && uid != commerce.proprietaire;
+    final panier = ref.watch(paniersProvider)[commerce.id];
     return ref
         .watch(produitsPubliesProvider(commerce.id))
         .when(
@@ -419,6 +451,16 @@ class _OngletProduits extends ConsumerWidget {
                                   l10n.badgeRupture,
                                   style: TextStyle(
                                     color: theme.colorScheme.error,
+                                  ),
+                                )
+                              else if (peutCommander)
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8),
+                                  child: AjoutPanier(
+                                    quantite: panier?.quantite(p.id) ?? 0,
+                                    onChanged: (q) => ref
+                                        .read(paniersProvider.notifier)
+                                        .definir(commerce, p, q),
                                   ),
                                 ),
                             ],

@@ -4,6 +4,11 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/admin/presentation/admin_screen.dart';
 import '../../features/admin/presentation/administrateurs_screen.dart';
+import '../../features/admin/presentation/tarifs_screen.dart';
+import '../../features/commandes/presentation/commande_screen.dart';
+import '../../features/commandes/presentation/liste_commandes_screen.dart';
+import '../../features/commandes/presentation/panier_screen.dart';
+import '../../features/commandes/presentation/reglages_commande_screen.dart';
 import '../../features/admin/presentation/verification_commerce_screen.dart';
 import '../../features/auth/auth_providers.dart';
 import '../../features/auth/domain/role.dart';
@@ -49,7 +54,9 @@ final routerProvider = Provider<GoRouter>((ref) {
         return Routes.bienvenue;
       }
       // L'espace pro est réservé aux professionnels.
-      if (lieu.startsWith('${Routes.monEspace}/commerce') && role != Role.pro) {
+      if ((lieu.startsWith('${Routes.monEspace}/commerce') ||
+              lieu.startsWith(Routes.commandesPro)) &&
+          role != Role.pro) {
         return Routes.monEspace;
       }
       // L'espace admin est réservé aux administrateurs.
@@ -108,6 +115,10 @@ final routerProvider = Provider<GoRouter>((ref) {
                     path: 'administrateurs',
                     builder: (context, state) => const AdministrateursScreen(),
                   ),
+                  GoRoute(
+                    path: 'tarifs',
+                    builder: (context, state) => const TarifsScreen(),
+                  ),
                 ],
               ),
             ],
@@ -136,9 +147,31 @@ final _routeFiche = GoRoute(
   path: 'commerce/:id',
   builder: (context, state) =>
       FichePubliqueScreen(commerceId: state.pathParameters['id']!),
+  routes: [
+    GoRoute(
+      path: 'panier',
+      builder: (context, state) =>
+          PanierScreen(commerceId: state.pathParameters['id']!),
+    ),
+  ],
 );
 
 final _routesEspacePro = [
+  GoRoute(
+    path: 'commandes',
+    builder: (context, state) => const ListeCommandesScreen(pourPro: false),
+    routes: [
+      GoRoute(
+        path: ':commandeId',
+        builder: (context, state) =>
+            CommandeScreen(commandeId: state.pathParameters['commandeId']!),
+      ),
+    ],
+  ),
+  GoRoute(
+    path: 'commandes-pro',
+    builder: (context, state) => const ListeCommandesScreen(pourPro: true),
+  ),
   GoRoute(
     path: 'commerce/nouveau',
     builder: (context, state) => const FicheCommerceScreen(),
@@ -148,6 +181,11 @@ final _routesEspacePro = [
     builder: (context, state) =>
         FicheCommerceScreen(commerceId: state.pathParameters['id']),
     routes: [
+      GoRoute(
+        path: 'commande',
+        builder: (context, state) =>
+            ReglagesCommandeScreen(commerceId: state.pathParameters['id']!),
+      ),
       GoRoute(
         path: 'catalogue',
         builder: (context, state) =>

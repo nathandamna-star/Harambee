@@ -7,6 +7,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../shared/models/commerce.dart';
 import '../../../shared/models/enums.dart';
 import '../../../shared/widgets/label_chip.dart';
+import '../../commandes/commandes_providers.dart';
 import '../commerce_providers.dart';
 import 'libelles.dart';
 
@@ -34,6 +35,10 @@ class EspacePro extends ConsumerWidget {
             children: [
               Text(l10n.monCommerce, style: theme.textTheme.titleLarge),
               const SizedBox(height: 12),
+              if (commerces.isNotEmpty) ...[
+                _CarteCommandes(),
+                const SizedBox(height: 12),
+              ],
               if (commerces.isEmpty)
                 Card(
                   child: Padding(
@@ -174,10 +179,45 @@ class _CarteCommerce extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(height: 8),
+                OutlinedButton.icon(
+                  onPressed: () =>
+                      context.push(Routes.reglagesCommande(commerce.id)),
+                  icon: const Icon(Icons.delivery_dining_outlined),
+                  label: Text(
+                    commerce.commande?.active ?? false
+                        ? l10n.commandeActiveModifier
+                        : l10n.activerCommande,
+                  ),
+                ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Accès à l'onglet Commandes, avec le nombre de nouvelles commandes.
+class _CarteCommandes extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final nouvelles = ref.watch(nbNouvellesCommandesProvider);
+    return Card(
+      child: ListTile(
+        leading: Badge(
+          isLabelVisible: nouvelles > 0,
+          label: Text('$nouvelles'),
+          child: const Icon(Icons.receipt_long_outlined),
+        ),
+        title: Text(l10n.commandes),
+        subtitle: nouvelles > 0
+            ? Text(l10n.nouvellesCommandes(nouvelles))
+            : null,
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => context.push(Routes.commandesPro),
       ),
     );
   }

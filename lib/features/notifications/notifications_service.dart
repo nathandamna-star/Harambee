@@ -12,8 +12,8 @@ abstract interface class NotificationsService {
   /// Oublie le jeton de ce téléphone (à la déconnexion).
   Future<void> desactiver(String uid);
 
-  /// Identifiants des conversations dont l'utilisateur a touché la notification.
-  Stream<String> get conversationsTouchees;
+  /// Données des notifications touchées (`conversationId` ou `commandeId`).
+  Stream<Map<String, dynamic>> get notificationsTouchees;
 }
 
 class NotificationsFirebase implements NotificationsService {
@@ -67,13 +67,9 @@ class NotificationsFirebase implements NotificationsService {
   }
 
   @override
-  Stream<String> get conversationsTouchees async* {
+  Stream<Map<String, dynamic>> get notificationsTouchees async* {
     final initiale = await messaging.getInitialMessage();
-    final id = initiale?.data['conversationId'];
-    if (id is String) yield id;
-    yield* FirebaseMessaging.onMessageOpenedApp
-        .map((m) => m.data['conversationId'])
-        .where((id) => id is String)
-        .cast<String>();
+    if (initiale != null) yield initiale.data;
+    yield* FirebaseMessaging.onMessageOpenedApp.map((m) => m.data);
   }
 }

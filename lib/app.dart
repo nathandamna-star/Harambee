@@ -19,11 +19,15 @@ class _HarambeeAppState extends ConsumerState<HarambeeApp> {
   @override
   void initState() {
     super.initState();
-    // Toucher une notification ouvre la conversation concernée.
-    ref
-        .read(notificationsServiceProvider)
-        .conversationsTouchees
-        .listen((id) => ref.read(routerProvider).go(Routes.conversation(id)));
+    // Toucher une notification ouvre la conversation ou la commande concernée.
+    ref.read(notificationsServiceProvider).notificationsTouchees.listen((d) {
+      final router = ref.read(routerProvider);
+      if (d['conversationId'] is String) {
+        router.go(Routes.conversation(d['conversationId'] as String));
+      } else if (d['commandeId'] is String) {
+        router.go(Routes.commande(d['commandeId'] as String));
+      }
+    });
   }
 
   @override

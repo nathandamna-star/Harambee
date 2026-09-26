@@ -101,13 +101,14 @@ service cloud.firestore {
         && request.resource.data.labelAfricain is bool
         && request.resource.data.labelChretien is bool
         && texte(request.resource.data.nom, 120)
-        && !request.resource.data.keys().hasAny(['motifRefus', 'verifieLe']);
+        && !request.resource.data.keys().hasAny(['motifRefus', 'verifieLe', 'paiementCarteActif']);
 
       // Le propriétaire modifie sa fiche, sauf les champs réservés.
       allow update: if connecte() && resource.data.proprietaire == moi()
         && !champsModifies().hasAny([
           'statut', 'labelAfricain', 'labelChretien', 'proprietaire',
-          'noteMoyenne', 'nbAvis', 'createdAt', 'motifRefus', 'verifieLe'])
+          'noteMoyenne', 'nbAvis', 'createdAt', 'motifRefus', 'verifieLe',
+          'paiementCarteActif'])
         && texte(request.resource.data.nom, 120);
 
       // L'admin vérifie : statut, labels, motif de refus.

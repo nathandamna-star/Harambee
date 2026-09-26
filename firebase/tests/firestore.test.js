@@ -120,6 +120,16 @@ describe('commerces', () => {
     await assertFails(updateDoc(ref, { proprietaire: 'pro2' }));
   });
 
+  it('réglages de commande par le propriétaire ; paiement carte réservé au serveur', async () => {
+    await preparer(env, base);
+    const ref = doc(pro(), 'commerces/publie');
+    await assertSucceeds(updateDoc(ref, {
+      commande: { active: true, modes: ['emporter'], minimumCommande: 10, especesAcceptees: true, devise: 'EUR' },
+    }));
+    await assertFails(updateDoc(ref, { paiementCarteActif: true }));
+    await assertFails(setDoc(doc(pro(), 'commerces/n5'), commerceValide('pro1', { paiementCarteActif: true })));
+  });
+
   it('personne d\'autre ne modifie la fiche', async () => {
     await preparer(env, base);
     await assertFails(updateDoc(doc(autrePro(), 'commerces/publie'), { nom: 'Pirate' }));
@@ -452,6 +462,30 @@ describe('commandes', () => {
     await assertSucceeds(updateDoc(ref, { statut: 'en_preparation' }));
     await assertFails(updateDoc(ref, { total: 0 }));
     await assertFails(updateDoc(ref, { statut: 'annulee' }));
+  });
+});
+
+describe('commandes : lectures de l\'app', () => {
+  it('le client liste ses commandes, le pro celles de son commerce', async () => {
+    await preparer(env, {
+      ...base,
+      'commandes/c1': { clientId: 'client1', proId: 'pro1', statut: 'nouvelle', total: 10 },
+    });
+    await assertSucceeds(getDocs(query(collection(client(), 'commandes'), where('clientId', '==', 'client1'))));
+    await assertSucceeds(getDocs(query(collection(pro(), 'commandes'), where('proId', '==', 'pro1'))));
+    await assertFails(getDocs(query(collection(client2(), 'commandes'), where('clientId', '==', 'client1'))));
+    await assertSucceeds(getDocs(collection(admin(), 'commandes')));
+  });
+
+  it('le pro accepte en ajoutant une étape à l\'historique', async () => {
+    await preparer(env, {
+      ...base,
+      'commandes/c1': { clientId: 'client1', proId: 'pro1', statut: 'nouvelle', total: 10, historique: [] },
+    });
+    await assertSucceeds(updateDoc(doc(pro(), 'commandes/c1'), {
+      statut: 'acceptee', historique: arrayUnion({ statut: 'acceptee', date: new Date() }),
+      updatedAt: serverTimestamp(),
+    }));
   });
 });
 

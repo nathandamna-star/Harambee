@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'commande.dart';
 import 'enums.dart';
 import 'recherche.dart';
 
@@ -21,6 +22,8 @@ class Commerce {
     this.horaires = const {},
     this.telephone,
     this.devise = Devise.EUR,
+    this.commande,
+    this.paiementCarteActif = false,
     this.labelAfricain = false,
     this.labelChretien = false,
     this.charteSigneeLe,
@@ -50,6 +53,12 @@ class Commerce {
 
   /// Devise par défaut des prix du catalogue.
   final Devise devise;
+
+  /// Réglages de la commande en ligne (null : jamais configurée).
+  final ReglagesCommande? commande;
+
+  /// Paiement par carte possible (compte Stripe relié ; fixé par le serveur).
+  final bool paiementCarteActif;
   final bool labelAfricain;
   final bool labelChretien;
   final DateTime? charteSigneeLe;
@@ -62,6 +71,10 @@ class Commerce {
   final DateTime? updatedAt;
 
   bool get estPublie => statut == StatutCommerce.publie;
+
+  /// Les clients peuvent commander en ligne.
+  bool get commandeOuverte =>
+      estPublie && (commande?.active ?? false) && commande!.modes.isNotEmpty;
 
   Commerce copyWith({
     String? id,
@@ -84,6 +97,8 @@ class Commerce {
     horaires: horaires,
     telephone: telephone,
     devise: devise,
+    commande: commande,
+    paiementCarteActif: paiementCarteActif,
     labelAfricain: labelAfricain,
     labelChretien: labelChretien,
     charteSigneeLe: charteSigneeLe,
@@ -123,6 +138,8 @@ class Commerce {
       },
       telephone: d['telephone'] as String?,
       devise: enumDepuis(Devise.values, d['devise'] as String?, Devise.EUR),
+      commande: ReglagesCommande.depuis(d['commande']),
+      paiementCarteActif: d['paiementCarteActif'] as bool? ?? false,
       labelAfricain: d['labelAfricain'] as bool? ?? false,
       labelChretien: d['labelChretien'] as bool? ?? false,
       charteSigneeLe: (d['charteSigneeLe'] as Timestamp?)?.toDate(),

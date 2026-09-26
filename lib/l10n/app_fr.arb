@@ -369,5 +369,171 @@
   },
   "photoEnvoyee": "Photo envoyée dans la conversation",
   "premierMessageTitre": "Dites bonjour !",
-  "premierMessageTexte": "Posez vos questions : disponibilité, horaires, commande… Le commerçant vous répondra ici."
+  "premierMessageTexte": "Posez vos questions : disponibilité, horaires, commande… Le commerçant vous répondra ici.",
+  "accepterEspeces": "Accepter les espèces",
+  "accepterEspecesAide": "Le client paie en espèces à la livraison ou au retrait.",
+  "actionAccepter": "Accepter la commande",
+  "actionPreparer": "Commencer la préparation",
+  "actionPrete": "Commande prête",
+  "actionEnLivraison": "Partir en livraison",
+  "actionLivree": "Commande livrée",
+  "actionRetiree": "Commande retirée",
+  "activerCommande": "Activer la commande en ligne",
+  "activerCommandeAide": "Vos clients pourront commander vos produits dans l'app.",
+  "commandeActiveModifier": "Commande et livraison",
+  "commandeEtLivraison": "Commande et livraison",
+  "adresseLivraison": "Adresse de livraison",
+  "ajouterTarifPays": "Ajouter un tarif pour un pays",
+  "ajouterAuPanier": "Ajouter au panier",
+  "annulerCommande": "Annuler la commande",
+  "annulerCommandeTitre": "Annuler cette commande ?",
+  "annulerCommandeTexte": "Le commerce sera prévenu. Vous ne pourrez plus revenir en arrière.",
+  "aucuneCommande": "Aucune commande",
+  "aucuneCommandeProAide": "Activez la commande en ligne dans « Commande et livraison » pour recevoir des commandes.",
+  "aucuneDate": "Aucune date",
+  "augmenter": "Ajouter un",
+  "diminuer": "Enlever un",
+  "retirer": "Retirer du panier",
+  "cmdNouvelle": "Commande envoyée",
+  "cmdAcceptee": "Acceptée",
+  "cmdEnPreparation": "En préparation",
+  "cmdPrete": "Prête",
+  "cmdEnLivraison": "En livraison",
+  "cmdLivree": "Livrée",
+  "cmdRetiree": "Retirée",
+  "cmdRefusee": "Refusée",
+  "cmdAnnulee": "Annulée",
+  "commandeIntrouvable": "Cette commande n'existe pas.",
+  "commandeNumero": "Commande {numero}",
+  "@commandeNumero": {
+    "placeholders": {
+      "numero": {
+        "type": "String"
+      }
+    }
+  },
+  "commanderMontant": "Commander · {montant}",
+  "@commanderMontant": {
+    "placeholders": {
+      "montant": {
+        "type": "String"
+      }
+    }
+  },
+  "commandes": "Commandes",
+  "mesCommandes": "Mes commandes",
+  "commission": "Commission",
+  "commissionLancement": "Commission pendant le lancement",
+  "delaiPreparation": "Délai de préparation",
+  "dureeLancement": "Durée",
+  "mois": "mois",
+  "enCours": "En cours",
+  "terminees": "Terminées",
+  "encoreXPourMinimum": "Encore {montant} pour atteindre le minimum de commande",
+  "@encoreXPourMinimum": {
+    "placeholders": {
+      "montant": {
+        "type": "String"
+      }
+    }
+  },
+  "erreurCommandeFermee": "Ce commerce ne prend pas de commande pour le moment.",
+  "erreurHorsZone": "Votre adresse est hors de la zone de livraison. Choisissez « À emporter ».",
+  "erreurPaiementIndisponible": "Aucun moyen de paiement disponible pour ce commerce.",
+  "erreurProduitIndisponible": "Un produit de votre panier n'est plus disponible. Retirez-le puis réessayez.",
+  "erreurTarifsManquants": "La commande en ligne n'est pas encore ouverte. Réessayez plus tard.",
+  "especesAEncaisser": "À encaisser en espèces : {montant}",
+  "@especesAEncaisser": {
+    "placeholders": {
+      "montant": {
+        "type": "String"
+      }
+    }
+  },
+  "especesLivraison": "Espèces à la livraison",
+  "especesRetrait": "Espèces au retrait",
+  "paiementEspeces": "Espèces",
+  "fraisFixes": "Montant fixe",
+  "fraisPourcentage": "Pourcentage",
+  "fraisLivraison": "Frais de livraison",
+  "fraisPaiement": "Frais de paiement",
+  "fraisService": "Frais de service",
+  "fraisServiceAide": "Ces frais font vivre Harambee, qui reste bien moins chère que les grandes plateformes de livraison.",
+  "fraisServicePlateforme": "Frais de service (Harambee)",
+  "inscritsAvant": "Pour les commerces inscrits avant le",
+  "instructionsLivraison": "Instructions (étage, code…)",
+  "livraisonGratuiteDes": "Livraison offerte à partir de",
+  "livraisonGratuiteAide": "Laissez vide si la livraison est toujours payante.",
+  "minimumCommande": "Minimum de commande",
+  "minimumCommandeAide": "Montant minimum du panier, livraison ou à emporter.",
+  "minimumLivraison": "Minimum pour la livraison",
+  "modeEmporter": "À emporter",
+  "modeLivraison": "Livraison",
+  "modeLivraisonAide": "Vous livrez vous-même ou avec votre livreur.",
+  "modesCommande": "Modes proposés",
+  "montantConfirmeServeur": "Le montant final est confirmé au moment de la commande.",
+  "montantNet": "Montant net pour vous",
+  "motifRefusCommandeAide": "Le client verra ce motif.",
+  "non": "Non",
+  "nouvellesCommandes": "{n, plural, =1{1 nouvelle commande} other{{n} nouvelles commandes}}",
+  "@nouvellesCommandes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "offerte": "Offerte",
+  "paiement": "Paiement",
+  "paiementCarte": "Carte bancaire ou Bancontact",
+  "paiementCarteActif": "Activé : vos clients peuvent payer par carte.",
+  "paiementCarteBientot": "Bientôt disponible.",
+  "panier": "Panier",
+  "panierDe": "Panier · {nom}",
+  "@panierDe": {
+    "placeholders": {
+      "nom": {
+        "type": "String"
+      }
+    }
+  },
+  "panierVide": "Votre panier est vide",
+  "voirPanier": "Voir le panier ({n}) · {montant}",
+  "@voirPanier": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "montant": {
+        "type": "String"
+      }
+    }
+  },
+  "payeParClient": "Payé par le client",
+  "periodeLancement": "Période de lancement",
+  "periodeLancementAide": "Commission réduite pendant quelques mois pour les premiers commerces inscrits.",
+  "plafond": "Plafond (facultatif)",
+  "positionLivraison": "Enregistrer ma position pour la livraison",
+  "positionLivraisonAide": "Le commerce livre dans un rayon de {km} km.",
+  "@positionLivraisonAide": {
+    "placeholders": {
+      "km": {
+        "type": "String"
+      }
+    }
+  },
+  "positionLivraisonRequise": "Enregistrez votre position pour vérifier que vous êtes dans la zone de livraison.",
+  "pourVotreCommerce": "Pour votre commerce",
+  "rayonLivraison": "Rayon de livraison",
+  "refuserCommande": "Refuser la commande",
+  "reglagesEnregistres": "Réglages enregistrés.",
+  "sousTotal": "Sous-total",
+  "tarifParDefaut": "Tarif par défaut",
+  "tarifs": "Tarifs",
+  "tarifsAide": "Commission prélevée sur le sous-total (jamais sur la livraison) et frais de service payés par le client. Un tarif par pays remplace le tarif par défaut.",
+  "tarifsEnregistres": "Tarifs enregistrés.",
+  "telephoneCommandeAide": "Le commerce pourra vous appeler au sujet de la commande.",
+  "total": "Total",
+  "totalVentes": "Total des ventes",
+  "validationModes": "Choisissez au moins un mode : livraison ou à emporter."
 }

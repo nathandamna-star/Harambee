@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_geohash/dart_geohash.dart';
 
+import '../../../shared/models/commande.dart';
 import '../../../shared/models/commerce.dart';
 import '../../../shared/models/produit.dart';
 import 'photos_service.dart';
@@ -90,6 +91,14 @@ class CommerceRepository {
       geohash: GeoHasher().encode(geo.longitude, geo.latitude, precision: 9),
     );
   }
+
+  Future<void> definirReglagesCommande(
+    String commerceId,
+    ReglagesCommande reglages,
+  ) => _commerces.doc(commerceId).update({
+    'commande': reglages.versFirestore(),
+    'updatedAt': FieldValue.serverTimestamp(),
+  });
 
   // ---------- Produits ----------
 

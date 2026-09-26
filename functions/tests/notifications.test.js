@@ -47,3 +47,27 @@ describe('notification d\'un nouveau message', () => {
     assert.deepEqual(invalides, ['b']);
   });
 });
+
+describe('notifications des commandes', () => {
+  const commande = {
+    statut: 'nouvelle', total: 21.89, devise: 'EUR', clientNom: 'Awa', commerceNom: 'Chez Mama',
+  };
+
+  it('nouvelle commande pour le pro, montant en euros', async () => {
+    const { notificationCommande } = await import('../notifications.js');
+    const n = notificationCommande({ commandeId: 'c1', commande, pourPro: true, langue: 'fr' });
+    assert.equal(n.notification.title, 'Nouvelle commande');
+    assert.match(n.notification.body, /21,89\s€ de Awa/);
+    assert.deepEqual(n.data, { commandeId: 'c1' });
+  });
+
+  it('étapes pour le client, motif de refus, anglais', async () => {
+    const { notificationCommande } = await import('../notifications.js');
+    const prete = notificationCommande({ commandeId: 'c1', commande: { ...commande, statut: 'prete' }, pourPro: false, langue: 'fr' });
+    assert.deepEqual(prete.notification, { title: 'Commande prête', body: 'Chez Mama' });
+    const refus = notificationCommande({
+      commandeId: 'c1', commande: { ...commande, statut: 'refusee', motifRefus: 'Fermé' }, pourPro: false, langue: 'en',
+    });
+    assert.deepEqual(refus.notification, { title: 'Order declined', body: 'Chez Mama : Fermé' });
+  });
+});

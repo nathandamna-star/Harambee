@@ -11,6 +11,14 @@ abstract final class Routes {
   static String commerceExplorer(String id) => '/explorer/commerce/$id';
   static String commerceFavoris(String id) => '/favoris/commerce/$id';
 
+  // Commandes
+  static const mesCommandes = '/mon-espace/commandes';
+  static const commandesPro = '/mon-espace/commandes-pro';
+  static String commande(String id) => '/mon-espace/commandes/$id';
+  static String reglagesCommande(String id) =>
+      '/mon-espace/commerce/$id/commande';
+  static const tarifs = '/admin/tarifs';
+
   // Messagerie
   static String conversation(String id) => '/messages/$id';
 

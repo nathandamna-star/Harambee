@@ -1635,6 +1635,648 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Posez vos questions : disponibilité, horaires, commande… Le commerçant vous répondra ici.'**
   String get premierMessageTexte;
+
+  /// No description provided for @accepterEspeces.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accepter les espèces'**
+  String get accepterEspeces;
+
+  /// No description provided for @accepterEspecesAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le client paie en espèces à la livraison ou au retrait.'**
+  String get accepterEspecesAide;
+
+  /// No description provided for @actionAccepter.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accepter la commande'**
+  String get actionAccepter;
+
+  /// No description provided for @actionPreparer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commencer la préparation'**
+  String get actionPreparer;
+
+  /// No description provided for @actionPrete.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commande prête'**
+  String get actionPrete;
+
+  /// No description provided for @actionEnLivraison.
+  ///
+  /// In fr, this message translates to:
+  /// **'Partir en livraison'**
+  String get actionEnLivraison;
+
+  /// No description provided for @actionLivree.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commande livrée'**
+  String get actionLivree;
+
+  /// No description provided for @actionRetiree.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commande retirée'**
+  String get actionRetiree;
+
+  /// No description provided for @activerCommande.
+  ///
+  /// In fr, this message translates to:
+  /// **'Activer la commande en ligne'**
+  String get activerCommande;
+
+  /// No description provided for @activerCommandeAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vos clients pourront commander vos produits dans l\'app.'**
+  String get activerCommandeAide;
+
+  /// No description provided for @commandeActiveModifier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commande et livraison'**
+  String get commandeActiveModifier;
+
+  /// No description provided for @commandeEtLivraison.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commande et livraison'**
+  String get commandeEtLivraison;
+
+  /// No description provided for @adresseLivraison.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse de livraison'**
+  String get adresseLivraison;
+
+  /// No description provided for @ajouterTarifPays.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un tarif pour un pays'**
+  String get ajouterTarifPays;
+
+  /// No description provided for @ajouterAuPanier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter au panier'**
+  String get ajouterAuPanier;
+
+  /// No description provided for @annulerCommande.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler la commande'**
+  String get annulerCommande;
+
+  /// No description provided for @annulerCommandeTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler cette commande ?'**
+  String get annulerCommandeTitre;
+
+  /// No description provided for @annulerCommandeTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le commerce sera prévenu. Vous ne pourrez plus revenir en arrière.'**
+  String get annulerCommandeTexte;
+
+  /// No description provided for @aucuneCommande.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune commande'**
+  String get aucuneCommande;
+
+  /// No description provided for @aucuneCommandeProAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Activez la commande en ligne dans « Commande et livraison » pour recevoir des commandes.'**
+  String get aucuneCommandeProAide;
+
+  /// No description provided for @aucuneDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune date'**
+  String get aucuneDate;
+
+  /// No description provided for @augmenter.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un'**
+  String get augmenter;
+
+  /// No description provided for @diminuer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enlever un'**
+  String get diminuer;
+
+  /// No description provided for @retirer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer du panier'**
+  String get retirer;
+
+  /// No description provided for @cmdNouvelle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commande envoyée'**
+  String get cmdNouvelle;
+
+  /// No description provided for @cmdAcceptee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Acceptée'**
+  String get cmdAcceptee;
+
+  /// No description provided for @cmdEnPreparation.
+  ///
+  /// In fr, this message translates to:
+  /// **'En préparation'**
+  String get cmdEnPreparation;
+
+  /// No description provided for @cmdPrete.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prête'**
+  String get cmdPrete;
+
+  /// No description provided for @cmdEnLivraison.
+  ///
+  /// In fr, this message translates to:
+  /// **'En livraison'**
+  String get cmdEnLivraison;
+
+  /// No description provided for @cmdLivree.
+  ///
+  /// In fr, this message translates to:
+  /// **'Livrée'**
+  String get cmdLivree;
+
+  /// No description provided for @cmdRetiree.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirée'**
+  String get cmdRetiree;
+
+  /// No description provided for @cmdRefusee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Refusée'**
+  String get cmdRefusee;
+
+  /// No description provided for @cmdAnnulee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annulée'**
+  String get cmdAnnulee;
+
+  /// No description provided for @commandeIntrouvable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette commande n\'existe pas.'**
+  String get commandeIntrouvable;
+
+  /// No description provided for @commandeNumero.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commande {numero}'**
+  String commandeNumero(String numero);
+
+  /// No description provided for @commanderMontant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commander · {montant}'**
+  String commanderMontant(String montant);
+
+  /// No description provided for @commandes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commandes'**
+  String get commandes;
+
+  /// No description provided for @mesCommandes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes commandes'**
+  String get mesCommandes;
+
+  /// No description provided for @commission.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commission'**
+  String get commission;
+
+  /// No description provided for @commissionLancement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commission pendant le lancement'**
+  String get commissionLancement;
+
+  /// No description provided for @delaiPreparation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Délai de préparation'**
+  String get delaiPreparation;
+
+  /// No description provided for @dureeLancement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Durée'**
+  String get dureeLancement;
+
+  /// No description provided for @mois.
+  ///
+  /// In fr, this message translates to:
+  /// **'mois'**
+  String get mois;
+
+  /// No description provided for @enCours.
+  ///
+  /// In fr, this message translates to:
+  /// **'En cours'**
+  String get enCours;
+
+  /// No description provided for @terminees.
+  ///
+  /// In fr, this message translates to:
+  /// **'Terminées'**
+  String get terminees;
+
+  /// No description provided for @encoreXPourMinimum.
+  ///
+  /// In fr, this message translates to:
+  /// **'Encore {montant} pour atteindre le minimum de commande'**
+  String encoreXPourMinimum(String montant);
+
+  /// No description provided for @erreurCommandeFermee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce commerce ne prend pas de commande pour le moment.'**
+  String get erreurCommandeFermee;
+
+  /// No description provided for @erreurHorsZone.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre adresse est hors de la zone de livraison. Choisissez « À emporter ».'**
+  String get erreurHorsZone;
+
+  /// No description provided for @erreurPaiementIndisponible.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun moyen de paiement disponible pour ce commerce.'**
+  String get erreurPaiementIndisponible;
+
+  /// No description provided for @erreurProduitIndisponible.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un produit de votre panier n\'est plus disponible. Retirez-le puis réessayez.'**
+  String get erreurProduitIndisponible;
+
+  /// No description provided for @erreurTarifsManquants.
+  ///
+  /// In fr, this message translates to:
+  /// **'La commande en ligne n\'est pas encore ouverte. Réessayez plus tard.'**
+  String get erreurTarifsManquants;
+
+  /// No description provided for @especesAEncaisser.
+  ///
+  /// In fr, this message translates to:
+  /// **'À encaisser en espèces : {montant}'**
+  String especesAEncaisser(String montant);
+
+  /// No description provided for @especesLivraison.
+  ///
+  /// In fr, this message translates to:
+  /// **'Espèces à la livraison'**
+  String get especesLivraison;
+
+  /// No description provided for @especesRetrait.
+  ///
+  /// In fr, this message translates to:
+  /// **'Espèces au retrait'**
+  String get especesRetrait;
+
+  /// No description provided for @paiementEspeces.
+  ///
+  /// In fr, this message translates to:
+  /// **'Espèces'**
+  String get paiementEspeces;
+
+  /// No description provided for @fraisFixes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Montant fixe'**
+  String get fraisFixes;
+
+  /// No description provided for @fraisPourcentage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pourcentage'**
+  String get fraisPourcentage;
+
+  /// No description provided for @fraisLivraison.
+  ///
+  /// In fr, this message translates to:
+  /// **'Frais de livraison'**
+  String get fraisLivraison;
+
+  /// No description provided for @fraisPaiement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Frais de paiement'**
+  String get fraisPaiement;
+
+  /// No description provided for @fraisService.
+  ///
+  /// In fr, this message translates to:
+  /// **'Frais de service'**
+  String get fraisService;
+
+  /// No description provided for @fraisServiceAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ces frais font vivre Harambee, qui reste bien moins chère que les grandes plateformes de livraison.'**
+  String get fraisServiceAide;
+
+  /// No description provided for @fraisServicePlateforme.
+  ///
+  /// In fr, this message translates to:
+  /// **'Frais de service (Harambee)'**
+  String get fraisServicePlateforme;
+
+  /// No description provided for @inscritsAvant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pour les commerces inscrits avant le'**
+  String get inscritsAvant;
+
+  /// No description provided for @instructionsLivraison.
+  ///
+  /// In fr, this message translates to:
+  /// **'Instructions (étage, code…)'**
+  String get instructionsLivraison;
+
+  /// No description provided for @livraisonGratuiteDes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Livraison offerte à partir de'**
+  String get livraisonGratuiteDes;
+
+  /// No description provided for @livraisonGratuiteAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Laissez vide si la livraison est toujours payante.'**
+  String get livraisonGratuiteAide;
+
+  /// No description provided for @minimumCommande.
+  ///
+  /// In fr, this message translates to:
+  /// **'Minimum de commande'**
+  String get minimumCommande;
+
+  /// No description provided for @minimumCommandeAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Montant minimum du panier, livraison ou à emporter.'**
+  String get minimumCommandeAide;
+
+  /// No description provided for @minimumLivraison.
+  ///
+  /// In fr, this message translates to:
+  /// **'Minimum pour la livraison'**
+  String get minimumLivraison;
+
+  /// No description provided for @modeEmporter.
+  ///
+  /// In fr, this message translates to:
+  /// **'À emporter'**
+  String get modeEmporter;
+
+  /// No description provided for @modeLivraison.
+  ///
+  /// In fr, this message translates to:
+  /// **'Livraison'**
+  String get modeLivraison;
+
+  /// No description provided for @modeLivraisonAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous livrez vous-même ou avec votre livreur.'**
+  String get modeLivraisonAide;
+
+  /// No description provided for @modesCommande.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modes proposés'**
+  String get modesCommande;
+
+  /// No description provided for @montantConfirmeServeur.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le montant final est confirmé au moment de la commande.'**
+  String get montantConfirmeServeur;
+
+  /// No description provided for @montantNet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Montant net pour vous'**
+  String get montantNet;
+
+  /// No description provided for @motifRefusCommandeAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le client verra ce motif.'**
+  String get motifRefusCommandeAide;
+
+  /// No description provided for @non.
+  ///
+  /// In fr, this message translates to:
+  /// **'Non'**
+  String get non;
+
+  /// No description provided for @nouvellesCommandes.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n, plural, =1{1 nouvelle commande} other{{n} nouvelles commandes}}'**
+  String nouvellesCommandes(int n);
+
+  /// No description provided for @offerte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Offerte'**
+  String get offerte;
+
+  /// No description provided for @paiement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiement'**
+  String get paiement;
+
+  /// No description provided for @paiementCarte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Carte bancaire ou Bancontact'**
+  String get paiementCarte;
+
+  /// No description provided for @paiementCarteActif.
+  ///
+  /// In fr, this message translates to:
+  /// **'Activé : vos clients peuvent payer par carte.'**
+  String get paiementCarteActif;
+
+  /// No description provided for @paiementCarteBientot.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bientôt disponible.'**
+  String get paiementCarteBientot;
+
+  /// No description provided for @panier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Panier'**
+  String get panier;
+
+  /// No description provided for @panierDe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Panier · {nom}'**
+  String panierDe(String nom);
+
+  /// No description provided for @panierVide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre panier est vide'**
+  String get panierVide;
+
+  /// No description provided for @voirPanier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir le panier ({n}) · {montant}'**
+  String voirPanier(int n, String montant);
+
+  /// No description provided for @payeParClient.
+  ///
+  /// In fr, this message translates to:
+  /// **'Payé par le client'**
+  String get payeParClient;
+
+  /// No description provided for @periodeLancement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Période de lancement'**
+  String get periodeLancement;
+
+  /// No description provided for @periodeLancementAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commission réduite pendant quelques mois pour les premiers commerces inscrits.'**
+  String get periodeLancementAide;
+
+  /// No description provided for @plafond.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plafond (facultatif)'**
+  String get plafond;
+
+  /// No description provided for @positionLivraison.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer ma position pour la livraison'**
+  String get positionLivraison;
+
+  /// No description provided for @positionLivraisonAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le commerce livre dans un rayon de {km} km.'**
+  String positionLivraisonAide(String km);
+
+  /// No description provided for @positionLivraisonRequise.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrez votre position pour vérifier que vous êtes dans la zone de livraison.'**
+  String get positionLivraisonRequise;
+
+  /// No description provided for @pourVotreCommerce.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pour votre commerce'**
+  String get pourVotreCommerce;
+
+  /// No description provided for @rayonLivraison.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rayon de livraison'**
+  String get rayonLivraison;
+
+  /// No description provided for @refuserCommande.
+  ///
+  /// In fr, this message translates to:
+  /// **'Refuser la commande'**
+  String get refuserCommande;
+
+  /// No description provided for @reglagesEnregistres.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réglages enregistrés.'**
+  String get reglagesEnregistres;
+
+  /// No description provided for @sousTotal.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sous-total'**
+  String get sousTotal;
+
+  /// No description provided for @tarifParDefaut.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tarif par défaut'**
+  String get tarifParDefaut;
+
+  /// No description provided for @tarifs.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tarifs'**
+  String get tarifs;
+
+  /// No description provided for @tarifsAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commission prélevée sur le sous-total (jamais sur la livraison) et frais de service payés par le client. Un tarif par pays remplace le tarif par défaut.'**
+  String get tarifsAide;
+
+  /// No description provided for @tarifsEnregistres.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tarifs enregistrés.'**
+  String get tarifsEnregistres;
+
+  /// No description provided for @telephoneCommandeAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le commerce pourra vous appeler au sujet de la commande.'**
+  String get telephoneCommandeAide;
+
+  /// No description provided for @total.
+  ///
+  /// In fr, this message translates to:
+  /// **'Total'**
+  String get total;
+
+  /// No description provided for @totalVentes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Total des ventes'**
+  String get totalVentes;
+
+  /// No description provided for @validationModes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez au moins un mode : livraison ou à emporter.'**
+  String get validationModes;
 }
 
 class _AppLocalizationsDelegate

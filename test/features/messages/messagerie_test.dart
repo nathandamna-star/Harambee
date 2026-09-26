@@ -172,7 +172,7 @@ void main() {
     final banc = await bancConnecte(role: 'pro');
     await banc.firestore.doc('conversations/mama__client9').set(conversation());
     await banc.lancer(tester);
-    banc.notifications.touchees.add('mama__client9');
+    banc.notifications.touchees.add({'conversationId': 'mama__client9'});
     await tester.pumpAndSettle();
     expect(find.text('Kofi'), findsOneWidget);
     expect(find.byTooltip('Envoyer'), findsOneWidget);

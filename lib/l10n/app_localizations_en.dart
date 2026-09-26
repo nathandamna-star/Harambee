@@ -868,4 +868,365 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get premierMessageTexte =>
       'Ask your questions: availability, hours, orders… The business will reply here.';
+
+  @override
+  String get accepterEspeces => 'Accept cash';
+
+  @override
+  String get accepterEspecesAide =>
+      'The customer pays cash on delivery or pickup.';
+
+  @override
+  String get actionAccepter => 'Accept order';
+
+  @override
+  String get actionPreparer => 'Start preparing';
+
+  @override
+  String get actionPrete => 'Order ready';
+
+  @override
+  String get actionEnLivraison => 'Out for delivery';
+
+  @override
+  String get actionLivree => 'Order delivered';
+
+  @override
+  String get actionRetiree => 'Order picked up';
+
+  @override
+  String get activerCommande => 'Enable online ordering';
+
+  @override
+  String get activerCommandeAide =>
+      'Your customers will be able to order your products in the app.';
+
+  @override
+  String get commandeActiveModifier => 'Ordering and delivery';
+
+  @override
+  String get commandeEtLivraison => 'Ordering and delivery';
+
+  @override
+  String get adresseLivraison => 'Delivery address';
+
+  @override
+  String get ajouterTarifPays => 'Add a country rate';
+
+  @override
+  String get ajouterAuPanier => 'Add to cart';
+
+  @override
+  String get annulerCommande => 'Cancel order';
+
+  @override
+  String get annulerCommandeTitre => 'Cancel this order?';
+
+  @override
+  String get annulerCommandeTexte =>
+      'The business will be notified. This cannot be undone.';
+
+  @override
+  String get aucuneCommande => 'No orders';
+
+  @override
+  String get aucuneCommandeProAide =>
+      'Enable online ordering in \"Ordering and delivery\" to receive orders.';
+
+  @override
+  String get aucuneDate => 'No date';
+
+  @override
+  String get augmenter => 'Add one';
+
+  @override
+  String get diminuer => 'Remove one';
+
+  @override
+  String get retirer => 'Remove from cart';
+
+  @override
+  String get cmdNouvelle => 'Order sent';
+
+  @override
+  String get cmdAcceptee => 'Accepted';
+
+  @override
+  String get cmdEnPreparation => 'Being prepared';
+
+  @override
+  String get cmdPrete => 'Ready';
+
+  @override
+  String get cmdEnLivraison => 'Out for delivery';
+
+  @override
+  String get cmdLivree => 'Delivered';
+
+  @override
+  String get cmdRetiree => 'Picked up';
+
+  @override
+  String get cmdRefusee => 'Declined';
+
+  @override
+  String get cmdAnnulee => 'Cancelled';
+
+  @override
+  String get commandeIntrouvable => 'This order doesn\'t exist.';
+
+  @override
+  String commandeNumero(String numero) {
+    return 'Order $numero';
+  }
+
+  @override
+  String commanderMontant(String montant) {
+    return 'Order · $montant';
+  }
+
+  @override
+  String get commandes => 'Orders';
+
+  @override
+  String get mesCommandes => 'My orders';
+
+  @override
+  String get commission => 'Commission';
+
+  @override
+  String get commissionLancement => 'Launch commission';
+
+  @override
+  String get delaiPreparation => 'Preparation time';
+
+  @override
+  String get dureeLancement => 'Duration';
+
+  @override
+  String get mois => 'months';
+
+  @override
+  String get enCours => 'Ongoing';
+
+  @override
+  String get terminees => 'Completed';
+
+  @override
+  String encoreXPourMinimum(String montant) {
+    return '$montant more to reach the minimum order';
+  }
+
+  @override
+  String get erreurCommandeFermee =>
+      'This business isn\'t taking orders right now.';
+
+  @override
+  String get erreurHorsZone =>
+      'Your address is outside the delivery area. Choose \"Pickup\".';
+
+  @override
+  String get erreurPaiementIndisponible =>
+      'No payment method available for this business.';
+
+  @override
+  String get erreurProduitIndisponible =>
+      'An item in your cart is no longer available. Remove it and try again.';
+
+  @override
+  String get erreurTarifsManquants =>
+      'Online ordering isn\'t open yet. Please try again later.';
+
+  @override
+  String especesAEncaisser(String montant) {
+    return 'To collect in cash: $montant';
+  }
+
+  @override
+  String get especesLivraison => 'Cash on delivery';
+
+  @override
+  String get especesRetrait => 'Cash on pickup';
+
+  @override
+  String get paiementEspeces => 'Cash';
+
+  @override
+  String get fraisFixes => 'Fixed amount';
+
+  @override
+  String get fraisPourcentage => 'Percentage';
+
+  @override
+  String get fraisLivraison => 'Delivery fee';
+
+  @override
+  String get fraisPaiement => 'Payment fees';
+
+  @override
+  String get fraisService => 'Service fee';
+
+  @override
+  String get fraisServiceAide =>
+      'This fee keeps Harambee running, which stays far cheaper than the big delivery platforms.';
+
+  @override
+  String get fraisServicePlateforme => 'Service fee (Harambee)';
+
+  @override
+  String get inscritsAvant => 'For businesses registered before';
+
+  @override
+  String get instructionsLivraison => 'Instructions (floor, code…)';
+
+  @override
+  String get livraisonGratuiteDes => 'Free delivery from';
+
+  @override
+  String get livraisonGratuiteAide =>
+      'Leave empty if delivery is always charged.';
+
+  @override
+  String get minimumCommande => 'Minimum order';
+
+  @override
+  String get minimumCommandeAide => 'Minimum cart amount, delivery or pickup.';
+
+  @override
+  String get minimumLivraison => 'Minimum for delivery';
+
+  @override
+  String get modeEmporter => 'Pickup';
+
+  @override
+  String get modeLivraison => 'Delivery';
+
+  @override
+  String get modeLivraisonAide =>
+      'You deliver yourself or with your own driver.';
+
+  @override
+  String get modesCommande => 'Options offered';
+
+  @override
+  String get montantConfirmeServeur =>
+      'The final amount is confirmed when you order.';
+
+  @override
+  String get montantNet => 'Net amount for you';
+
+  @override
+  String get motifRefusCommandeAide => 'The customer will see this reason.';
+
+  @override
+  String get non => 'No';
+
+  @override
+  String nouvellesCommandes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n new orders',
+      one: '1 new order',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get offerte => 'Free';
+
+  @override
+  String get paiement => 'Payment';
+
+  @override
+  String get paiementCarte => 'Card or Bancontact';
+
+  @override
+  String get paiementCarteActif => 'Enabled: your customers can pay by card.';
+
+  @override
+  String get paiementCarteBientot => 'Coming soon.';
+
+  @override
+  String get panier => 'Cart';
+
+  @override
+  String panierDe(String nom) {
+    return 'Cart · $nom';
+  }
+
+  @override
+  String get panierVide => 'Your cart is empty';
+
+  @override
+  String voirPanier(int n, String montant) {
+    return 'View cart ($n) · $montant';
+  }
+
+  @override
+  String get payeParClient => 'Paid by the customer';
+
+  @override
+  String get periodeLancement => 'Launch period';
+
+  @override
+  String get periodeLancementAide =>
+      'Reduced commission for a few months for the first registered businesses.';
+
+  @override
+  String get plafond => 'Cap (optional)';
+
+  @override
+  String get positionLivraison => 'Save my location for delivery';
+
+  @override
+  String positionLivraisonAide(String km) {
+    return 'The business delivers within $km km.';
+  }
+
+  @override
+  String get positionLivraisonRequise =>
+      'Save your location to check you are within the delivery area.';
+
+  @override
+  String get pourVotreCommerce => 'For your business';
+
+  @override
+  String get rayonLivraison => 'Delivery radius';
+
+  @override
+  String get refuserCommande => 'Decline order';
+
+  @override
+  String get reglagesEnregistres => 'Settings saved.';
+
+  @override
+  String get sousTotal => 'Subtotal';
+
+  @override
+  String get tarifParDefaut => 'Default rate';
+
+  @override
+  String get tarifs => 'Rates';
+
+  @override
+  String get tarifsAide =>
+      'Commission on the subtotal (never on delivery) and service fee paid by the customer. A country rate replaces the default rate.';
+
+  @override
+  String get tarifsEnregistres => 'Rates saved.';
+
+  @override
+  String get telephoneCommandeAide =>
+      'The business may call you about the order.';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get totalVentes => 'Total sales';
+
+  @override
+  String get validationModes =>
+      'Choose at least one option: delivery or pickup.';
 }

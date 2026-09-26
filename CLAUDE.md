@@ -277,4 +277,13 @@ pose la question au lieu de choisir seul.
   jetons invalides nettoyés ; pas d'envoi dans l'émulateur). Sur iPhone, il faut un compte Apple Developer payant :
   clé APNs (.p8) dans Firebase + capacités « Push Notifications » et « Background Modes > Remote notifications »
   dans Xcode. Tant que ce n'est pas fait, l'app marche sans notifications (erreur de jeton ignorée).
+- Commandes (étape 9, partie 1) — lancement en Belgique, Stripe seul (Flutterwave/CinetPay plus tard) :
+  calcul unique côté serveur `functions/commandes.js` (unités mineures, XOF/XAF sans décimales), appelé par la
+  Cloud Function `creerCommande` ; estimation identique côté app (`lib/features/commandes/data/panier.dart`,
+  mêmes cas de test). Commission sur le sous-total seulement ; frais de service payés par le client ;
+  net commerçant = total − frais de service − commission − frais de paiement. Période de lancement dans
+  `parametres/tarifs.lancement`. Tarifs saisis par l'admin (écran Tarifs), jamais codés en dur (valeurs de départ
+  seulement proposées dans le formulaire). `paiementCarteActif` réservé au serveur (partie 2, Stripe Connect).
+  Commandes en espèces : le commerçant encaisse tout ; la facturation de la commission reste à définir.
+  Notifications : `notifierNouvelleCommande` (pro), `notifierSuiviCommande` (client ; pro si annulation).
 - Vérifier avant chaque commit : `flutter analyze` et `flutter test`.

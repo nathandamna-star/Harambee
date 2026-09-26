@@ -3,6 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../../shared/widgets/connexion_requise.dart';
+
+import 'package:go_router/go_router.dart';
+
+import '../../core/router/routes.dart';
 import '../admin/admin_providers.dart';
 import '../admin/presentation/message_erreur_admin.dart';
 import '../auth/auth_providers.dart';
@@ -74,6 +78,15 @@ class MonEspaceScreen extends ConsumerWidget {
                   ],
                 ),
               ),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Card(
+            child: ListTile(
+              leading: const Icon(Icons.shopping_bag_outlined),
+              title: Text(l10n.mesCommandes),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.push(Routes.mesCommandes),
             ),
           ),
           const SizedBox(height: 24),

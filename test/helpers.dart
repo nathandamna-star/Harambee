@@ -16,6 +16,8 @@ import 'package:harambee/features/admin/admin_providers.dart';
 import 'package:harambee/features/admin/data/fonctions_admin.dart';
 import 'package:harambee/features/auth/auth_providers.dart';
 import 'package:harambee/features/auth/data/connexion_google.dart';
+import 'package:harambee/features/commandes/commandes_providers.dart';
+import 'package:harambee/features/commandes/data/commandes_repository.dart';
 import 'package:harambee/features/commerce/commerce_providers.dart';
 import 'package:harambee/features/commerce/data/localisation_service.dart';
 import 'package:harambee/features/commerce/data/photos_service.dart';
@@ -120,7 +122,7 @@ class FauxLanceur implements Lanceur {
 class FaussesNotifications implements NotificationsService {
   final actives = <String>[];
   final desactivees = <String>[];
-  final touchees = StreamController<String>.broadcast();
+  final touchees = StreamController<Map<String, dynamic>>.broadcast();
 
   @override
   Future<void> activer(String uid) async => actives.add(uid);
@@ -129,7 +131,56 @@ class FaussesNotifications implements NotificationsService {
   Future<void> desactiver(String uid) async => desactivees.add(uid);
 
   @override
-  Stream<String> get conversationsTouchees => touchees.stream;
+  Stream<Map<String, dynamic>> get notificationsTouchees => touchees.stream;
+}
+
+/// Remplace la Cloud Function `creerCommande` : enregistre la demande et
+/// écrit une commande simple dans la base simulée.
+class FaussesFonctionsCommande implements FonctionsCommande {
+  FaussesFonctionsCommande(this.firestore);
+
+  final FakeFirebaseFirestore firestore;
+  final demandes = <DemandeCommande>[];
+  ErreurCommande? erreur;
+
+  @override
+  Future<String> creer(DemandeCommande demande) async {
+    demandes.add(demande);
+    if (erreur != null) throw erreur!;
+    final ref = firestore.collection('commandes').doc('cmd123456');
+    await ref.set({
+      'commerceId': demande.commerceId,
+      'commerceNom': 'Chez Mama',
+      'clientId': 'u1',
+      'clientNom': 'Awa',
+      'proId': 'pro1',
+      'lignes': [
+        for (final e in demande.lignes.entries)
+          {
+            'produitId': e.key,
+            'nom': e.key,
+            'prixUnitaire': 8.5,
+            'quantite': e.value,
+          },
+      ],
+      'sousTotal': 17,
+      'fraisLivraison': 0,
+      'fraisService': 0.69,
+      'commissionPlateforme': 1.19,
+      'fraisPaiement': 0,
+      'total': 17.69,
+      'devise': 'EUR',
+      'mode': demande.mode.name,
+      'telephoneClient': demande.telephone,
+      'paiement': {'methode': demande.methode.name, 'statut': 'en_attente'},
+      'statut': 'nouvelle',
+      'historique': [
+        {'statut': 'nouvelle', 'date': Timestamp.fromDate(maintenantTest)},
+      ],
+      'createdAt': Timestamp.fromDate(maintenantTest),
+    });
+    return ref.id;
+  }
 }
 
 /// Lundi 28 septembre 2026, 10 h.
@@ -150,6 +201,7 @@ class Banc {
   final lanceur = FauxLanceur();
   final localisation = FausseLocalisation();
   final notifications = FaussesNotifications();
+  late final fonctionsCommande = FaussesFonctionsCommande(firestore);
 
   Future<void> lancer(
     WidgetTester tester, {
@@ -172,6 +224,7 @@ class Banc {
           localisationServiceProvider.overrideWithValue(localisation),
           constructeurCarteProvider.overrideWithValue(fausseCarte),
           notificationsServiceProvider.overrideWithValue(notifications),
+          fonctionsCommandeProvider.overrideWithValue(fonctionsCommande),
           fonctionsAdminProvider.overrideWithValue(fonctionsAdmin),
           lanceurProvider.overrideWithValue(lanceur),
           horlogeProvider.overrideWithValue(() => maintenantTest),
