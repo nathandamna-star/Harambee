@@ -82,7 +82,7 @@ describe('creerCommande (émulateur)', () => {
         lignes: [{ produitId: 'a', quantite: 1 }],
       }),
       (e) => e.code === 'functions/failed-precondition'
-        && e.message === 'minimum-non-atteint' && e.details.manque === 1.5,
+        && e.details.code === 'minimum-non-atteint' && e.details.manque === 1.5,
     );
   });
 
@@ -92,7 +92,7 @@ describe('creerCommande (émulateur)', () => {
     await createUserWithEmailAndPassword(auth, 'ama@exemple.com', 'motdepasse1');
     await assert.rejects(
       creerCommande({ commerceId: 'mama', mode: 'emporter', methode: 'especes', lignes: [{ produitId: 'a', quantite: 2 }] }),
-      (e) => e.message === 'telephone-requis',
+      (e) => e.details?.code === 'telephone-requis',
     );
   });
 });

@@ -178,6 +178,11 @@ async function envoyerNotification(uid, construire) {
   }
 }
 
+/** Erreur de commande : le code est aussi dans `details.code` pour l'app. */
+function erreurCommande(statut, code, details = {}) {
+  return new HttpsError(statut, code, { ...details, code });
+}
+
 /**
  * Crée une commande. Tous les montants sont recalculés ici à partir du
  * catalogue, des réglages du commerce et des tarifs (parametres/tarifs).
@@ -190,10 +195,10 @@ export const creerCommande = onCall(async (requete) => {
   const docCommerce = await db.doc(`commerces/${d.commerceId}`).get();
   const commerce = docCommerce.data();
   if (!commerce || commerce.statut !== 'publie') {
-    throw new HttpsError('not-found', 'commerce-introuvable');
+    throw erreurCommande('not-found', 'commerce-introuvable');
   }
   if (commerce.proprietaire === requete.auth.uid) {
-    throw new HttpsError('failed-precondition', 'propre-commerce');
+    throw erreurCommande('failed-precondition', 'propre-commerce');
   }
 
   const lignes = Array.isArray(d.lignes) ? d.lignes.slice(0, 50) : [];
@@ -225,13 +230,13 @@ export const creerCommande = onCall(async (requete) => {
     });
   } catch (e) {
     if (e instanceof ErreurCommande) {
-      throw new HttpsError('failed-precondition', e.code, e.details);
+      throw erreurCommande('failed-precondition', e.code, e.details);
     }
     throw e;
   }
 
   const telephone = String(d.telephone ?? '').trim().slice(0, 30);
-  if (!telephone) throw new HttpsError('invalid-argument', 'telephone-requis');
+  if (!telephone) throw erreurCommande('invalid-argument', 'telephone-requis');
   const profil = (await db.doc(`users/${requete.auth.uid}`).get()).data() ?? {};
   const maintenant = Timestamp.now();
 
