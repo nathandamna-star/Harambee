@@ -1,5 +1,6 @@
 package com.harambee.harambee
 
-import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterFragmentActivity
 
-class MainActivity : FlutterActivity()
+// FlutterFragmentActivity : requis par le paiement Stripe (flutter_stripe).
+class MainActivity : FlutterFragmentActivity()

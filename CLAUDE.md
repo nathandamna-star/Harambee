@@ -286,4 +286,16 @@ pose la question au lieu de choisir seul.
   seulement proposées dans le formulaire). `paiementCarteActif` réservé au serveur (partie 2, Stripe Connect).
   Commandes en espèces : le commerçant encaisse tout ; la facturation de la commission reste à définir.
   Notifications : `notifierNouvelleCommande` (pro), `notifierSuiviCommande` (client ; pro si annulation).
+- Paiement par carte (étape 9, partie 2) : Stripe Connect « Express », destination charges. Le client paie le
+  total ; `application_fee` = commission + frais de service + frais de paiement estimés
+  (`parametres/tarifs.paiementCarte`, défaut proposé 1,5 % + 0,25 €) ; frais exacts écrits par le webhook dans
+  `fraisPaiementReel`. Logique pure dans `functions/paiements.js` (testée), branchée dans `index.js` :
+  `creerCommande` (PaymentIntent, clientSecret renvoyé), `secretPaiement`, `lienPaiementCarte` (compte Express
+  dans `comptesStripe/{commerceId}`, inaccessible à l'app), `retourStripe` (page de retour), `stripeWebhook`
+  (signature vérifiée ; account.updated → `paiementCarteActif`, payment_intent.succeeded/failed,
+  charge.refunded), `gererPaiementCommande` (remboursement ou annulation si commande annulée/refusée).
+  Clés : secrets Firebase STRIPE_SECRET_KEY et STRIPE_WEBHOOK_SECRET (valeurs factices dans
+  `functions/.secret.local` pour l'émulateur) ; clé publiable dans `lib/core/config/stripe.dart` (vide = carte
+  désactivée). Le pro ne voit une commande par carte qu'une fois payée. Android : FlutterFragmentActivity +
+  thème AppCompat ; iOS : schéma d'URL `harambee` pour le retour Bancontact / 3-D Secure.
 - Vérifier avant chaque commit : `flutter analyze` et `flutter test`.

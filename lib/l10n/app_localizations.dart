@@ -2128,12 +2128,6 @@ abstract class AppLocalizations {
   /// **'Activé : vos clients peuvent payer par carte.'**
   String get paiementCarteActif;
 
-  /// No description provided for @paiementCarteBientot.
-  ///
-  /// In fr, this message translates to:
-  /// **'Bientôt disponible.'**
-  String get paiementCarteBientot;
-
   /// No description provided for @panier.
   ///
   /// In fr, this message translates to:
@@ -2277,6 +2271,72 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Choisissez au moins un mode : livraison ou à emporter.'**
   String get validationModes;
+
+  /// No description provided for @paiementNonTermine.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiement non terminé. Vous pouvez payer depuis le suivi de la commande.'**
+  String get paiementNonTermine;
+
+  /// No description provided for @etatPaiement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiement : {etat}'**
+  String etatPaiement(String etat);
+
+  /// No description provided for @paiementEnAttente.
+  ///
+  /// In fr, this message translates to:
+  /// **'en attente'**
+  String get paiementEnAttente;
+
+  /// No description provided for @paiementPaye.
+  ///
+  /// In fr, this message translates to:
+  /// **'payé'**
+  String get paiementPaye;
+
+  /// No description provided for @paiementRembourse.
+  ///
+  /// In fr, this message translates to:
+  /// **'remboursé'**
+  String get paiementRembourse;
+
+  /// No description provided for @paiementEchoue.
+  ///
+  /// In fr, this message translates to:
+  /// **'échoué'**
+  String get paiementEchoue;
+
+  /// No description provided for @payerMaintenant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Payer maintenant'**
+  String get payerMaintenant;
+
+  /// No description provided for @paiementCarteAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Recevez les paiements par carte et Bancontact directement sur votre compte bancaire, via Stripe.'**
+  String get paiementCarteAide;
+
+  /// No description provided for @activerPaiementCarte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Activer le paiement par carte'**
+  String get activerPaiementCarte;
+
+  /// No description provided for @fraisPaiementCarte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Frais de paiement par carte'**
+  String get fraisPaiementCarte;
+
+  /// No description provided for @fraisPaiementCarteAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Estimation des frais du prestataire (Stripe), retenus au commerce sur chaque paiement par carte.'**
+  String get fraisPaiementCarteAide;
 }
 
 class _AppLocalizationsDelegate

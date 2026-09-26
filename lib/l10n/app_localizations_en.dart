@@ -1145,9 +1145,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paiementCarteActif => 'Enabled: your customers can pay by card.';
 
   @override
-  String get paiementCarteBientot => 'Coming soon.';
-
-  @override
   String get panier => 'Cart';
 
   @override
@@ -1229,4 +1226,42 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get validationModes =>
       'Choose at least one option: delivery or pickup.';
+
+  @override
+  String get paiementNonTermine =>
+      'Payment not completed. You can pay from the order tracking screen.';
+
+  @override
+  String etatPaiement(String etat) {
+    return 'Payment: $etat';
+  }
+
+  @override
+  String get paiementEnAttente => 'pending';
+
+  @override
+  String get paiementPaye => 'paid';
+
+  @override
+  String get paiementRembourse => 'refunded';
+
+  @override
+  String get paiementEchoue => 'failed';
+
+  @override
+  String get payerMaintenant => 'Pay now';
+
+  @override
+  String get paiementCarteAide =>
+      'Receive card and Bancontact payments directly into your bank account, via Stripe.';
+
+  @override
+  String get activerPaiementCarte => 'Enable card payments';
+
+  @override
+  String get fraisPaiementCarte => 'Card payment fees';
+
+  @override
+  String get fraisPaiementCarteAide =>
+      'Estimated provider (Stripe) fees, deducted from the business on each card payment.';
 }

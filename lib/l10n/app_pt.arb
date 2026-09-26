@@ -338,7 +338,6 @@
   "paiement": "Pagamento",
   "paiementCarte": "Cartão ou Bancontact",
   "paiementCarteActif": "Ativado: seus clientes podem pagar com cartão.",
-  "paiementCarteBientot": "Em breve.",
   "panier": "Carrinho",
   "panierDe": "Carrinho · {nom}",
   "panierVide": "Seu carrinho está vazio",
@@ -362,5 +361,16 @@
   "telephoneCommandeAide": "O comércio poderá ligar sobre o pedido.",
   "total": "Total",
   "totalVentes": "Total de vendas",
-  "validationModes": "Escolha pelo menos uma opção: entrega ou retirada."
+  "validationModes": "Escolha pelo menos uma opção: entrega ou retirada.",
+  "paiementNonTermine": "Pagamento não concluído. Você pode pagar na tela de acompanhamento.",
+  "etatPaiement": "Pagamento: {etat}",
+  "paiementEnAttente": "pendente",
+  "paiementPaye": "pago",
+  "paiementRembourse": "reembolsado",
+  "paiementEchoue": "falhou",
+  "payerMaintenant": "Pagar agora",
+  "paiementCarteAide": "Receba pagamentos com cartão e Bancontact direto na sua conta, via Stripe.",
+  "activerPaiementCarte": "Ativar pagamento com cartão",
+  "fraisPaiementCarte": "Taxas de pagamento com cartão",
+  "fraisPaiementCarteAide": "Estimativa das taxas do provedor (Stripe), descontadas do comércio em cada pagamento com cartão."
 }

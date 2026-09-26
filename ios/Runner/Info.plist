@@ -20,6 +20,17 @@
 	<string>Harambee utilise votre position pour situer votre commerce et trouver les commerces proches de vous.</string>
 	<key>GMSApiKey</key>
 	<string>$(MAPS_API_KEY)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.harambee.harambee</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>harambee</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleDisplayName</key>
 	<string>Harambee</string>
 	<key>CFBundleExecutable</key>

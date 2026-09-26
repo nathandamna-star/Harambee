@@ -58,12 +58,21 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
     text: '${widget.initial.lancementDureeMois}',
   );
   late DateTime? _inscritsAvant = widget.initial.lancementInscritsAvant;
+  // Frais Stripe standards pour les cartes européennes (à vérifier sur stripe.com).
+  late final _cartePct = TextEditingController(
+    text: '${widget.initial.paiementCartePct ?? 1.5}'.replaceAll('.', ','),
+  );
+  late final _carteFixe = TextEditingController(
+    text: '${widget.initial.paiementCarteFixe ?? 0.25}'.replaceAll('.', ','),
+  );
   bool _occupe = false;
 
   @override
   void dispose() {
     _lancementPct.dispose();
     _lancementMois.dispose();
+    _cartePct.dispose();
+    _carteFixe.dispose();
     super.dispose();
   }
 
@@ -80,6 +89,8 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
         lancementCommissionPct: lirePrix(_lancementPct.text) ?? 0,
         lancementDureeMois: int.tryParse(_lancementMois.text.trim()) ?? 6,
         lancementInscritsAvant: _inscritsAvant,
+        paiementCartePct: lirePrix(_cartePct.text),
+        paiementCarteFixe: lirePrix(_carteFixe.text),
       );
       await ref
           .read(firestoreProvider)
@@ -196,6 +207,46 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
                   );
                   if (d != null) setState(() => _inscritsAvant = d);
                 },
+              ),
+              const Divider(height: 32),
+              Text(l10n.fraisPaiementCarte, style: theme.textTheme.titleMedium),
+              const SizedBox(height: 4),
+              Text(
+                l10n.fraisPaiementCarteAide,
+                style: theme.textTheme.bodySmall,
+              ),
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: _cartePct,
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                      ),
+                      decoration: const InputDecoration(suffixText: '%'),
+                      validator: (v) => lirePrix(v ?? '') == null
+                          ? l10n.validationPrix
+                          : null,
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: Text('+'),
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      controller: _carteFixe,
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                      ),
+                      decoration: const InputDecoration(suffixText: '€'),
+                      validator: (v) => lirePrix(v ?? '') == null
+                          ? l10n.validationPrix
+                          : null,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 16),
               FilledButton(

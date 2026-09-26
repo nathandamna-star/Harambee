@@ -14,6 +14,7 @@ import '../../commerce/data/localisation_service.dart';
 import '../../commerce/presentation/libelles.dart';
 import '../commandes_providers.dart';
 import '../data/commandes_repository.dart';
+import '../data/paiement_service.dart';
 import '../data/panier.dart';
 
 /// Panier d'un commerce : quantités, mode, adresse, paiement, total.
@@ -96,8 +97,9 @@ class _PanierScreenState extends ConsumerState<PanierScreen> {
       return;
     }
     setState(() => _envoi = true);
+    final messenger = ScaffoldMessenger.of(context);
     try {
-      final id = await ref
+      final creee = await ref
           .read(fonctionsCommandeProvider)
           .creer(
             DemandeCommande(
@@ -114,7 +116,17 @@ class _PanierScreenState extends ConsumerState<PanierScreen> {
             ),
           );
       ref.read(paniersProvider.notifier).vider(panier.commerce.id);
-      if (mounted) context.go(Routes.commande(id));
+      if (creee.clientSecret != null) {
+        final resultat = await ref
+            .read(paiementServiceProvider)
+            .payer(creee.clientSecret!);
+        if (resultat != ResultatPaiement.reussi) {
+          messenger.showSnackBar(
+            SnackBar(content: Text(l10n.paiementNonTermine)),
+          );
+        }
+      }
+      if (mounted) context.go(Routes.commande(creee.id));
     } on ErreurCommande catch (e) {
       if (mounted) {
         setState(() => _erreur = _messageErreur(l10n, e, locale, panier));
@@ -153,7 +165,9 @@ class _PanierScreenState extends ConsumerState<PanierScreen> {
     ];
     final mode = modes.contains(_mode) ? _mode! : modes.first;
     final methodes = [
-      if (commerce.paiementCarteActif) MethodePaiement.carte,
+      if (commerce.paiementCarteActif &&
+          ref.watch(paiementServiceProvider).disponible)
+        MethodePaiement.carte,
       if (reglages.especesAcceptees) MethodePaiement.especes,
     ];
     final methode = methodes.contains(_methode)

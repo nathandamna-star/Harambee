@@ -6,9 +6,16 @@ import 'package:url_launcher/url_launcher.dart';
 abstract interface class Lanceur {
   Future<bool> appeler(String telephone);
   Future<bool> itineraire({GeoPoint? geo, required String adresse});
+
+  /// Ouvre une page web dans le navigateur.
+  Future<bool> ouvrir(Uri url);
 }
 
 class LanceurNatif implements Lanceur {
+  @override
+  Future<bool> ouvrir(Uri url) =>
+      launchUrl(url, mode: LaunchMode.externalApplication);
+
   @override
   Future<bool> appeler(String telephone) => launchUrl(
     Uri(scheme: 'tel', path: telephone.replaceAll(RegExp(r'[^0-9+]'), '')),

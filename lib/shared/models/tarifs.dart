@@ -53,6 +53,8 @@ class Tarifs {
     this.lancementCommissionPct = 0,
     this.lancementDureeMois = 6,
     this.lancementInscritsAvant,
+    this.paiementCartePct,
+    this.paiementCarteFixe,
   });
 
   final TarifRegion? defaut;
@@ -61,6 +63,11 @@ class Tarifs {
   final num lancementCommissionPct;
   final int lancementDureeMois;
   final DateTime? lancementInscritsAvant;
+
+  /// Frais estimés d'un paiement par carte (pourcentage + montant fixe),
+  /// retenus au commerce pour couvrir le prestataire de paiement.
+  final num? paiementCartePct;
+  final num? paiementCarteFixe;
 
   TarifRegion? pour(String pays, String continent) =>
       parPays[pays] ?? parContinent[continent] ?? defaut;
@@ -80,6 +87,8 @@ class Tarifs {
       lancementCommissionPct: l['commissionPct'] as num? ?? 0,
       lancementDureeMois: (l['dureeMois'] as num? ?? 6).toInt(),
       lancementInscritsAvant: (l['inscritsAvant'] as Timestamp?)?.toDate(),
+      paiementCartePct: (d['paiementCarte'] as Map?)?['pct'] as num?,
+      paiementCarteFixe: (d['paiementCarte'] as Map?)?['fixe'] as num?,
     );
   }
 
@@ -98,5 +107,6 @@ class Tarifs {
           ? null
           : Timestamp.fromDate(lancementInscritsAvant!),
     },
+    'paiementCarte': {'pct': paiementCartePct, 'fixe': paiementCarteFixe},
   };
 }

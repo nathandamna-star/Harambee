@@ -338,7 +338,6 @@
   "paiement": "Payment",
   "paiementCarte": "Card or Bancontact",
   "paiementCarteActif": "Enabled: your customers can pay by card.",
-  "paiementCarteBientot": "Coming soon.",
   "panier": "Cart",
   "panierDe": "Cart · {nom}",
   "panierVide": "Your cart is empty",
@@ -362,5 +361,16 @@
   "telephoneCommandeAide": "The business may call you about the order.",
   "total": "Total",
   "totalVentes": "Total sales",
-  "validationModes": "Choose at least one option: delivery or pickup."
+  "validationModes": "Choose at least one option: delivery or pickup.",
+  "paiementNonTermine": "Payment not completed. You can pay from the order tracking screen.",
+  "etatPaiement": "Payment: {etat}",
+  "paiementEnAttente": "pending",
+  "paiementPaye": "paid",
+  "paiementRembourse": "refunded",
+  "paiementEchoue": "failed",
+  "payerMaintenant": "Pay now",
+  "paiementCarteAide": "Receive card and Bancontact payments directly into your bank account, via Stripe.",
+  "activerPaiementCarte": "Enable card payments",
+  "fraisPaiementCarte": "Card payment fees",
+  "fraisPaiementCarteAide": "Estimated provider (Stripe) fees, deducted from the business on each card payment."
 }

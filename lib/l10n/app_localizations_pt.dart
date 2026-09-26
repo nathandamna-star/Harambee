@@ -1146,9 +1146,6 @@ class AppLocalizationsPt extends AppLocalizations {
       'Ativado: seus clientes podem pagar com cartão.';
 
   @override
-  String get paiementCarteBientot => 'Em breve.';
-
-  @override
   String get panier => 'Carrinho';
 
   @override
@@ -1229,4 +1226,42 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get validationModes =>
       'Escolha pelo menos uma opção: entrega ou retirada.';
+
+  @override
+  String get paiementNonTermine =>
+      'Pagamento não concluído. Você pode pagar na tela de acompanhamento.';
+
+  @override
+  String etatPaiement(String etat) {
+    return 'Pagamento: $etat';
+  }
+
+  @override
+  String get paiementEnAttente => 'pendente';
+
+  @override
+  String get paiementPaye => 'pago';
+
+  @override
+  String get paiementRembourse => 'reembolsado';
+
+  @override
+  String get paiementEchoue => 'falhou';
+
+  @override
+  String get payerMaintenant => 'Pagar agora';
+
+  @override
+  String get paiementCarteAide =>
+      'Receba pagamentos com cartão e Bancontact direto na sua conta, via Stripe.';
+
+  @override
+  String get activerPaiementCarte => 'Ativar pagamento com cartão';
+
+  @override
+  String get fraisPaiementCarte => 'Taxas de pagamento com cartão';
+
+  @override
+  String get fraisPaiementCarteAide =>
+      'Estimativa das taxas do provedor (Stripe), descontadas do comércio em cada pagamento com cartão.';
 }

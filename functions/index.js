@@ -8,10 +8,15 @@ import { AggregateField, FieldValue, GeoPoint, Timestamp, getFirestore } from 'f
 import { setGlobalOptions } from 'firebase-functions/v2';
 import { onDocumentCreated, onDocumentUpdated, onDocumentWritten } from 'firebase-functions/v2/firestore';
 import { logger } from 'firebase-functions';
-import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { defineString } from 'firebase-functions/params';
+import { HttpsError, onCall, onRequest } from 'firebase-functions/v2/https';
+import { defineSecret, defineString } from 'firebase-functions/params';
+import Stripe from 'stripe';
 import { ErreurCommande, calculerCommande } from './commandes.js';
 import { jetonsInvalides, notificationCommande, notificationMessage } from './notifications.js';
+import {
+  actionPaiementApresChangement, actionsEvenementStripe, commissionApplication,
+  fraisPaiementMineur, notificationApresChangement, prevenirProALaCreation,
+} from './paiements.js';
 
 initializeApp();
 
@@ -23,6 +28,23 @@ const EMAIL_ADMIN_INITIAL = defineString('EMAIL_ADMIN_INITIAL', {
 });
 
 const REF_ADMINS = 'systeme/admins';
+
+// Clés Stripe : secrets Firebase (jamais dans le dépôt).
+// firebase functions:secrets:set STRIPE_SECRET_KEY / STRIPE_WEBHOOK_SECRET
+const STRIPE_SECRET_KEY = defineSecret('STRIPE_SECRET_KEY');
+const STRIPE_WEBHOOK_SECRET = defineSecret('STRIPE_WEBHOOK_SECRET');
+
+let clientStripe;
+function stripe() {
+  clientStripe ??= new Stripe(STRIPE_SECRET_KEY.value());
+  return clientStripe;
+}
+
+/** Adresse publique d'une fonction HTTP de ce projet. */
+function urlFonction(nom) {
+  const projet = process.env.GCLOUD_PROJECT ?? JSON.parse(process.env.FIREBASE_CONFIG ?? '{}').projectId;
+  return `https://europe-west1-${projet}.cloudfunctions.net/${nom}`;
+}
 
 function emailNormalise(valeur) {
   return (valeur ?? '').trim().toLowerCase();
@@ -187,7 +209,7 @@ function erreurCommande(statut, code, details = {}) {
  * Crée une commande. Tous les montants sont recalculés ici à partir du
  * catalogue, des réglages du commerce et des tarifs (parametres/tarifs).
  */
-export const creerCommande = onCall(async (requete) => {
+export const creerCommande = onCall({ secrets: [STRIPE_SECRET_KEY] }, async (requete) => {
   if (!requete.auth) throw new HttpsError('unauthenticated', 'Connexion requise.');
   const d = requete.data ?? {};
   const db = getFirestore();
@@ -239,8 +261,27 @@ export const creerCommande = onCall(async (requete) => {
   if (!telephone) throw erreurCommande('invalid-argument', 'telephone-requis');
   const profil = (await db.doc(`users/${requete.auth.uid}`).get()).data() ?? {};
   const maintenant = Timestamp.now();
-
   const ref = db.collection('commandes').doc();
+
+  // Paiement par carte : intention de paiement Stripe vers le compte du commerce.
+  let fraisPaiement = 0;
+  let paiementIntent = null;
+  if (d.methode === 'carte') {
+    const compte = (await db.doc(`comptesStripe/${d.commerceId}`).get()).data();
+    if (!compte?.compteId) throw erreurCommande('failed-precondition', 'carte-indisponible');
+    const frais = fraisPaiementMineur(calcul.totalMineur, tarifs.paiementCarte);
+    fraisPaiement = frais / 100;
+    paiementIntent = await stripe().paymentIntents.create({
+      amount: calcul.totalMineur,
+      currency: calcul.devise.toLowerCase(),
+      automatic_payment_methods: { enabled: true },
+      application_fee_amount: commissionApplication(calcul, frais),
+      transfer_data: { destination: compte.compteId },
+      description: `Harambee · ${commerce.nom}`,
+      metadata: { commandeId: ref.id, commerceId: d.commerceId },
+    }, { idempotencyKey: `commande-${ref.id}` });
+  }
+
   await ref.set({
     commerceId: d.commerceId,
     commerceNom: commerce.nom,
@@ -253,8 +294,8 @@ export const creerCommande = onCall(async (requete) => {
     fraisLivraison: calcul.fraisLivraison,
     fraisService: calcul.fraisService,
     commissionPlateforme: calcul.commissionPlateforme,
-    // Frais du prestataire de paiement : connus après un paiement par carte.
-    fraisPaiement: 0,
+    // Frais du prestataire de paiement (estimés ; frais exacts dans fraisPaiementReel).
+    fraisPaiement,
     total: calcul.total,
     devise: calcul.devise,
     mode: d.mode,
@@ -264,19 +305,153 @@ export const creerCommande = onCall(async (requete) => {
       instructions: String(d.adresse?.instructions ?? '').slice(0, 300),
     } : null,
     telephoneClient: telephone,
-    paiement: { methode: d.methode, statut: 'en_attente', reference: null },
+    paiement: { methode: d.methode, statut: 'en_attente', reference: paiementIntent?.id ?? null },
     statut: 'nouvelle',
     historique: [{ statut: 'nouvelle', date: maintenant }],
     createdAt: maintenant,
     updatedAt: maintenant,
   });
-  return { commandeId: ref.id, total: calcul.total, devise: calcul.devise };
+  return {
+    commandeId: ref.id,
+    total: calcul.total,
+    devise: calcul.devise,
+    clientSecret: paiementIntent?.client_secret ?? null,
+  };
 });
+
+/** Reprendre le paiement d'une commande par carte (le client a fermé la page de paiement). */
+export const secretPaiement = onCall({ secrets: [STRIPE_SECRET_KEY] }, async (requete) => {
+  if (!requete.auth) throw new HttpsError('unauthenticated', 'Connexion requise.');
+  const commande = (await getFirestore().doc(`commandes/${requete.data?.commandeId}`).get()).data();
+  if (!commande || commande.clientId !== requete.auth.uid) {
+    throw new HttpsError('not-found', 'commande-introuvable');
+  }
+  if (commande.paiement?.methode !== 'carte' || commande.paiement?.statut === 'paye'
+    || commande.statut !== 'nouvelle' || !commande.paiement?.reference) {
+    throw new HttpsError('failed-precondition', 'paiement-impossible');
+  }
+  const pi = await stripe().paymentIntents.retrieve(commande.paiement.reference);
+  return { clientSecret: pi.client_secret };
+});
+
+/**
+ * Le commerçant active le paiement par carte : compte Stripe « Express » créé
+ * au besoin, puis lien vers le formulaire d'inscription de Stripe.
+ */
+export const lienPaiementCarte = onCall({ secrets: [STRIPE_SECRET_KEY] }, async (requete) => {
+  if (!requete.auth) throw new HttpsError('unauthenticated', 'Connexion requise.');
+  const commerceId = String(requete.data?.commerceId ?? '');
+  const db = getFirestore();
+  const commerce = (await db.doc(`commerces/${commerceId}`).get()).data();
+  if (!commerce || commerce.proprietaire !== requete.auth.uid) {
+    throw new HttpsError('permission-denied', 'Réservé au propriétaire du commerce.');
+  }
+  const refCompte = db.doc(`comptesStripe/${commerceId}`);
+  let compteId = (await refCompte.get()).data()?.compteId;
+  if (!compteId) {
+    const compte = await stripe().accounts.create({
+      type: 'express',
+      country: commerce.pays || 'BE',
+      email: requete.auth.token.email,
+      business_profile: { name: commerce.nom },
+      capabilities: {
+        card_payments: { requested: true },
+        transfers: { requested: true },
+        bancontact_payments: { requested: true },
+      },
+      metadata: { commerceId },
+    }, { idempotencyKey: `compte-${commerceId}` });
+    compteId = compte.id;
+    await refCompte.set({ compteId, creeLe: FieldValue.serverTimestamp() });
+  }
+  const lien = await stripe().accountLinks.create({
+    account: compteId,
+    refresh_url: `${urlFonction('retourStripe')}?etat=expire`,
+    return_url: `${urlFonction('retourStripe')}?etat=termine`,
+    type: 'account_onboarding',
+  });
+  return { url: lien.url };
+});
+
+/** Page affichée après le formulaire Stripe. */
+export const retourStripe = onRequest((requete, reponse) => {
+  const termine = requete.query.etat === 'termine';
+  reponse.set('Content-Type', 'text/html; charset=utf-8').send(`<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Harambee</title>
+<style>body{font-family:-apple-system,system-ui,sans-serif;background:#F6F1E7;color:#1E1B16;
+display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;padding:24px;text-align:center}
+h1{color:#B4451F;font-size:1.5rem}</style></head>
+<body><main><h1>${termine ? 'Merci !' : 'Lien expiré'}</h1>
+<p>${termine
+    ? 'Vous pouvez fermer cette page et revenir dans l\'app Harambee. Le paiement par carte sera actif dès que Stripe aura validé vos informations.'
+    : 'Revenez dans l\'app Harambee et touchez à nouveau « Activer le paiement par carte ».'}</p>
+</main></body></html>`);
+});
+
+/** Événements envoyés par Stripe (paiements, comptes des commerces). */
+export const stripeWebhook = onRequest(
+  { secrets: [STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET] },
+  async (requete, reponse) => {
+    let evenement;
+    try {
+      evenement = stripe().webhooks.constructEvent(
+        requete.rawBody,
+        requete.get('stripe-signature'),
+        STRIPE_WEBHOOK_SECRET.value(),
+      );
+    } catch (e) {
+      logger.warn('Webhook Stripe refusé (signature invalide)', { message: e.message });
+      reponse.status(400).send('Signature invalide');
+      return;
+    }
+    const db = getFirestore();
+    for (const action of actionsEvenementStripe(evenement)) {
+      const donnees = { ...action.donnees };
+      if (action.fraisReels) {
+        const charge = await stripe().charges.retrieve(action.fraisReels, { expand: ['balance_transaction'] });
+        const frais = charge.balance_transaction?.fee;
+        if (frais != null) donnees.fraisPaiementReel = frais / 100;
+      }
+      try {
+        await db.doc(`${action.collection}/${action.id}`).update(donnees);
+      } catch (e) {
+        if (e.code !== 5) throw e; // document supprimé : rien à faire
+      }
+    }
+    reponse.json({ recu: true });
+  },
+);
+
+/** Commande par carte annulée ou refusée : remboursement ou annulation du paiement. */
+export const gererPaiementCommande = onDocumentUpdated(
+  { document: 'commandes/{commandeId}', secrets: [STRIPE_SECRET_KEY] },
+  async (evenement) => {
+    const avant = evenement.data?.before.data();
+    const apres = evenement.data?.after.data();
+    const action = actionPaiementApresChangement(avant, apres);
+    const pi = apres?.paiement?.reference;
+    if (!action || !pi) return;
+    if (process.env.FUNCTIONS_EMULATOR === 'true') {
+      logger.info('Émulateur : pas d\'appel à Stripe', { action, pi });
+      return;
+    }
+    if (action === 'rembourser') {
+      await stripe().refunds.create(
+        { payment_intent: pi, reverse_transfer: true, refund_application_fee: true },
+        { idempotencyKey: `remboursement-${evenement.params.commandeId}` },
+      );
+    } else {
+      await stripe().paymentIntents.cancel(pi);
+      await evenement.data.after.ref.update({ 'paiement.statut': 'echoue' });
+    }
+  },
+);
 
 /** Prévient le commerçant d'une nouvelle commande. */
 export const notifierNouvelleCommande = onDocumentCreated('commandes/{commandeId}', async (evenement) => {
   const commande = evenement.data?.data();
-  if (!commande) return;
+  if (!commande || !prevenirProALaCreation(commande)) return;
   await envoyerNotification(commande.proId, (langue) =>
     notificationCommande({ commandeId: evenement.params.commandeId, commande, pourPro: true, langue }));
 });
@@ -285,9 +460,10 @@ export const notifierNouvelleCommande = onDocumentCreated('commandes/{commandeId
 export const notifierSuiviCommande = onDocumentUpdated('commandes/{commandeId}', async (evenement) => {
   const avant = evenement.data?.before.data();
   const apres = evenement.data?.after.data();
-  if (!avant || !apres || avant.statut === apres.statut) return;
-  // Le client qui annule n'a pas besoin d'être prévenu ; le commerçant, si.
-  const pourPro = apres.statut === 'annulee';
-  await envoyerNotification(pourPro ? apres.proId : apres.clientId, (langue) =>
-    notificationCommande({ commandeId: evenement.params.commandeId, commande: apres, pourPro, langue }));
+  const cible = notificationApresChangement(avant, apres);
+  if (!cible) return;
+  await envoyerNotification(cible.uid, (langue) =>
+    notificationCommande({
+      commandeId: evenement.params.commandeId, commande: apres, pourPro: cible.pourPro, langue,
+    }));
 });

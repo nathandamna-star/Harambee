@@ -498,6 +498,15 @@ describe('paramètres', () => {
   });
 });
 
+describe('comptes Stripe des commerces', () => {
+  it('illisibles et non modifiables depuis l\'app, même par le propriétaire ou un admin', async () => {
+    await preparer(env, { ...base, 'comptesStripe/publie': { compteId: 'acct_1' } });
+    await assertFails(getDoc(doc(pro(), 'comptesStripe/publie')));
+    await assertFails(getDoc(doc(admin(), 'comptesStripe/publie')));
+    await assertFails(setDoc(doc(pro(), 'comptesStripe/publie'), { compteId: 'acct_pirate' }));
+  });
+});
+
 describe('par défaut', () => {
   it('toute autre collection est refusée', async () => {
     await assertFails(setDoc(doc(admin(), 'divers/x'), { a: 1 }));

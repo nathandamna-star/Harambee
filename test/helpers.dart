@@ -18,6 +18,8 @@ import 'package:harambee/features/auth/auth_providers.dart';
 import 'package:harambee/features/auth/data/connexion_google.dart';
 import 'package:harambee/features/commandes/commandes_providers.dart';
 import 'package:harambee/features/commandes/data/commandes_repository.dart';
+import 'package:harambee/features/commandes/data/paiement_service.dart';
+import 'package:harambee/shared/models/commande.dart';
 import 'package:harambee/features/commerce/commerce_providers.dart';
 import 'package:harambee/features/commerce/data/localisation_service.dart';
 import 'package:harambee/features/commerce/data/photos_service.dart';
@@ -113,6 +115,12 @@ class FauxLanceur implements Lanceur {
   }
 
   @override
+  Future<bool> ouvrir(Uri url) async {
+    appels.add('ouvrir:$url');
+    return true;
+  }
+
+  @override
   Future<bool> itineraire({GeoPoint? geo, required String adresse}) async {
     appels.add('itineraire:${geo?.latitude},${geo?.longitude}');
     return true;
@@ -143,8 +151,22 @@ class FaussesFonctionsCommande implements FonctionsCommande {
   final demandes = <DemandeCommande>[];
   ErreurCommande? erreur;
 
+  /// Secret renvoyé pour un paiement par carte.
+  String? secret;
+  final liensDemandes = <String>[];
+
   @override
-  Future<String> creer(DemandeCommande demande) async {
+  Future<String> secretPaiement(String commandeId) async =>
+      'secret-$commandeId';
+
+  @override
+  Future<Uri> lienPaiementCarte(String commerceId) async {
+    liensDemandes.add(commerceId);
+    return Uri.parse('https://connect.stripe.com/setup/e/$commerceId');
+  }
+
+  @override
+  Future<CommandeCreee> creer(DemandeCommande demande) async {
     demandes.add(demande);
     if (erreur != null) throw erreur!;
     final ref = firestore.collection('commandes').doc('cmd123456');
@@ -172,14 +194,36 @@ class FaussesFonctionsCommande implements FonctionsCommande {
       'devise': 'EUR',
       'mode': demande.mode.name,
       'telephoneClient': demande.telephone,
-      'paiement': {'methode': demande.methode.name, 'statut': 'en_attente'},
+      'paiement': {
+        'methode': demande.methode.name,
+        'statut': 'en_attente',
+        'reference': 'pi_test',
+      },
       'statut': 'nouvelle',
       'historique': [
         {'statut': 'nouvelle', 'date': Timestamp.fromDate(maintenantTest)},
       ],
       'createdAt': Timestamp.fromDate(maintenantTest),
     });
-    return ref.id;
+    return (
+      id: ref.id,
+      clientSecret: demande.methode == MethodePaiement.carte ? 'secret' : null,
+    );
+  }
+}
+
+/// Formulaire de paiement simulé.
+class FauxPaiement implements PaiementService {
+  ResultatPaiement resultat = ResultatPaiement.reussi;
+  final secrets = <String>[];
+
+  @override
+  bool get disponible => true;
+
+  @override
+  Future<ResultatPaiement> payer(String clientSecret) async {
+    secrets.add(clientSecret);
+    return resultat;
   }
 }
 
@@ -202,6 +246,7 @@ class Banc {
   final localisation = FausseLocalisation();
   final notifications = FaussesNotifications();
   late final fonctionsCommande = FaussesFonctionsCommande(firestore);
+  final paiement = FauxPaiement();
 
   Future<void> lancer(
     WidgetTester tester, {
@@ -225,6 +270,7 @@ class Banc {
           constructeurCarteProvider.overrideWithValue(fausseCarte),
           notificationsServiceProvider.overrideWithValue(notifications),
           fonctionsCommandeProvider.overrideWithValue(fonctionsCommande),
+          paiementServiceProvider.overrideWithValue(paiement),
           fonctionsAdminProvider.overrideWithValue(fonctionsAdmin),
           lanceurProvider.overrideWithValue(lanceur),
           horlogeProvider.overrideWithValue(() => maintenantTest),

@@ -7,12 +7,17 @@ import '../../shared/models/produit.dart';
 import '../../shared/models/tarifs.dart';
 import '../auth/auth_providers.dart';
 import 'data/commandes_repository.dart';
+import 'data/paiement_service.dart';
 import 'data/panier.dart';
 
 final fonctionsCommandeProvider = Provider<FonctionsCommande>(
   (ref) => FonctionsCommandeFirebase(
     FirebaseFunctions.instanceFor(region: 'europe-west1'),
   ),
+);
+
+final paiementServiceProvider = Provider<PaiementService>(
+  (ref) => PaiementStripe(),
 );
 
 final commandesRepositoryProvider = Provider<CommandesRepository>(
@@ -54,10 +59,23 @@ final mesCommandesProvider = StreamProvider<List<Commande>>((ref) {
   return ref.watch(commandesRepositoryProvider).commandesClient(uid);
 });
 
+/// Commandes reçues par le commerçant. Une commande par carte n'apparaît
+/// qu'une fois payée (ou remboursée ensuite).
 final commandesProProvider = StreamProvider<List<Commande>>((ref) {
   final uid = ref.watch(utilisateurFirebaseProvider).value?.uid;
   if (uid == null) return Stream.value(const []);
-  return ref.watch(commandesRepositoryProvider).commandesPro(uid);
+  return ref
+      .watch(commandesRepositoryProvider)
+      .commandesPro(uid)
+      .map(
+        (liste) => [
+          for (final c in liste)
+            if (c.methodePaiement != MethodePaiement.carte ||
+                c.statutPaiement == StatutPaiement.paye ||
+                c.statutPaiement == StatutPaiement.rembourse)
+              c,
+        ],
+      );
 });
 
 final commandeProvider = StreamProvider.family<Commande?, String>(

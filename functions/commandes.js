@@ -146,5 +146,7 @@ export function calculerCommande({
     periodeLancement: lancement,
     total: versMajeur(total, devise),
     totalMineur: total,
+    fraisServiceMineur: fraisService,
+    commissionMineur: commission,
   };
 }

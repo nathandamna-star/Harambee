@@ -487,7 +487,6 @@
   "paiement": "Paiement",
   "paiementCarte": "Carte bancaire ou Bancontact",
   "paiementCarteActif": "Activé : vos clients peuvent payer par carte.",
-  "paiementCarteBientot": "Bientôt disponible.",
   "panier": "Panier",
   "panierDe": "Panier · {nom}",
   "@panierDe": {
@@ -535,5 +534,23 @@
   "telephoneCommandeAide": "Le commerce pourra vous appeler au sujet de la commande.",
   "total": "Total",
   "totalVentes": "Total des ventes",
-  "validationModes": "Choisissez au moins un mode : livraison ou à emporter."
+  "validationModes": "Choisissez au moins un mode : livraison ou à emporter.",
+  "paiementNonTermine": "Paiement non terminé. Vous pouvez payer depuis le suivi de la commande.",
+  "etatPaiement": "Paiement : {etat}",
+  "@etatPaiement": {
+    "placeholders": {
+      "etat": {
+        "type": "String"
+      }
+    }
+  },
+  "paiementEnAttente": "en attente",
+  "paiementPaye": "payé",
+  "paiementRembourse": "remboursé",
+  "paiementEchoue": "échoué",
+  "payerMaintenant": "Payer maintenant",
+  "paiementCarteAide": "Recevez les paiements par carte et Bancontact directement sur votre compte bancaire, via Stripe.",
+  "activerPaiementCarte": "Activer le paiement par carte",
+  "fraisPaiementCarte": "Frais de paiement par carte",
+  "fraisPaiementCarteAide": "Estimation des frais du prestataire (Stripe), retenus au commerce sur chaque paiement par carte."
 }

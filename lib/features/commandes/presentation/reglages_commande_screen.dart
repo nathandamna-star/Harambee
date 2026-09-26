@@ -7,6 +7,8 @@ import '../../../shared/models/commande.dart';
 import '../../../shared/models/commerce.dart';
 import '../../commerce/commerce_providers.dart';
 import '../../commerce/presentation/libelles.dart';
+import '../../explorer/explorer_providers.dart';
+import '../commandes_providers.dart';
 
 /// Réglages de la commande en ligne d'un commerce.
 class ReglagesCommandeScreen extends ConsumerWidget {
@@ -116,6 +118,22 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(l10n.erreurEnregistrement)));
       }
+    } finally {
+      if (mounted) setState(() => _occupe = false);
+    }
+  }
+
+  Future<void> _activerCarte() async {
+    final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    setState(() => _occupe = true);
+    try {
+      final url = await ref
+          .read(fonctionsCommandeProvider)
+          .lienPaiementCarte(widget.commerce.id);
+      await ref.read(lanceurProvider).ouvrir(url);
+    } catch (_) {
+      messenger.showSnackBar(SnackBar(content: Text(l10n.erreurReseau)));
     } finally {
       if (mounted) setState(() => _occupe = false);
     }
@@ -244,9 +262,15 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
                 subtitle: Text(
                   widget.commerce.paiementCarteActif
                       ? l10n.paiementCarteActif
-                      : l10n.paiementCarteBientot,
+                      : l10n.paiementCarteAide,
                 ),
               ),
+              if (!widget.commerce.paiementCarteActif)
+                OutlinedButton.icon(
+                  onPressed: _occupe ? null : _activerCarte,
+                  icon: const Icon(Icons.open_in_new),
+                  label: Text(l10n.activerPaiementCarte),
+                ),
               const SizedBox(height: 16),
               FilledButton(
                 onPressed: _occupe ? null : _enregistrer,

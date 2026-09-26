@@ -10,6 +10,7 @@ import '../../auth/auth_providers.dart';
 import '../../commerce/presentation/libelles.dart';
 import '../../explorer/explorer_providers.dart';
 import '../commandes_providers.dart';
+import '../data/paiement_service.dart';
 import 'libelles_commande.dart';
 
 /// Détail et suivi en temps réel d'une commande. Le client peut annuler une
@@ -86,6 +87,27 @@ class _DetailState extends ConsumerState<_Detail> {
     }
   }
 
+  Future<void> _payer() async {
+    final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    setState(() => _occupe = true);
+    try {
+      final secret = await ref
+          .read(fonctionsCommandeProvider)
+          .secretPaiement(c.id);
+      final r = await ref.read(paiementServiceProvider).payer(secret);
+      if (r != ResultatPaiement.reussi) {
+        messenger.showSnackBar(
+          SnackBar(content: Text(l10n.paiementNonTermine)),
+        );
+      }
+    } catch (_) {
+      messenger.showSnackBar(SnackBar(content: Text(l10n.erreurReseau)));
+    } finally {
+      if (mounted) setState(() => _occupe = false);
+    }
+  }
+
   Future<void> _refuser() async {
     final l10n = AppLocalizations.of(context);
     final motif = await demanderTexte(
@@ -155,6 +177,22 @@ class _DetailState extends ConsumerState<_Detail> {
                 color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
+            if (c.methodePaiement == MethodePaiement.carte) ...[
+              const SizedBox(height: 8),
+              Text(
+                l10n.etatPaiement(switch (c.statutPaiement) {
+                  StatutPaiement.enAttente => l10n.paiementEnAttente,
+                  StatutPaiement.paye => l10n.paiementPaye,
+                  StatutPaiement.rembourse => l10n.paiementRembourse,
+                  StatutPaiement.echoue => l10n.paiementEchoue,
+                }),
+                style: theme.textTheme.titleSmall?.copyWith(
+                  color: c.statutPaiement == StatutPaiement.paye
+                      ? theme.colorScheme.secondary
+                      : theme.colorScheme.error,
+                ),
+              ),
+            ],
             const SizedBox(height: 16),
             _Suivi(commande: c),
             if (c.motifRefus != null && c.statut == StatutCommande.refusee) ...[
@@ -241,11 +279,22 @@ class _DetailState extends ConsumerState<_Detail> {
                   child: Text(l10n.refuserCommande),
                 ),
               ],
-            ] else if (!widget.estPro && c.statut == StatutCommande.nouvelle)
+            ] else if (!widget.estPro &&
+                c.statut == StatutCommande.nouvelle) ...[
+              if (c.methodePaiement == MethodePaiement.carte &&
+                  (c.statutPaiement == StatutPaiement.enAttente ||
+                      c.statutPaiement == StatutPaiement.echoue)) ...[
+                FilledButton(
+                  onPressed: _payer,
+                  child: Text(l10n.payerMaintenant),
+                ),
+                const SizedBox(height: 12),
+              ],
               OutlinedButton(
                 onPressed: _annuler,
                 child: Text(l10n.annulerCommande),
               ),
+            ],
           ],
         ),
       ),

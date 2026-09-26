@@ -54,6 +54,7 @@ dependencies:
   url_launcher: ^6.3.2
   google_maps_flutter: ^2.18.2
   firebase_messaging: ^16.7.0
+  flutter_stripe: ^14.1.0
 
 dev_dependencies:
   flutter_test:

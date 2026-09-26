@@ -55,10 +55,19 @@ class DemandeCommande {
   };
 }
 
-/// Appel à la fonction serveur (remplaçable dans les tests).
+/// Commande créée par le serveur ; [clientSecret] pour un paiement par carte.
+typedef CommandeCreee = ({String id, String? clientSecret});
+
+/// Appels aux fonctions serveur (remplaçables dans les tests).
 abstract interface class FonctionsCommande {
-  /// Renvoie l'identifiant de la commande créée, ou lève [ErreurCommande].
-  Future<String> creer(DemandeCommande demande);
+  /// Crée la commande, ou lève [ErreurCommande].
+  Future<CommandeCreee> creer(DemandeCommande demande);
+
+  /// Secret pour reprendre le paiement d'une commande par carte.
+  Future<String> secretPaiement(String commandeId);
+
+  /// Lien vers le formulaire Stripe pour activer le paiement par carte.
+  Future<Uri> lienPaiementCarte(String commerceId);
 }
 
 class FonctionsCommandeFirebase implements FonctionsCommande {
@@ -67,12 +76,33 @@ class FonctionsCommandeFirebase implements FonctionsCommande {
   final FirebaseFunctions fonctions;
 
   @override
-  Future<String> creer(DemandeCommande demande) async {
+  Future<CommandeCreee> creer(DemandeCommande demande) async {
+    final r = await _appeler('creerCommande', demande.versJson());
+    return (
+      id: r['commandeId'] as String,
+      clientSecret: r['clientSecret'] as String?,
+    );
+  }
+
+  @override
+  Future<String> secretPaiement(String commandeId) async =>
+      (await _appeler('secretPaiement', {
+            'commandeId': commandeId,
+          }))['clientSecret']
+          as String;
+
+  @override
+  Future<Uri> lienPaiementCarte(String commerceId) async => Uri.parse(
+    (await _appeler('lienPaiementCarte', {'commerceId': commerceId}))['url']
+        as String,
+  );
+
+  Future<Map<String, dynamic>> _appeler(String nom, Object donnees) async {
     try {
       final r = await fonctions
-          .httpsCallable('creerCommande')
-          .call<Map<String, dynamic>>(demande.versJson());
-      return r.data['commandeId'] as String;
+          .httpsCallable(nom)
+          .call<Map<String, dynamic>>(donnees);
+      return r.data;
     } on FirebaseFunctionsException catch (e) {
       final details = e.details;
       // Le serveur place le code (minimum-non-atteint, hors-zone…) dans
