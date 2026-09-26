@@ -136,6 +136,52 @@ describe('commerces', () => {
   });
 });
 
+describe('écritures faites par l\'app (mêmes champs que le code Dart)', () => {
+  it('création de fiche, ajout des photos, modification', async () => {
+    await preparer(env, base);
+    const ref = doc(pro(), 'commerces/app1');
+    await assertSucceeds(setDoc(ref, {
+      nom: 'Maquis', categorie: 'restaurant', description: '', photos: [],
+      adresse: 'Cocody', geo: null, geohash: null, pays: 'CI', ville: 'Abidjan',
+      continent: 'afrique', horaires: { lundi: ['09:00-19:00'] }, telephone: null,
+      devise: 'XOF', charteSigneeLe: null, labelAfricain: true, labelChretien: false,
+      statut: 'en_verification', proprietaire: 'pro1', noteMoyenne: 0, nbAvis: 0,
+      createdAt: serverTimestamp(), updatedAt: serverTimestamp(),
+    }));
+    await assertSucceeds(updateDoc(ref, { photos: ['https://exemple/p.jpg'] }));
+    await assertSucceeds(updateDoc(ref, {
+      nom: 'Maquis Awa', categorie: 'restaurant', description: 'Bon', photos: [],
+      adresse: 'Cocody', geo: null, geohash: null, pays: 'CI', ville: 'Abidjan',
+      continent: 'afrique', horaires: {}, telephone: '+225', devise: 'XOF',
+      charteSigneeLe: null, updatedAt: serverTimestamp(),
+    }));
+  });
+
+  it('client qui passe en pro', async () => {
+    await preparer(env, base);
+    await assertSucceeds(updateDoc(doc(client(), 'users/client1'), { role: 'pro' }));
+  });
+
+  it('profil créé à la première connexion', async () => {
+    await assertSucceeds(setDoc(doc(client(), 'users/client1'), {
+      nom: 'Awa', email: 'a@x.com', photoUrl: null, role: 'client', langue: 'fr',
+      ville: null, pays: null, favoris: [], createdAt: serverTimestamp(),
+    }));
+  });
+
+  it('produit : création, réordonnancement, rupture', async () => {
+    await preparer(env, base);
+    const ref = doc(pro(), 'commerces/publie/produits/app');
+    await assertSucceeds(setDoc(ref, {
+      nom: 'Alloco', description: '', photoUrl: null, prix: 4.5, devise: 'EUR',
+      publie: true, enRupture: false, ordre: 3,
+      updatedAt: serverTimestamp(), createdAt: serverTimestamp(),
+    }));
+    await assertSucceeds(updateDoc(ref, { ordre: 0 }));
+    await assertSucceeds(updateDoc(ref, { enRupture: true, updatedAt: serverTimestamp() }));
+  });
+});
+
 describe('produits', () => {
   it('produits publiés visibles de tous, produits masqués du seul propriétaire', async () => {
     await preparer(env, base);

@@ -6,4 +6,13 @@ abstract final class Routes {
   static const messages = '/messages';
   static const monEspace = '/mon-espace';
   static const admin = '/admin';
+
+  // Espace pro
+  static const nouveauCommerce = '/mon-espace/commerce/nouveau';
+  static String modifierCommerce(String id) => '/mon-espace/commerce/$id';
+  static String catalogue(String id) => '/mon-espace/commerce/$id/catalogue';
+  static String nouveauProduit(String id) =>
+      '/mon-espace/commerce/$id/catalogue/nouveau';
+  static String modifierProduit(String id, String produitId) =>
+      '/mon-espace/commerce/$id/catalogue/$produitId';
 }

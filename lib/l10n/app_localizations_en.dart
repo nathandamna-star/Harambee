@@ -196,9 +196,310 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get monEspaceProBientot =>
-      'You\'ll soon be able to create your business page here.';
+  String get chargement => 'Loading';
 
   @override
-  String get chargement => 'Loading';
+  String get actions => 'Actions';
+
+  @override
+  String get afficher => 'Show';
+
+  @override
+  String get ajouterPhoto => 'Add a photo';
+
+  @override
+  String get ajouterProduit => 'Add a product';
+
+  @override
+  String get annuler => 'Cancel';
+
+  @override
+  String get aucunCommerceTitre => 'Showcase your business';
+
+  @override
+  String get aucunCommerceTexte =>
+      'Create your page in 3 steps. Our team checks it before it goes live.';
+
+  @override
+  String get badgeMasque => 'Hidden';
+
+  @override
+  String get badgeRupture => 'Out of stock';
+
+  @override
+  String get catalogue => 'Catalog';
+
+  @override
+  String get catalogueVideTitre => 'Your catalog is empty';
+
+  @override
+  String get catalogueVideTexte =>
+      'Add your products or services with their prices to show them to your customers.';
+
+  @override
+  String get categorieMagasin => 'Shop';
+
+  @override
+  String get categorieRestaurant => 'Restaurant';
+
+  @override
+  String get categorieLogement => 'Housing';
+
+  @override
+  String get categorieService => 'Service';
+
+  @override
+  String get champAdresse => 'Address';
+
+  @override
+  String get champCategorie => 'Category';
+
+  @override
+  String get champDescription => 'Description';
+
+  @override
+  String get champDevise => 'Currency';
+
+  @override
+  String get champHoraires => 'Opening hours';
+
+  @override
+  String get champNomCommerce => 'Business name';
+
+  @override
+  String get champNomProduit => 'Product name';
+
+  @override
+  String get champObligatoire => 'This field is required.';
+
+  @override
+  String get champPays => 'Country';
+
+  @override
+  String get champPrix => 'Price';
+
+  @override
+  String get champTelephone => 'Phone';
+
+  @override
+  String get champVille => 'City';
+
+  @override
+  String get charteTitre => 'Christian charter';
+
+  @override
+  String get charteTexteProvisoire =>
+      'The text of the Christian charter will be available soon. By accepting it, you commit to respecting its principles in running your business.';
+
+  @override
+  String get charteJAccepte => 'I have read and accept the charter';
+
+  @override
+  String get charteAcceptee => 'Charter accepted';
+
+  @override
+  String get creerFiche => 'Create my business page';
+
+  @override
+  String get enregistrer => 'Save';
+
+  @override
+  String get envoyerPourVerification => 'Submit for review';
+
+  @override
+  String get erreurEnregistrement =>
+      'Saving failed. Check your connection and try again.';
+
+  @override
+  String get etapeInfos => 'Your business';
+
+  @override
+  String get etapeLabels => 'Labels';
+
+  @override
+  String get etapePhotos => 'Photos';
+
+  @override
+  String etapeXsurY(int etape, int total) {
+    return 'Step $etape of $total';
+  }
+
+  @override
+  String get ferme => 'Closed';
+
+  @override
+  String get ficheEnregistree => 'Page saved.';
+
+  @override
+  String get ficheEnvoyee =>
+      'Thank you! Your page has been submitted. It will be visible once our team has reviewed it.';
+
+  @override
+  String get jourLundi => 'Monday';
+
+  @override
+  String get jourMardi => 'Tuesday';
+
+  @override
+  String get jourMercredi => 'Wednesday';
+
+  @override
+  String get jourJeudi => 'Thursday';
+
+  @override
+  String get jourVendredi => 'Friday';
+
+  @override
+  String get jourSamedi => 'Saturday';
+
+  @override
+  String get jourDimanche => 'Sunday';
+
+  @override
+  String get labelsExplication =>
+      'Request the labels that fit your business. Our team checks them before displaying them.';
+
+  @override
+  String get labelsModifiablesAdmin =>
+      'Labels are granted by the Harambee team. Contact us to change them.';
+
+  @override
+  String get labelAfricainDetail =>
+      'Business run by people of African origin or offering African products.';
+
+  @override
+  String get labelChretienDetail =>
+      'Business run by Christians committed to the Christian charter.';
+
+  @override
+  String get lireCharte => 'Read and accept the charter';
+
+  @override
+  String get localisationDesactivee =>
+      'Location is turned off. Turn it on in your phone settings.';
+
+  @override
+  String get localisationRefusee =>
+      'Harambee can\'t access your location. Allow it in your phone settings.';
+
+  @override
+  String get localisationIndisponible =>
+      'Location unavailable. Try again outside or later.';
+
+  @override
+  String get marquerDisponible => 'Mark as available';
+
+  @override
+  String get marquerRupture => 'Mark as out of stock';
+
+  @override
+  String get masquer => 'Hide';
+
+  @override
+  String get modifier => 'Edit';
+
+  @override
+  String get modifierFiche => 'Edit page';
+
+  @override
+  String get modifierProduit => 'Edit product';
+
+  @override
+  String get monCommerce => 'My business';
+
+  @override
+  String get photoCamera => 'Take a photo';
+
+  @override
+  String get photoGalerie => 'Choose from gallery';
+
+  @override
+  String photosAide(int max) {
+    return 'Add up to $max photos: storefront, interior, products. A clear first photo attracts more customers.';
+  }
+
+  @override
+  String get positionAbsente => 'Save the business location';
+
+  @override
+  String get positionEnregistree => 'Location saved';
+
+  @override
+  String get positionAide =>
+      'Tap here from your business to appear in \"near me\" searches.';
+
+  @override
+  String get precedent => 'Back';
+
+  @override
+  String get produitIntrouvable => 'This product no longer exists.';
+
+  @override
+  String get produitVisible => 'Visible to customers';
+
+  @override
+  String get produitVisibleAide =>
+      'Turn off to hide the product without deleting it.';
+
+  @override
+  String get retirerPhoto => 'Remove photo';
+
+  @override
+  String get statutEnVerification => 'Under review';
+
+  @override
+  String get statutEnVerificationAide =>
+      'Our team is reviewing your page. You can already prepare your catalog.';
+
+  @override
+  String get statutPublie => 'Published';
+
+  @override
+  String get statutPublieAide => 'Your page is visible to all customers.';
+
+  @override
+  String get statutSuspendu => 'Suspended';
+
+  @override
+  String get statutSuspenduAide =>
+      'Your page is no longer visible. Contact us to learn more.';
+
+  @override
+  String statutSuspenduMotif(String motif) {
+    return 'Your page is no longer visible. Reason: $motif';
+  }
+
+  @override
+  String get suivant => 'Next';
+
+  @override
+  String get supprimer => 'Delete';
+
+  @override
+  String get supprimerProduitTitre => 'Delete this product?';
+
+  @override
+  String supprimerProduitTexte(String nom) {
+    return '\"$nom\" will be permanently deleted. To hide it temporarily, use \"Hide\" instead.';
+  }
+
+  @override
+  String get validationCategorie => 'Choose a category.';
+
+  @override
+  String get validationCharte =>
+      'To request the \"Christian\" label, first accept the charter.';
+
+  @override
+  String get validationPrix => 'Enter a valid price (e.g. 8.50).';
+
+  @override
+  String get valider => 'Confirm';
+
+  @override
+  String get vousAvezUnCommerce => 'Do you own a business?';
+
+  @override
+  String get vousAvezUnCommerceAide =>
+      'Switch to a business account to showcase it on Harambee.';
 }

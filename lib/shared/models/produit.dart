@@ -46,6 +46,19 @@ class Produit {
     );
   }
 
+  Produit copyWith({String? id, String? photoUrl, int? ordre}) => Produit(
+    id: id ?? this.id,
+    nom: nom,
+    prix: prix,
+    devise: devise,
+    description: description,
+    photoUrl: photoUrl ?? this.photoUrl,
+    publie: publie,
+    enRupture: enRupture,
+    ordre: ordre ?? this.ordre,
+    createdAt: createdAt,
+  );
+
   Map<String, dynamic> versFirestore() => {
     'nom': nom,
     'description': description,

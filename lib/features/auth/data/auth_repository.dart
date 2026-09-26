@@ -67,6 +67,15 @@ class AuthRepository {
   Future<void> motDePasseOublie(String email) =>
       _executer(() => auth.sendPasswordResetEmail(email: email.trim()));
 
+  /// Un client déclare avoir un commerce : son rôle passe à « pro ».
+  Future<void> devenirPro() async {
+    final uid = auth.currentUser?.uid;
+    if (uid == null) return;
+    await _executer(
+      () => firestore.collection('users').doc(uid).update({'role': 'pro'}),
+    );
+  }
+
   Future<void> deconnexion() async {
     await google.deconnecter().catchError((_) {});
     await auth.signOut();

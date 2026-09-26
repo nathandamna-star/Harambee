@@ -7,10 +7,14 @@ import '../../features/auth/auth_providers.dart';
 import '../../features/auth/domain/role.dart';
 import '../../features/auth/presentation/bienvenue_screen.dart';
 import '../../features/auth/presentation/connexion_email_screen.dart';
+import '../../features/commerce/presentation/catalogue_screen.dart';
+import '../../features/commerce/presentation/fiche_commerce_screen.dart';
+import '../../features/commerce/presentation/produit_screen.dart';
 import '../../features/explorer/explorer_screen.dart';
 import '../../features/favoris/favoris_screen.dart';
 import '../../features/messages/messages_screen.dart';
 import '../../features/mon_espace/mon_espace_screen.dart';
+import '../../shared/models/produit.dart';
 import '../../shared/widgets/app_shell.dart';
 import '../preferences/preferences.dart';
 import 'routes.dart';
@@ -40,6 +44,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       if (role == null && !surBienvenue && !ref.read(bienvenueVueProvider)) {
         return Routes.bienvenue;
       }
+      // L'espace pro est réservé aux professionnels.
+      if (lieu.startsWith('${Routes.monEspace}/commerce') && role != Role.pro) {
+        return Routes.monEspace;
+      }
       // L'espace admin est réservé aux administrateurs.
       if (lieu.startsWith(Routes.admin) && role != Role.admin) {
         return Routes.explorer;
@@ -64,7 +72,15 @@ final routerProvider = Provider<GoRouter>((ref) {
           _branche(Routes.explorer, const ExplorerScreen()),
           _branche(Routes.favoris, const FavorisScreen()),
           _branche(Routes.messages, const MessagesScreen()),
-          _branche(Routes.monEspace, const MonEspaceScreen()),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.monEspace,
+                builder: (context, state) => const MonEspaceScreen(),
+                routes: _routesEspacePro,
+              ),
+            ],
+          ),
           _branche(Routes.admin, const AdminScreen()),
         ],
       ),
@@ -76,3 +92,37 @@ StatefulShellBranch _branche(String chemin, Widget ecran) =>
     StatefulShellBranch(
       routes: [GoRoute(path: chemin, builder: (context, state) => ecran)],
     );
+
+final _routesEspacePro = [
+  GoRoute(
+    path: 'commerce/nouveau',
+    builder: (context, state) => const FicheCommerceScreen(),
+  ),
+  GoRoute(
+    path: 'commerce/:id',
+    builder: (context, state) =>
+        FicheCommerceScreen(commerceId: state.pathParameters['id']),
+    routes: [
+      GoRoute(
+        path: 'catalogue',
+        builder: (context, state) =>
+            CatalogueScreen(commerceId: state.pathParameters['id']!),
+        routes: [
+          GoRoute(
+            path: 'nouveau',
+            builder: (context, state) =>
+                ProduitScreen(commerceId: state.pathParameters['id']!),
+          ),
+          GoRoute(
+            path: ':produitId',
+            builder: (context, state) => ProduitParIdScreen(
+              commerceId: state.pathParameters['id']!,
+              produitId: state.pathParameters['produitId']!,
+              produit: state.extra as Produit?,
+            ),
+          ),
+        ],
+      ),
+    ],
+  ),
+];

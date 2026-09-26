@@ -19,6 +19,7 @@ class Commerce {
     this.ville = '',
     this.horaires = const {},
     this.telephone,
+    this.devise = Devise.EUR,
     this.labelAfricain = false,
     this.labelChretien = false,
     this.charteSigneeLe,
@@ -45,6 +46,9 @@ class Commerce {
   /// Horaires par jour, ex. `{"lundi": ["09:00-12:00", "14:00-19:00"]}`.
   final Map<String, List<String>> horaires;
   final String? telephone;
+
+  /// Devise par défaut des prix du catalogue.
+  final Devise devise;
   final bool labelAfricain;
   final bool labelChretien;
   final DateTime? charteSigneeLe;
@@ -57,6 +61,38 @@ class Commerce {
   final DateTime? updatedAt;
 
   bool get estPublie => statut == StatutCommerce.publie;
+
+  Commerce copyWith({
+    String? id,
+    List<String>? photos,
+    GeoPoint? geo,
+    String? geohash,
+  }) => Commerce(
+    id: id ?? this.id,
+    nom: nom,
+    categorie: categorie,
+    proprietaire: proprietaire,
+    continent: continent,
+    description: description,
+    photos: photos ?? this.photos,
+    adresse: adresse,
+    geo: geo ?? this.geo,
+    geohash: geohash ?? this.geohash,
+    pays: pays,
+    ville: ville,
+    horaires: horaires,
+    telephone: telephone,
+    devise: devise,
+    labelAfricain: labelAfricain,
+    labelChretien: labelChretien,
+    charteSigneeLe: charteSigneeLe,
+    statut: statut,
+    motifRefus: motifRefus,
+    noteMoyenne: noteMoyenne,
+    nbAvis: nbAvis,
+    createdAt: createdAt,
+    updatedAt: updatedAt,
+  );
 
   factory Commerce.depuisFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
     final d = doc.data() ?? const {};
@@ -85,6 +121,7 @@ class Commerce {
           e.key as String: List<String>.from(e.value as List? ?? const []),
       },
       telephone: d['telephone'] as String?,
+      devise: enumDepuis(Devise.values, d['devise'] as String?, Devise.EUR),
       labelAfricain: d['labelAfricain'] as bool? ?? false,
       labelChretien: d['labelChretien'] as bool? ?? false,
       charteSigneeLe: (d['charteSigneeLe'] as Timestamp?)?.toDate(),
@@ -131,6 +168,7 @@ class Commerce {
     'continent': continent.name,
     'horaires': horaires,
     'telephone': telephone,
+    'devise': devise.name,
     'charteSigneeLe': charteSigneeLe == null
         ? null
         : Timestamp.fromDate(charteSigneeLe!),

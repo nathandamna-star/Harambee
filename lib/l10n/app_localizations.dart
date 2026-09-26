@@ -442,17 +442,569 @@ abstract class AppLocalizations {
   /// **'Bonjour {nom}'**
   String monEspaceBonjour(String nom);
 
-  /// No description provided for @monEspaceProBientot.
-  ///
-  /// In fr, this message translates to:
-  /// **'Vous pourrez bientôt créer la fiche de votre commerce ici.'**
-  String get monEspaceProBientot;
-
   /// No description provided for @chargement.
   ///
   /// In fr, this message translates to:
   /// **'Chargement'**
   String get chargement;
+
+  /// No description provided for @actions.
+  ///
+  /// In fr, this message translates to:
+  /// **'Actions'**
+  String get actions;
+
+  /// No description provided for @afficher.
+  ///
+  /// In fr, this message translates to:
+  /// **'Afficher'**
+  String get afficher;
+
+  /// No description provided for @ajouterPhoto.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter une photo'**
+  String get ajouterPhoto;
+
+  /// No description provided for @ajouterProduit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un produit'**
+  String get ajouterProduit;
+
+  /// No description provided for @annuler.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler'**
+  String get annuler;
+
+  /// No description provided for @aucunCommerceTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Présentez votre commerce'**
+  String get aucunCommerceTitre;
+
+  /// No description provided for @aucunCommerceTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créez votre fiche en 3 étapes. Notre équipe la vérifie avant sa publication.'**
+  String get aucunCommerceTexte;
+
+  /// No description provided for @badgeMasque.
+  ///
+  /// In fr, this message translates to:
+  /// **'Masqué'**
+  String get badgeMasque;
+
+  /// No description provided for @badgeRupture.
+  ///
+  /// In fr, this message translates to:
+  /// **'En rupture'**
+  String get badgeRupture;
+
+  /// No description provided for @catalogue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Catalogue'**
+  String get catalogue;
+
+  /// No description provided for @catalogueVideTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre catalogue est vide'**
+  String get catalogueVideTitre;
+
+  /// No description provided for @catalogueVideTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajoutez vos produits ou services avec leur prix pour les présenter à vos clients.'**
+  String get catalogueVideTexte;
+
+  /// No description provided for @categorieMagasin.
+  ///
+  /// In fr, this message translates to:
+  /// **'Magasin'**
+  String get categorieMagasin;
+
+  /// No description provided for @categorieRestaurant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Restaurant'**
+  String get categorieRestaurant;
+
+  /// No description provided for @categorieLogement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Logement'**
+  String get categorieLogement;
+
+  /// No description provided for @categorieService.
+  ///
+  /// In fr, this message translates to:
+  /// **'Service'**
+  String get categorieService;
+
+  /// No description provided for @champAdresse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse'**
+  String get champAdresse;
+
+  /// No description provided for @champCategorie.
+  ///
+  /// In fr, this message translates to:
+  /// **'Catégorie'**
+  String get champCategorie;
+
+  /// No description provided for @champDescription.
+  ///
+  /// In fr, this message translates to:
+  /// **'Description'**
+  String get champDescription;
+
+  /// No description provided for @champDevise.
+  ///
+  /// In fr, this message translates to:
+  /// **'Devise'**
+  String get champDevise;
+
+  /// No description provided for @champHoraires.
+  ///
+  /// In fr, this message translates to:
+  /// **'Horaires d\'ouverture'**
+  String get champHoraires;
+
+  /// No description provided for @champNomCommerce.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom du commerce'**
+  String get champNomCommerce;
+
+  /// No description provided for @champNomProduit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom du produit'**
+  String get champNomProduit;
+
+  /// No description provided for @champObligatoire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce champ est obligatoire.'**
+  String get champObligatoire;
+
+  /// No description provided for @champPays.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pays'**
+  String get champPays;
+
+  /// No description provided for @champPrix.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prix'**
+  String get champPrix;
+
+  /// No description provided for @champTelephone.
+  ///
+  /// In fr, this message translates to:
+  /// **'Téléphone'**
+  String get champTelephone;
+
+  /// No description provided for @champVille.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ville'**
+  String get champVille;
+
+  /// No description provided for @charteTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Charte chrétienne'**
+  String get charteTitre;
+
+  /// No description provided for @charteTexteProvisoire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le texte de la charte chrétienne sera bientôt disponible. En l\'acceptant, vous vous engagez à en respecter les principes dans la gestion de votre commerce.'**
+  String get charteTexteProvisoire;
+
+  /// No description provided for @charteJAccepte.
+  ///
+  /// In fr, this message translates to:
+  /// **'J\'ai lu et j\'accepte la charte'**
+  String get charteJAccepte;
+
+  /// No description provided for @charteAcceptee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Charte acceptée'**
+  String get charteAcceptee;
+
+  /// No description provided for @creerFiche.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer la fiche de mon commerce'**
+  String get creerFiche;
+
+  /// No description provided for @enregistrer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer'**
+  String get enregistrer;
+
+  /// No description provided for @envoyerPourVerification.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer pour vérification'**
+  String get envoyerPourVerification;
+
+  /// No description provided for @erreurEnregistrement.
+  ///
+  /// In fr, this message translates to:
+  /// **'L\'enregistrement a échoué. Vérifiez votre connexion et réessayez.'**
+  String get erreurEnregistrement;
+
+  /// No description provided for @etapeInfos.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre commerce'**
+  String get etapeInfos;
+
+  /// No description provided for @etapeLabels.
+  ///
+  /// In fr, this message translates to:
+  /// **'Labels'**
+  String get etapeLabels;
+
+  /// No description provided for @etapePhotos.
+  ///
+  /// In fr, this message translates to:
+  /// **'Photos'**
+  String get etapePhotos;
+
+  /// No description provided for @etapeXsurY.
+  ///
+  /// In fr, this message translates to:
+  /// **'Étape {etape} sur {total}'**
+  String etapeXsurY(int etape, int total);
+
+  /// No description provided for @ferme.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fermé'**
+  String get ferme;
+
+  /// No description provided for @ficheEnregistree.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fiche enregistrée.'**
+  String get ficheEnregistree;
+
+  /// No description provided for @ficheEnvoyee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Merci ! Votre fiche a été envoyée. Elle sera visible dès que notre équipe l\'aura vérifiée.'**
+  String get ficheEnvoyee;
+
+  /// No description provided for @jourLundi.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lundi'**
+  String get jourLundi;
+
+  /// No description provided for @jourMardi.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mardi'**
+  String get jourMardi;
+
+  /// No description provided for @jourMercredi.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mercredi'**
+  String get jourMercredi;
+
+  /// No description provided for @jourJeudi.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jeudi'**
+  String get jourJeudi;
+
+  /// No description provided for @jourVendredi.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vendredi'**
+  String get jourVendredi;
+
+  /// No description provided for @jourSamedi.
+  ///
+  /// In fr, this message translates to:
+  /// **'Samedi'**
+  String get jourSamedi;
+
+  /// No description provided for @jourDimanche.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dimanche'**
+  String get jourDimanche;
+
+  /// No description provided for @labelsExplication.
+  ///
+  /// In fr, this message translates to:
+  /// **'Demandez les labels qui correspondent à votre commerce. Notre équipe les vérifie avant de les afficher.'**
+  String get labelsExplication;
+
+  /// No description provided for @labelsModifiablesAdmin.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les labels sont attribués par l\'équipe Harambee. Contactez-nous pour les modifier.'**
+  String get labelsModifiablesAdmin;
+
+  /// No description provided for @labelAfricainDetail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commerce tenu par des personnes d\'origine africaine ou proposant des produits africains.'**
+  String get labelAfricainDetail;
+
+  /// No description provided for @labelChretienDetail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commerce tenu par des chrétiens engagés à respecter la charte chrétienne.'**
+  String get labelChretienDetail;
+
+  /// No description provided for @lireCharte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lire et accepter la charte'**
+  String get lireCharte;
+
+  /// No description provided for @localisationDesactivee.
+  ///
+  /// In fr, this message translates to:
+  /// **'La localisation est désactivée. Activez-la dans les réglages du téléphone.'**
+  String get localisationDesactivee;
+
+  /// No description provided for @localisationRefusee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Harambee n\'a pas accès à votre position. Autorisez-la dans les réglages du téléphone.'**
+  String get localisationRefusee;
+
+  /// No description provided for @localisationIndisponible.
+  ///
+  /// In fr, this message translates to:
+  /// **'Position introuvable. Réessayez à l\'extérieur ou plus tard.'**
+  String get localisationIndisponible;
+
+  /// No description provided for @marquerDisponible.
+  ///
+  /// In fr, this message translates to:
+  /// **'Marquer disponible'**
+  String get marquerDisponible;
+
+  /// No description provided for @marquerRupture.
+  ///
+  /// In fr, this message translates to:
+  /// **'Marquer en rupture'**
+  String get marquerRupture;
+
+  /// No description provided for @masquer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Masquer'**
+  String get masquer;
+
+  /// No description provided for @modifier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier'**
+  String get modifier;
+
+  /// No description provided for @modifierFiche.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier la fiche'**
+  String get modifierFiche;
+
+  /// No description provided for @modifierProduit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier le produit'**
+  String get modifierProduit;
+
+  /// No description provided for @monCommerce.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon commerce'**
+  String get monCommerce;
+
+  /// No description provided for @photoCamera.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prendre une photo'**
+  String get photoCamera;
+
+  /// No description provided for @photoGalerie.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir dans la galerie'**
+  String get photoGalerie;
+
+  /// No description provided for @photosAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajoutez jusqu\'à {max} photos : la devanture, l\'intérieur, vos produits. Une première photo claire attire plus de clients.'**
+  String photosAide(int max);
+
+  /// No description provided for @positionAbsente.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer la position du commerce'**
+  String get positionAbsente;
+
+  /// No description provided for @positionEnregistree.
+  ///
+  /// In fr, this message translates to:
+  /// **'Position enregistrée'**
+  String get positionEnregistree;
+
+  /// No description provided for @positionAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Touchez ici depuis votre commerce pour apparaître dans les recherches « près de moi ».'**
+  String get positionAide;
+
+  /// No description provided for @precedent.
+  ///
+  /// In fr, this message translates to:
+  /// **'Précédent'**
+  String get precedent;
+
+  /// No description provided for @produitIntrouvable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce produit n\'existe plus.'**
+  String get produitIntrouvable;
+
+  /// No description provided for @produitVisible.
+  ///
+  /// In fr, this message translates to:
+  /// **'Visible par les clients'**
+  String get produitVisible;
+
+  /// No description provided for @produitVisibleAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Désactivez pour masquer le produit sans le supprimer.'**
+  String get produitVisibleAide;
+
+  /// No description provided for @retirerPhoto.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer la photo'**
+  String get retirerPhoto;
+
+  /// No description provided for @statutEnVerification.
+  ///
+  /// In fr, this message translates to:
+  /// **'En vérification'**
+  String get statutEnVerification;
+
+  /// No description provided for @statutEnVerificationAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notre équipe vérifie votre fiche. Vous pouvez déjà préparer votre catalogue.'**
+  String get statutEnVerificationAide;
+
+  /// No description provided for @statutPublie.
+  ///
+  /// In fr, this message translates to:
+  /// **'Publié'**
+  String get statutPublie;
+
+  /// No description provided for @statutPublieAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre fiche est visible par tous les clients.'**
+  String get statutPublieAide;
+
+  /// No description provided for @statutSuspendu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Suspendu'**
+  String get statutSuspendu;
+
+  /// No description provided for @statutSuspenduAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre fiche n\'est plus visible. Contactez-nous pour en savoir plus.'**
+  String get statutSuspenduAide;
+
+  /// No description provided for @statutSuspenduMotif.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre fiche n\'est plus visible. Motif : {motif}'**
+  String statutSuspenduMotif(String motif);
+
+  /// No description provided for @suivant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Suivant'**
+  String get suivant;
+
+  /// No description provided for @supprimer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer'**
+  String get supprimer;
+
+  /// No description provided for @supprimerProduitTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer ce produit ?'**
+  String get supprimerProduitTitre;
+
+  /// No description provided for @supprimerProduitTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'« {nom} » sera définitivement supprimé. Pour le cacher temporairement, utilisez plutôt « Masquer ».'**
+  String supprimerProduitTexte(String nom);
+
+  /// No description provided for @validationCategorie.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez une catégorie.'**
+  String get validationCategorie;
+
+  /// No description provided for @validationCharte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pour demander le label « Chrétien », acceptez d\'abord la charte.'**
+  String get validationCharte;
+
+  /// No description provided for @validationPrix.
+  ///
+  /// In fr, this message translates to:
+  /// **'Indiquez un prix valide (ex. 8,50).'**
+  String get validationPrix;
+
+  /// No description provided for @valider.
+  ///
+  /// In fr, this message translates to:
+  /// **'Valider'**
+  String get valider;
+
+  /// No description provided for @vousAvezUnCommerce.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous avez un commerce ?'**
+  String get vousAvezUnCommerce;
+
+  /// No description provided for @vousAvezUnCommerceAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Passez en compte professionnel pour le présenter sur Harambee.'**
+  String get vousAvezUnCommerceAide;
 }
 
 class _AppLocalizationsDelegate

@@ -74,6 +74,129 @@
       }
     }
   },
-  "monEspaceProBientot": "Vous pourrez bientôt créer la fiche de votre commerce ici.",
-  "chargement": "Chargement"
+  "chargement": "Chargement",
+  "actions": "Actions",
+  "afficher": "Afficher",
+  "ajouterPhoto": "Ajouter une photo",
+  "ajouterProduit": "Ajouter un produit",
+  "annuler": "Annuler",
+  "aucunCommerceTitre": "Présentez votre commerce",
+  "aucunCommerceTexte": "Créez votre fiche en 3 étapes. Notre équipe la vérifie avant sa publication.",
+  "badgeMasque": "Masqué",
+  "badgeRupture": "En rupture",
+  "catalogue": "Catalogue",
+  "catalogueVideTitre": "Votre catalogue est vide",
+  "catalogueVideTexte": "Ajoutez vos produits ou services avec leur prix pour les présenter à vos clients.",
+  "categorieMagasin": "Magasin",
+  "categorieRestaurant": "Restaurant",
+  "categorieLogement": "Logement",
+  "categorieService": "Service",
+  "champAdresse": "Adresse",
+  "champCategorie": "Catégorie",
+  "champDescription": "Description",
+  "champDevise": "Devise",
+  "champHoraires": "Horaires d'ouverture",
+  "champNomCommerce": "Nom du commerce",
+  "champNomProduit": "Nom du produit",
+  "champObligatoire": "Ce champ est obligatoire.",
+  "champPays": "Pays",
+  "champPrix": "Prix",
+  "champTelephone": "Téléphone",
+  "champVille": "Ville",
+  "charteTitre": "Charte chrétienne",
+  "charteTexteProvisoire": "Le texte de la charte chrétienne sera bientôt disponible. En l'acceptant, vous vous engagez à en respecter les principes dans la gestion de votre commerce.",
+  "charteJAccepte": "J'ai lu et j'accepte la charte",
+  "charteAcceptee": "Charte acceptée",
+  "creerFiche": "Créer la fiche de mon commerce",
+  "enregistrer": "Enregistrer",
+  "envoyerPourVerification": "Envoyer pour vérification",
+  "erreurEnregistrement": "L'enregistrement a échoué. Vérifiez votre connexion et réessayez.",
+  "etapeInfos": "Votre commerce",
+  "etapeLabels": "Labels",
+  "etapePhotos": "Photos",
+  "etapeXsurY": "Étape {etape} sur {total}",
+  "@etapeXsurY": {
+    "placeholders": {
+      "etape": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "ferme": "Fermé",
+  "ficheEnregistree": "Fiche enregistrée.",
+  "ficheEnvoyee": "Merci ! Votre fiche a été envoyée. Elle sera visible dès que notre équipe l'aura vérifiée.",
+  "jourLundi": "Lundi",
+  "jourMardi": "Mardi",
+  "jourMercredi": "Mercredi",
+  "jourJeudi": "Jeudi",
+  "jourVendredi": "Vendredi",
+  "jourSamedi": "Samedi",
+  "jourDimanche": "Dimanche",
+  "labelsExplication": "Demandez les labels qui correspondent à votre commerce. Notre équipe les vérifie avant de les afficher.",
+  "labelsModifiablesAdmin": "Les labels sont attribués par l'équipe Harambee. Contactez-nous pour les modifier.",
+  "labelAfricainDetail": "Commerce tenu par des personnes d'origine africaine ou proposant des produits africains.",
+  "labelChretienDetail": "Commerce tenu par des chrétiens engagés à respecter la charte chrétienne.",
+  "lireCharte": "Lire et accepter la charte",
+  "localisationDesactivee": "La localisation est désactivée. Activez-la dans les réglages du téléphone.",
+  "localisationRefusee": "Harambee n'a pas accès à votre position. Autorisez-la dans les réglages du téléphone.",
+  "localisationIndisponible": "Position introuvable. Réessayez à l'extérieur ou plus tard.",
+  "marquerDisponible": "Marquer disponible",
+  "marquerRupture": "Marquer en rupture",
+  "masquer": "Masquer",
+  "modifier": "Modifier",
+  "modifierFiche": "Modifier la fiche",
+  "modifierProduit": "Modifier le produit",
+  "monCommerce": "Mon commerce",
+  "photoCamera": "Prendre une photo",
+  "photoGalerie": "Choisir dans la galerie",
+  "photosAide": "Ajoutez jusqu'à {max} photos : la devanture, l'intérieur, vos produits. Une première photo claire attire plus de clients.",
+  "@photosAide": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "positionAbsente": "Enregistrer la position du commerce",
+  "positionEnregistree": "Position enregistrée",
+  "positionAide": "Touchez ici depuis votre commerce pour apparaître dans les recherches « près de moi ».",
+  "precedent": "Précédent",
+  "produitIntrouvable": "Ce produit n'existe plus.",
+  "produitVisible": "Visible par les clients",
+  "produitVisibleAide": "Désactivez pour masquer le produit sans le supprimer.",
+  "retirerPhoto": "Retirer la photo",
+  "statutEnVerification": "En vérification",
+  "statutEnVerificationAide": "Notre équipe vérifie votre fiche. Vous pouvez déjà préparer votre catalogue.",
+  "statutPublie": "Publié",
+  "statutPublieAide": "Votre fiche est visible par tous les clients.",
+  "statutSuspendu": "Suspendu",
+  "statutSuspenduAide": "Votre fiche n'est plus visible. Contactez-nous pour en savoir plus.",
+  "statutSuspenduMotif": "Votre fiche n'est plus visible. Motif : {motif}",
+  "@statutSuspenduMotif": {
+    "placeholders": {
+      "motif": {
+        "type": "String"
+      }
+    }
+  },
+  "suivant": "Suivant",
+  "supprimer": "Supprimer",
+  "supprimerProduitTitre": "Supprimer ce produit ?",
+  "supprimerProduitTexte": "« {nom} » sera définitivement supprimé. Pour le cacher temporairement, utilisez plutôt « Masquer ».",
+  "@supprimerProduitTexte": {
+    "placeholders": {
+      "nom": {
+        "type": "String"
+      }
+    }
+  },
+  "validationCategorie": "Choisissez une catégorie.",
+  "validationCharte": "Pour demander le label « Chrétien », acceptez d'abord la charte.",
+  "validationPrix": "Indiquez un prix valide (ex. 8,50).",
+  "valider": "Valider",
+  "vousAvezUnCommerce": "Vous avez un commerce ?",
+  "vousAvezUnCommerceAide": "Passez en compte professionnel pour le présenter sur Harambee."
 }

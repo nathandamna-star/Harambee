@@ -5,6 +5,7 @@ import '../../l10n/app_localizations.dart';
 import '../../shared/widgets/connexion_requise.dart';
 import '../auth/auth_providers.dart';
 import '../auth/domain/role.dart';
+import '../commerce/presentation/espace_pro.dart';
 
 class MonEspaceScreen extends ConsumerWidget {
   const MonEspaceScreen({super.key});
@@ -64,18 +65,22 @@ class MonEspaceScreen extends ConsumerWidget {
               ),
             ),
           ),
-          if (role == Role.pro) ...[
-            const SizedBox(height: 16),
+          const SizedBox(height: 24),
+          if (role == Role.pro)
+            const EspacePro()
+          else if (role == Role.client)
             Card(
               child: ListTile(
                 leading: Icon(
                   Icons.storefront_outlined,
                   color: theme.colorScheme.primary,
                 ),
-                title: Text(l10n.monEspaceProBientot),
+                title: Text(l10n.vousAvezUnCommerce),
+                subtitle: Text(l10n.vousAvezUnCommerceAide),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => ref.read(authRepositoryProvider).devenirPro(),
               ),
             ),
-          ],
           const SizedBox(height: 24),
           OutlinedButton.icon(
             onPressed: () => ref.read(authRepositoryProvider).deconnexion(),
