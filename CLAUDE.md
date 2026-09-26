@@ -232,4 +232,10 @@ pose la question au lieu de choisir seul.
   Le profil `users/{uid}` est créé à la première connexion avec le rôle choisi sur l'écran de bienvenue.
 - On peut explorer sans compte (exigence App Store) ; Favoris, Messages et Mon espace demandent une connexion.
 - Tests : Firebase simulé (`firebase_auth_mocks`, `fake_cloud_firestore`), voir `test/helpers.dart`.
+- Modèles Firestore : `lib/shared/models/` (commerce, produit, avis, conversation/message, signalement).
+- Règles de sécurité : `firebase/firestore.rules` et `firebase/storage.rules`, testées dans
+  `firebase/tests/` avec l'émulateur (`cd firebase && npm install && npm test`, Java 21 requis).
+  Projet Firebase : `harambee-75bab` (config dans `lib/core/firebase/firebase_options.dart`).
+- Dans l'environnement cloud de Claude, un proxy bloque les appels entre émulateurs Storage → Firestore :
+  les 2 tests Storage qui en dépendent y échouent, mais passent sur GitHub Actions (`.github/workflows/ci.yml`).
 - Vérifier avant chaque commit : `flutter analyze` et `flutter test`.

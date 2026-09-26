@@ -1,0 +1,249 @@
+rules_version = '2';
+
+// Règles de sécurité Firestore — Harambee.
+// Principe : tout est refusé sauf ce qui est explicitement autorisé ici.
+// Les Cloud Functions (SDK Admin) ne sont pas soumises à ces règles : c'est
+// par elles que passent les commandes et le calcul des notes moyennes.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- Fonctions utilitaires ----------
+
+    function connecte() {
+      return request.auth != null;
+    }
+
+    function moi() {
+      return request.auth.uid;
+    }
+
+    // Rôle administrateur : uniquement via custom claim, jamais via l'app.
+    function estAdmin() {
+      return connecte() && request.auth.token.admin == true;
+    }
+
+    function estPro() {
+      return connecte()
+        && get(/databases/$(database)/documents/users/$(moi())).data.role == 'pro';
+    }
+
+    // Champs modifiés par la requête.
+    function champsModifies() {
+      return request.resource.data.diff(resource.data).affectedKeys();
+    }
+
+    function seulement(champs) {
+      return champsModifies().hasOnly(champs);
+    }
+
+    function commerce(commerceId) {
+      return get(/databases/$(database)/documents/commerces/$(commerceId)).data;
+    }
+
+    function estProprietaire(commerceId) {
+      return connecte() && commerce(commerceId).proprietaire == moi();
+    }
+
+    function commercePublie(commerceId) {
+      return commerce(commerceId).statut == 'publie';
+    }
+
+    function texte(valeur, max) {
+      return valeur is string && valeur.size() <= max;
+    }
+
+    function devises() {
+      return ['EUR', 'USD', 'CAD', 'XOF', 'XAF', 'NGN', 'GHS', 'CDF'];
+    }
+
+    // ---------- Utilisateurs ----------
+
+    match /users/{uid} {
+      allow read: if connecte() && (moi() == uid || estAdmin());
+
+      allow create: if connecte() && moi() == uid
+        && request.resource.data.keys().hasOnly([
+          'nom', 'email', 'photoUrl', 'role', 'langue', 'ville', 'pays',
+          'devise', 'favoris', 'createdAt'])
+        && request.resource.data.role in ['client', 'pro']
+        && request.resource.data.favoris is list;
+
+      // Le rôle ne peut passer que de « client » à « pro » (jamais « admin »).
+      allow update: if connecte() && moi() == uid
+        && !champsModifies().hasAny(['createdAt', 'email'])
+        && (request.resource.data.role == resource.data.role
+            || (resource.data.role == 'client' && request.resource.data.role == 'pro'))
+        && request.resource.data.favoris is list
+        && request.resource.data.favoris.size() <= 500;
+
+      // Suppression du compte (RGPD).
+      allow delete: if connecte() && (moi() == uid || estAdmin());
+    }
+
+    // ---------- Commerces ----------
+
+    match /commerces/{commerceId} {
+      // Public : seulement les fiches publiées. Le propriétaire et les admins
+      // voient aussi les fiches en vérification ou suspendues.
+      allow read: if resource.data.statut == 'publie'
+        || (connecte() && resource.data.proprietaire == moi())
+        || estAdmin();
+
+      // Un pro crée sa fiche, toujours « en vérification ». Il peut *demander*
+      // les labels ; l'admin les confirme ou les retire avant publication.
+      allow create: if estPro()
+        && request.resource.data.proprietaire == moi()
+        && request.resource.data.statut == 'en_verification'
+        && request.resource.data.noteMoyenne == 0
+        && request.resource.data.nbAvis == 0
+        && request.resource.data.categorie in ['magasin', 'restaurant', 'logement', 'service']
+        && request.resource.data.continent in ['europe', 'afrique', 'amerique']
+        && request.resource.data.labelAfricain is bool
+        && request.resource.data.labelChretien is bool
+        && texte(request.resource.data.nom, 120)
+        && !request.resource.data.keys().hasAny(['motifRefus', 'verifieLe']);
+
+      // Le propriétaire modifie sa fiche, sauf les champs réservés.
+      allow update: if connecte() && resource.data.proprietaire == moi()
+        && !champsModifies().hasAny([
+          'statut', 'labelAfricain', 'labelChretien', 'proprietaire',
+          'noteMoyenne', 'nbAvis', 'createdAt', 'motifRefus', 'verifieLe'])
+        && texte(request.resource.data.nom, 120);
+
+      // L'admin vérifie : statut, labels, motif de refus.
+      allow update: if estAdmin()
+        && seulement(['statut', 'labelAfricain', 'labelChretien', 'motifRefus',
+                      'verifieLe', 'updatedAt'])
+        && request.resource.data.statut in ['en_verification', 'publie', 'suspendu'];
+
+      allow delete: if (connecte() && resource.data.proprietaire == moi()) || estAdmin();
+
+      // ----- Produits -----
+      match /produits/{produitId} {
+        allow read: if (commercePublie(commerceId) && resource.data.publie == true)
+          || estProprietaire(commerceId)
+          || estAdmin();
+
+        allow create, update: if estProprietaire(commerceId)
+          && request.resource.data.keys().hasOnly([
+            'nom', 'description', 'photoUrl', 'prix', 'devise', 'publie',
+            'enRupture', 'ordre', 'createdAt', 'updatedAt'])
+          && texte(request.resource.data.nom, 120)
+          && request.resource.data.prix is number
+          && request.resource.data.prix >= 0
+          && request.resource.data.devise in devises()
+          && request.resource.data.publie is bool;
+
+        allow delete: if estProprietaire(commerceId);
+      }
+
+      // ----- Avis : un par utilisateur (l'identifiant de l'avis = son uid) -----
+      match /avis/{auteurId} {
+        allow read: if commercePublie(commerceId) || estProprietaire(commerceId) || estAdmin();
+
+        allow create: if connecte() && moi() == auteurId
+          && commercePublie(commerceId)
+          && !estProprietaire(commerceId)
+          && request.resource.data.keys().hasOnly(['auteur', 'auteurNom', 'note', 'texte', 'createdAt', 'updatedAt'])
+          && request.resource.data.auteur == moi()
+          && request.resource.data.note is int
+          && request.resource.data.note >= 1 && request.resource.data.note <= 5
+          && texte(request.resource.data.texte, 2000);
+
+        allow update: if connecte() && moi() == auteurId
+          && resource.data.auteur == moi()
+          && seulement(['note', 'texte', 'updatedAt'])
+          && request.resource.data.note is int
+          && request.resource.data.note >= 1 && request.resource.data.note <= 5
+          && texte(request.resource.data.texte, 2000);
+
+        allow delete: if (connecte() && moi() == auteurId) || estAdmin();
+      }
+    }
+
+    // ---------- Messagerie ----------
+
+    match /conversations/{conversationId} {
+      function estParticipant() {
+        return connecte() && moi() in resource.data.participants;
+      }
+
+      allow read: if estParticipant();
+
+      // Ouverte par le client ; identifiant = commerceId__clientUid.
+      allow create: if connecte()
+        && request.resource.data.clientId == moi()
+        && conversationId == request.resource.data.commerceId + '__' + moi()
+        && commercePublie(request.resource.data.commerceId)
+        && request.resource.data.proId == commerce(request.resource.data.commerceId).proprietaire
+        && request.resource.data.proId != moi()
+        && request.resource.data.participants == [moi(), request.resource.data.proId];
+
+      allow update: if estParticipant()
+        && seulement(['dernierMessage', 'updatedAt', 'nonLusClient', 'nonLusPro']);
+
+      match /messages/{messageId} {
+        function participantParent() {
+          return connecte() && moi() in
+            get(/databases/$(database)/documents/conversations/$(conversationId)).data.participants;
+        }
+
+        allow read: if participantParent();
+
+        allow create: if participantParent()
+          && request.resource.data.keys().hasOnly(['auteur', 'texte', 'photoUrl', 'createdAt'])
+          && request.resource.data.auteur == moi()
+          && texte(request.resource.data.texte, 5000)
+          && request.resource.data.createdAt == request.time;
+
+        // Un message envoyé ne se modifie pas.
+        allow update, delete: if false;
+      }
+    }
+
+    // ---------- Signalements ----------
+
+    match /signalements/{signalementId} {
+      allow create: if connecte()
+        && request.resource.data.auteur == moi()
+        && request.resource.data.cible in ['commerce', 'avis', 'message']
+        && request.resource.data.cibleId is string
+        && texte(request.resource.data.motif, 1000)
+        && request.resource.data.traite == false;
+
+      allow read, delete: if estAdmin();
+      allow update: if estAdmin() && seulement(['traite', 'traiteLe', 'note']);
+    }
+
+    // ---------- Commandes ----------
+
+    match /commandes/{commandeId} {
+      allow read: if connecte()
+        && (resource.data.clientId == moi() || resource.data.proId == moi() || estAdmin());
+
+      // Création uniquement par la Cloud Function (montants recalculés côté serveur).
+      allow create, delete: if false;
+
+      // Le client ne peut qu'annuler une commande encore « nouvelle ».
+      allow update: if connecte() && resource.data.clientId == moi()
+        && resource.data.statut == 'nouvelle'
+        && request.resource.data.statut == 'annulee'
+        && seulement(['statut', 'historique', 'updatedAt']);
+
+      // Le commerce fait avancer la préparation et la livraison.
+      allow update: if connecte() && resource.data.proId == moi()
+        && resource.data.statut in ['nouvelle', 'acceptee', 'en_preparation', 'prete', 'en_livraison']
+        && request.resource.data.statut in [
+          'acceptee', 'en_preparation', 'prete', 'en_livraison', 'livree',
+          'retiree', 'refusee']
+        && seulement(['statut', 'historique', 'updatedAt', 'motifRefus']);
+    }
+
+    // ---------- Paramètres (tarifs, commission…) ----------
+
+    match /parametres/{document} {
+      allow read: if true;
+      allow write: if estAdmin();
+    }
+  }
+}

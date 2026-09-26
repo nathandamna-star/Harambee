@@ -20,3 +20,11 @@ Le cahier des charges complet se trouve dans [CLAUDE.md](CLAUDE.md).
 flutter analyze
 flutter test
 ```
+
+Règles de sécurité Firebase (nécessite Node.js et Java 21) :
+
+```
+cd firebase
+npm install
+npm test
+```
