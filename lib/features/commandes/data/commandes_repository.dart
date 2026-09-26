@@ -75,10 +75,13 @@ class FonctionsCommandeFirebase implements FonctionsCommande {
       return r.data['commandeId'] as String;
     } on FirebaseFunctionsException catch (e) {
       final details = e.details;
+      // Le serveur place le code (minimum-non-atteint, hors-zone…) dans
+      // details.code ; le message n'est qu'un repli.
+      final code = details is Map ? details['code'] as String? : null;
       throw ErreurCommande(switch (e.code) {
         'failed-precondition' ||
         'invalid-argument' ||
-        'not-found' => e.message ?? 'inconnue',
+        'not-found' => code ?? e.message ?? 'inconnue',
         'unavailable' || 'deadline-exceeded' => 'reseau',
         _ => 'inconnue',
       }, manque: details is Map ? details['manque'] as num? : null);
