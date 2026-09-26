@@ -12,7 +12,8 @@ import '../../features/auth/presentation/connexion_email_screen.dart';
 import '../../features/commerce/presentation/catalogue_screen.dart';
 import '../../features/commerce/presentation/fiche_commerce_screen.dart';
 import '../../features/commerce/presentation/produit_screen.dart';
-import '../../features/explorer/explorer_screen.dart';
+import '../../features/explorer/presentation/explorer_screen.dart';
+import '../../features/explorer/presentation/fiche_publique_screen.dart';
 import '../../features/favoris/favoris_screen.dart';
 import '../../features/messages/messages_screen.dart';
 import '../../features/mon_espace/mon_espace_screen.dart';
@@ -71,8 +72,8 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state, navigationShell) =>
             AppShell(navigationShell: navigationShell),
         branches: [
-          _branche(Routes.explorer, const ExplorerScreen()),
-          _branche(Routes.favoris, const FavorisScreen()),
+          _branche(Routes.explorer, const ExplorerScreen(), [_routeFiche]),
+          _branche(Routes.favoris, const FavorisScreen(), [_routeFiche]),
           _branche(Routes.messages, const MessagesScreen()),
           StatefulShellBranch(
             routes: [
@@ -109,10 +110,25 @@ final routerProvider = Provider<GoRouter>((ref) {
   );
 });
 
-StatefulShellBranch _branche(String chemin, Widget ecran) =>
-    StatefulShellBranch(
-      routes: [GoRoute(path: chemin, builder: (context, state) => ecran)],
-    );
+StatefulShellBranch _branche(
+  String chemin,
+  Widget ecran, [
+  List<RouteBase> sousRoutes = const [],
+]) => StatefulShellBranch(
+  routes: [
+    GoRoute(
+      path: chemin,
+      builder: (context, state) => ecran,
+      routes: sousRoutes,
+    ),
+  ],
+);
+
+final _routeFiche = GoRoute(
+  path: 'commerce/:id',
+  builder: (context, state) =>
+      FichePubliqueScreen(commerceId: state.pathParameters['id']!),
+);
 
 final _routesEspacePro = [
   GoRoute(

@@ -271,5 +271,63 @@
   "refuserFiche": "Refuser",
   "republierFiche": "Republier la fiche",
   "suspendreFiche": "Suspendre la fiche",
-  "voirCommerce": "Voir le commerce"
+  "voirCommerce": "Voir le commerce",
+  "ajouterFavori": "Ajouter aux favoris",
+  "retirerFavori": "Retirer des favoris",
+  "anonyme": "Anonyme",
+  "appeler": "Appeler",
+  "itineraire": "Itinéraire",
+  "envoyerMessage": "Message",
+  "messagerieBientot": "La messagerie arrive bientôt.",
+  "aucunAvis": "Aucun avis pour l'instant. Soyez le premier !",
+  "aucunProduitPublic": "Ce commerce n'a pas encore publié de produits.",
+  "aucunResultatTitre": "Aucun résultat",
+  "aucunResultatTexte": "Essayez un autre mot ou retirez des filtres.",
+  "choisirNote": "Choisissez une note de 1 à 5 étoiles.",
+  "continent": "Continent",
+  "continentEurope": "Europe",
+  "continentAfrique": "Afrique",
+  "continentAmerique": "Amérique",
+  "donnerAvisTitre": "Vous connaissez ce commerce ?",
+  "donnerAvis": "Donner mon avis",
+  "monAvis": "Mon avis",
+  "modifierMonAvis": "Modifier mon avis",
+  "votreAvis": "Votre avis (facultatif)",
+  "publierAvis": "Publier",
+  "effacerRecherche": "Effacer la recherche",
+  "fermeMaintenant": "Fermé",
+  "ouvert": "Ouvert",
+  "ouvertMaintenant": "Ouvert maintenant",
+  "filtres": "Filtres",
+  "horairesNonRenseignes": "Horaires non renseignés.",
+  "ongletProduits": "Produits",
+  "ongletAvis": "Avis",
+  "ongletInfos": "Infos",
+  "rechercherIndice": "Un commerce, une ville…",
+  "reinitialiser": "Réinitialiser",
+  "voirResultats": "Voir les résultats",
+  "voirPlus": "Voir plus",
+  "tous": "Tous",
+  "signaler": "Signaler",
+  "signalerAide": "Expliquez ce qui pose problème. Notre équipe examinera votre signalement.",
+  "signalementEnvoye": "Merci. Notre équipe va examiner ce signalement.",
+  "nEtoiles": "{n, plural, =1{1 étoile} other{{n} étoiles}}",
+  "@nEtoiles": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "noteSur5": "Note {note} sur 5, {nb, plural, =1{1 avis} other{{nb} avis}}",
+  "@noteSur5": {
+    "placeholders": {
+      "note": {
+        "type": "String"
+      },
+      "nb": {
+        "type": "int"
+      }
+    }
+  }
 }

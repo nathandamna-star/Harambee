@@ -653,4 +653,146 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get voirCommerce => 'View business';
+
+  @override
+  String get ajouterFavori => 'Add to favorites';
+
+  @override
+  String get retirerFavori => 'Remove from favorites';
+
+  @override
+  String get anonyme => 'Anonymous';
+
+  @override
+  String get appeler => 'Call';
+
+  @override
+  String get itineraire => 'Directions';
+
+  @override
+  String get envoyerMessage => 'Message';
+
+  @override
+  String get messagerieBientot => 'Messaging is coming soon.';
+
+  @override
+  String get aucunAvis => 'No reviews yet. Be the first!';
+
+  @override
+  String get aucunProduitPublic =>
+      'This business hasn\'t published any products yet.';
+
+  @override
+  String get aucunResultatTitre => 'No results';
+
+  @override
+  String get aucunResultatTexte => 'Try another word or remove some filters.';
+
+  @override
+  String get choisirNote => 'Choose a rating from 1 to 5 stars.';
+
+  @override
+  String get continent => 'Continent';
+
+  @override
+  String get continentEurope => 'Europe';
+
+  @override
+  String get continentAfrique => 'Africa';
+
+  @override
+  String get continentAmerique => 'Americas';
+
+  @override
+  String get donnerAvisTitre => 'Do you know this business?';
+
+  @override
+  String get donnerAvis => 'Write a review';
+
+  @override
+  String get monAvis => 'My review';
+
+  @override
+  String get modifierMonAvis => 'Edit my review';
+
+  @override
+  String get votreAvis => 'Your review (optional)';
+
+  @override
+  String get publierAvis => 'Post';
+
+  @override
+  String get effacerRecherche => 'Clear search';
+
+  @override
+  String get fermeMaintenant => 'Closed';
+
+  @override
+  String get ouvert => 'Open';
+
+  @override
+  String get ouvertMaintenant => 'Open now';
+
+  @override
+  String get filtres => 'Filters';
+
+  @override
+  String get horairesNonRenseignes => 'Opening hours not provided.';
+
+  @override
+  String get ongletProduits => 'Products';
+
+  @override
+  String get ongletAvis => 'Reviews';
+
+  @override
+  String get ongletInfos => 'Info';
+
+  @override
+  String get rechercherIndice => 'A business, a city…';
+
+  @override
+  String get reinitialiser => 'Reset';
+
+  @override
+  String get voirResultats => 'Show results';
+
+  @override
+  String get voirPlus => 'Show more';
+
+  @override
+  String get tous => 'All';
+
+  @override
+  String get signaler => 'Report';
+
+  @override
+  String get signalerAide =>
+      'Explain the problem. Our team will review your report.';
+
+  @override
+  String get signalementEnvoye =>
+      'Thank you. Our team will review this report.';
+
+  @override
+  String nEtoiles(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n stars',
+      one: '1 star',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String noteSur5(String note, int nb) {
+    String _temp0 = intl.Intl.pluralLogic(
+      nb,
+      locale: localeName,
+      other: '$nb reviews',
+      one: '1 review',
+    );
+    return 'Rated $note out of 5, $_temp0';
+  }
 }

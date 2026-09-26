@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'enums.dart';
+import 'recherche.dart';
 
 /// Fiche d'un commerce : `commerces/{commerceId}`.
 class Commerce {
@@ -157,6 +158,7 @@ class Commerce {
 
   Map<String, dynamic> _champsModifiables() => {
     'nom': nom,
+    'motsCles': motsClesRecherche([nom, ville]),
     'categorie': categorie.name,
     'description': description,
     'photos': photos,

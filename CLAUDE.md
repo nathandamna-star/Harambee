@@ -252,4 +252,12 @@ pose la question au lieu de choisir seul.
 - Admin (`lib/features/admin/`) : onglets En attente / Publiés / Suspendus / Signalements, fiche de vérification
   (labels, publier, refuser/suspendre avec motif obligatoire, republier), écran Administrateurs.
   Refuser = statut « suspendu » + `motifRefus` (le modèle n'a que 3 statuts).
+- Explorer (`lib/features/explorer/`) : recherche par `motsCles` (débuts de mots normalisés du nom et de la ville,
+  `lib/shared/models/recherche.dart`, écrit à chaque enregistrement de fiche) + filtres Firestore d'égalité
+  (sans index composite) ; tri, « ouvert maintenant » (`horaires.dart`) et mots suivants filtrés sur le téléphone.
+  Fiche publique : onglets Produits / Avis / Infos, favori, signaler, appeler, itinéraire (`Lanceur`).
+  Le bouton Message affiche « bientôt » jusqu'à l'étape 8.
+- Cloud Function `recalculerNote` : recalcule `noteMoyenne` (1 décimale) et `nbAvis` à chaque écriture d'avis.
+  Dans l'environnement cloud de Claude, le proxy empêche aussi l'émulateur Functions d'enregistrer les triggers
+  Firestore : `npm test` dans `functions/` n'y tourne pas ; il tourne sur GitHub Actions.
 - Vérifier avant chaque commit : `flutter analyze` et `flutter test`.

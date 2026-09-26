@@ -657,4 +657,147 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get voirCommerce => 'Voir le commerce';
+
+  @override
+  String get ajouterFavori => 'Ajouter aux favoris';
+
+  @override
+  String get retirerFavori => 'Retirer des favoris';
+
+  @override
+  String get anonyme => 'Anonyme';
+
+  @override
+  String get appeler => 'Appeler';
+
+  @override
+  String get itineraire => 'Itinéraire';
+
+  @override
+  String get envoyerMessage => 'Message';
+
+  @override
+  String get messagerieBientot => 'La messagerie arrive bientôt.';
+
+  @override
+  String get aucunAvis => 'Aucun avis pour l\'instant. Soyez le premier !';
+
+  @override
+  String get aucunProduitPublic =>
+      'Ce commerce n\'a pas encore publié de produits.';
+
+  @override
+  String get aucunResultatTitre => 'Aucun résultat';
+
+  @override
+  String get aucunResultatTexte =>
+      'Essayez un autre mot ou retirez des filtres.';
+
+  @override
+  String get choisirNote => 'Choisissez une note de 1 à 5 étoiles.';
+
+  @override
+  String get continent => 'Continent';
+
+  @override
+  String get continentEurope => 'Europe';
+
+  @override
+  String get continentAfrique => 'Afrique';
+
+  @override
+  String get continentAmerique => 'Amérique';
+
+  @override
+  String get donnerAvisTitre => 'Vous connaissez ce commerce ?';
+
+  @override
+  String get donnerAvis => 'Donner mon avis';
+
+  @override
+  String get monAvis => 'Mon avis';
+
+  @override
+  String get modifierMonAvis => 'Modifier mon avis';
+
+  @override
+  String get votreAvis => 'Votre avis (facultatif)';
+
+  @override
+  String get publierAvis => 'Publier';
+
+  @override
+  String get effacerRecherche => 'Effacer la recherche';
+
+  @override
+  String get fermeMaintenant => 'Fermé';
+
+  @override
+  String get ouvert => 'Ouvert';
+
+  @override
+  String get ouvertMaintenant => 'Ouvert maintenant';
+
+  @override
+  String get filtres => 'Filtres';
+
+  @override
+  String get horairesNonRenseignes => 'Horaires non renseignés.';
+
+  @override
+  String get ongletProduits => 'Produits';
+
+  @override
+  String get ongletAvis => 'Avis';
+
+  @override
+  String get ongletInfos => 'Infos';
+
+  @override
+  String get rechercherIndice => 'Un commerce, une ville…';
+
+  @override
+  String get reinitialiser => 'Réinitialiser';
+
+  @override
+  String get voirResultats => 'Voir les résultats';
+
+  @override
+  String get voirPlus => 'Voir plus';
+
+  @override
+  String get tous => 'Tous';
+
+  @override
+  String get signaler => 'Signaler';
+
+  @override
+  String get signalerAide =>
+      'Expliquez ce qui pose problème. Notre équipe examinera votre signalement.';
+
+  @override
+  String get signalementEnvoye =>
+      'Merci. Notre équipe va examiner ce signalement.';
+
+  @override
+  String nEtoiles(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n étoiles',
+      one: '1 étoile',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String noteSur5(String note, int nb) {
+    String _temp0 = intl.Intl.pluralLogic(
+      nb,
+      locale: localeName,
+      other: '$nb avis',
+      one: '1 avis',
+    );
+    return 'Note $note sur 5, $_temp0';
+  }
 }

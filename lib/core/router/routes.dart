@@ -7,6 +7,10 @@ abstract final class Routes {
   static const monEspace = '/mon-espace';
   static const admin = '/admin';
 
+  // Fiche publique d'un commerce (depuis Explorer ou Favoris)
+  static String commerceExplorer(String id) => '/explorer/commerce/$id';
+  static String commerceFavoris(String id) => '/favoris/commerce/$id';
+
   // Administration
   static String adminCommerce(String id) => '/admin/commerce/$id';
   static const administrateurs = '/admin/administrateurs';

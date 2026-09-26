@@ -1,8 +1,8 @@
 import { after, afterEach, before, describe, it } from 'node:test';
 import { assertFails, assertSucceeds } from '@firebase/rules-unit-testing';
 import {
-  collection, deleteDoc, doc, getDoc, getDocs, query, serverTimestamp,
-  setDoc, updateDoc, where,
+  arrayUnion, collection, deleteDoc, doc, documentId, getDoc, getDocs, limit,
+  orderBy, query, serverTimestamp, setDoc, updateDoc, where,
 } from 'firebase/firestore';
 import { commerceValide, creerEnvironnement, preparer } from './outils.js';
 
@@ -179,6 +179,48 @@ describe('écritures faites par l\'app (mêmes champs que le code Dart)', () => 
     }));
     await assertSucceeds(updateDoc(ref, { ordre: 0 }));
     await assertSucceeds(updateDoc(ref, { enRupture: true, updatedAt: serverTimestamp() }));
+  });
+});
+
+describe('lectures et écritures des clients (Explorer, fiche, favoris)', () => {
+  it('recherche filtrée sur les commerces publiés', async () => {
+    await preparer(env, base);
+    await assertSucceeds(getDocs(query(collection(visiteur(), 'commerces'),
+      where('statut', '==', 'publie'), where('continent', '==', 'europe'),
+      where('categorie', '==', 'restaurant'), where('labelAfricain', '==', true),
+      where('motsCles', 'array-contains', 'ma'), limit(30))));
+  });
+
+  it('favoris : lecture par identifiants et ajout', async () => {
+    await preparer(env, base);
+    await assertSucceeds(getDocs(query(collection(client(), 'commerces'),
+      where(documentId(), 'in', ['publie']), where('statut', '==', 'publie'))));
+    await assertSucceeds(updateDoc(doc(client(), 'users/client1'), { favoris: arrayUnion('publie') }));
+  });
+
+  it('produits visibles et avis d\'une fiche', async () => {
+    await preparer(env, base);
+    await assertSucceeds(getDocs(query(collection(visiteur(), 'commerces/publie/produits'),
+      where('publie', '==', true))));
+    await assertSucceeds(getDocs(query(collection(visiteur(), 'commerces/publie/avis'),
+      orderBy('createdAt', 'desc'), limit(50))));
+  });
+
+  it('avis : création puis modification comme dans l\'app', async () => {
+    await preparer(env, base);
+    const ref = doc(client(), 'commerces/publie/avis/client1');
+    await assertSucceeds(setDoc(ref, {
+      auteur: 'client1', auteurNom: 'Awa', note: 4, texte: 'Bon', createdAt: serverTimestamp(),
+    }));
+    await assertSucceeds(updateDoc(ref, { note: 2, texte: 'Moins bien', updatedAt: serverTimestamp() }));
+  });
+
+  it('signalement comme dans l\'app', async () => {
+    await preparer(env, base);
+    await assertSucceeds(setDoc(doc(client(), 'signalements/x'), {
+      auteur: 'client1', cible: 'commerce', cibleId: 'publie', motif: 'Faux',
+      traite: false, createdAt: serverTimestamp(),
+    }));
   });
 });
 

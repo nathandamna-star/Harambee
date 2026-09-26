@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/models/commerce.dart';
 import '../../../shared/models/enums.dart';
+import '../../../shared/widgets/dialogue_texte.dart';
 import '../../../shared/widgets/label_chip.dart';
 import '../../commerce/commerce_providers.dart';
 import '../../commerce/data/pays.dart';
@@ -285,68 +286,12 @@ class _DetailState extends ConsumerState<_Detail> {
 }
 
 /// Demande le motif d'un refus ou d'une suspension (obligatoire).
-Future<String?> _demanderMotif(BuildContext context, String titre) =>
-    showDialog<String>(
-      context: context,
-      builder: (context) => _DialogueMotif(titre: titre),
-    );
-
-class _DialogueMotif extends StatefulWidget {
-  const _DialogueMotif({required this.titre});
-
-  final String titre;
-
-  @override
-  State<_DialogueMotif> createState() => _DialogueMotifState();
-}
-
-class _DialogueMotifState extends State<_DialogueMotif> {
-  // Le contrôleur vit avec la fenêtre : il n'est libéré qu'après sa fermeture
-  // complète (animation comprise).
-  final _controleur = TextEditingController();
-  final _formulaire = GlobalKey<FormState>();
-
-  @override
-  void dispose() {
-    _controleur.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return AlertDialog(
-      title: Text(widget.titre),
-      content: Form(
-        key: _formulaire,
-        child: TextFormField(
-          controller: _controleur,
-          autofocus: true,
-          maxLines: 3,
-          maxLength: 500,
-          decoration: InputDecoration(
-            labelText: l10n.motif,
-            helperText: l10n.motifAide,
-            helperMaxLines: 2,
-          ),
-          validator: (v) =>
-              (v == null || v.trim().isEmpty) ? l10n.champObligatoire : null,
-        ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text(l10n.annuler),
-        ),
-        FilledButton(
-          onPressed: () {
-            if (_formulaire.currentState!.validate()) {
-              Navigator.pop(context, _controleur.text.trim());
-            }
-          },
-          child: Text(l10n.valider),
-        ),
-      ],
-    );
-  }
+Future<String?> _demanderMotif(BuildContext context, String titre) {
+  final l10n = AppLocalizations.of(context);
+  return demanderTexte(
+    context,
+    titre: titre,
+    libelle: l10n.motif,
+    aide: l10n.motifAide,
+  );
 }

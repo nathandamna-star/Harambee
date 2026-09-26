@@ -3,8 +3,9 @@
 // chaque fonction vérifie elle-même qui l'appelle.
 import { initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
-import { FieldValue, getFirestore } from 'firebase-admin/firestore';
+import { AggregateField, FieldValue, getFirestore } from 'firebase-admin/firestore';
 import { setGlobalOptions } from 'firebase-functions/v2';
+import { onDocumentWritten } from 'firebase-functions/v2/firestore';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineString } from 'firebase-functions/params';
 
@@ -100,3 +101,30 @@ async function journaliser(par, cible, email, admin) {
     par, cible, email, admin, le: FieldValue.serverTimestamp(),
   });
 }
+
+/**
+ * Recalcule la note moyenne et le nombre d'avis d'un commerce à chaque
+ * création, modification ou suppression d'avis. L'app ne peut pas écrire ces
+ * champs elle-même (règles Firestore).
+ */
+export const recalculerNote = onDocumentWritten(
+  'commerces/{commerceId}/avis/{auteurId}',
+  async (evenement) => {
+    const db = getFirestore();
+    const refCommerce = db.doc(`commerces/${evenement.params.commerceId}`);
+    const stats = await refCommerce
+      .collection('avis')
+      .aggregate({ nb: AggregateField.count(), moyenne: AggregateField.average('note') })
+      .get();
+    const { nb, moyenne } = stats.data();
+    try {
+      await refCommerce.update({
+        nbAvis: nb,
+        noteMoyenne: nb === 0 ? 0 : Math.round((moyenne ?? 0) * 10) / 10,
+      });
+    } catch (e) {
+      // Commerce supprimé entre-temps : rien à mettre à jour.
+      if (e.code !== 5) throw e;
+    }
+  },
+);

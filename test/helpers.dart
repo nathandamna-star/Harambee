@@ -18,6 +18,8 @@ import 'package:harambee/features/auth/data/connexion_google.dart';
 import 'package:harambee/features/commerce/commerce_providers.dart';
 import 'package:harambee/features/commerce/data/localisation_service.dart';
 import 'package:harambee/features/commerce/data/photos_service.dart';
+import 'package:harambee/features/explorer/explorer_providers.dart';
+import 'package:harambee/shared/services/lanceur.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FausseConnexionGoogle implements ConnexionGoogle {
@@ -72,6 +74,25 @@ class FaussesFonctionsAdmin implements FonctionsAdmin {
   }
 }
 
+class FauxLanceur implements Lanceur {
+  final appels = <String>[];
+
+  @override
+  Future<bool> appeler(String telephone) async {
+    appels.add('tel:$telephone');
+    return true;
+  }
+
+  @override
+  Future<bool> itineraire({GeoPoint? geo, required String adresse}) async {
+    appels.add('itineraire:${geo?.latitude},${geo?.longitude}');
+    return true;
+  }
+}
+
+/// Lundi 28 septembre 2026, 10 h.
+final maintenantTest = DateTime(2026, 9, 28, 10);
+
 /// Environnement de test : Firebase simulé, préférences en mémoire.
 class Banc {
   Banc({MockFirebaseAuth? auth, FakeFirebaseFirestore? firestore})
@@ -84,6 +105,7 @@ class Banc {
   final storage = MockFirebaseStorage();
   final selecteur = FauxSelecteurPhoto();
   final fonctionsAdmin = FaussesFonctionsAdmin();
+  final lanceur = FauxLanceur();
 
   Future<void> lancer(
     WidgetTester tester, {
@@ -105,6 +127,8 @@ class Banc {
           selecteurPhotoProvider.overrideWithValue(selecteur),
           localisationServiceProvider.overrideWithValue(FausseLocalisation()),
           fonctionsAdminProvider.overrideWithValue(fonctionsAdmin),
+          lanceurProvider.overrideWithValue(lanceur),
+          horlogeProvider.overrideWithValue(() => maintenantTest),
         ],
         child: const HarambeeApp(),
       ),

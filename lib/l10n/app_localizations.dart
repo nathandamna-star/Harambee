@@ -1275,6 +1275,252 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Voir le commerce'**
   String get voirCommerce;
+
+  /// No description provided for @ajouterFavori.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter aux favoris'**
+  String get ajouterFavori;
+
+  /// No description provided for @retirerFavori.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer des favoris'**
+  String get retirerFavori;
+
+  /// No description provided for @anonyme.
+  ///
+  /// In fr, this message translates to:
+  /// **'Anonyme'**
+  String get anonyme;
+
+  /// No description provided for @appeler.
+  ///
+  /// In fr, this message translates to:
+  /// **'Appeler'**
+  String get appeler;
+
+  /// No description provided for @itineraire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Itinéraire'**
+  String get itineraire;
+
+  /// No description provided for @envoyerMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Message'**
+  String get envoyerMessage;
+
+  /// No description provided for @messagerieBientot.
+  ///
+  /// In fr, this message translates to:
+  /// **'La messagerie arrive bientôt.'**
+  String get messagerieBientot;
+
+  /// No description provided for @aucunAvis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun avis pour l\'instant. Soyez le premier !'**
+  String get aucunAvis;
+
+  /// No description provided for @aucunProduitPublic.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce commerce n\'a pas encore publié de produits.'**
+  String get aucunProduitPublic;
+
+  /// No description provided for @aucunResultatTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun résultat'**
+  String get aucunResultatTitre;
+
+  /// No description provided for @aucunResultatTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Essayez un autre mot ou retirez des filtres.'**
+  String get aucunResultatTexte;
+
+  /// No description provided for @choisirNote.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez une note de 1 à 5 étoiles.'**
+  String get choisirNote;
+
+  /// No description provided for @continent.
+  ///
+  /// In fr, this message translates to:
+  /// **'Continent'**
+  String get continent;
+
+  /// No description provided for @continentEurope.
+  ///
+  /// In fr, this message translates to:
+  /// **'Europe'**
+  String get continentEurope;
+
+  /// No description provided for @continentAfrique.
+  ///
+  /// In fr, this message translates to:
+  /// **'Afrique'**
+  String get continentAfrique;
+
+  /// No description provided for @continentAmerique.
+  ///
+  /// In fr, this message translates to:
+  /// **'Amérique'**
+  String get continentAmerique;
+
+  /// No description provided for @donnerAvisTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous connaissez ce commerce ?'**
+  String get donnerAvisTitre;
+
+  /// No description provided for @donnerAvis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Donner mon avis'**
+  String get donnerAvis;
+
+  /// No description provided for @monAvis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon avis'**
+  String get monAvis;
+
+  /// No description provided for @modifierMonAvis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier mon avis'**
+  String get modifierMonAvis;
+
+  /// No description provided for @votreAvis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre avis (facultatif)'**
+  String get votreAvis;
+
+  /// No description provided for @publierAvis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Publier'**
+  String get publierAvis;
+
+  /// No description provided for @effacerRecherche.
+  ///
+  /// In fr, this message translates to:
+  /// **'Effacer la recherche'**
+  String get effacerRecherche;
+
+  /// No description provided for @fermeMaintenant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fermé'**
+  String get fermeMaintenant;
+
+  /// No description provided for @ouvert.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ouvert'**
+  String get ouvert;
+
+  /// No description provided for @ouvertMaintenant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ouvert maintenant'**
+  String get ouvertMaintenant;
+
+  /// No description provided for @filtres.
+  ///
+  /// In fr, this message translates to:
+  /// **'Filtres'**
+  String get filtres;
+
+  /// No description provided for @horairesNonRenseignes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Horaires non renseignés.'**
+  String get horairesNonRenseignes;
+
+  /// No description provided for @ongletProduits.
+  ///
+  /// In fr, this message translates to:
+  /// **'Produits'**
+  String get ongletProduits;
+
+  /// No description provided for @ongletAvis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Avis'**
+  String get ongletAvis;
+
+  /// No description provided for @ongletInfos.
+  ///
+  /// In fr, this message translates to:
+  /// **'Infos'**
+  String get ongletInfos;
+
+  /// No description provided for @rechercherIndice.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un commerce, une ville…'**
+  String get rechercherIndice;
+
+  /// No description provided for @reinitialiser.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réinitialiser'**
+  String get reinitialiser;
+
+  /// No description provided for @voirResultats.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir les résultats'**
+  String get voirResultats;
+
+  /// No description provided for @voirPlus.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir plus'**
+  String get voirPlus;
+
+  /// No description provided for @tous.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous'**
+  String get tous;
+
+  /// No description provided for @signaler.
+  ///
+  /// In fr, this message translates to:
+  /// **'Signaler'**
+  String get signaler;
+
+  /// No description provided for @signalerAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Expliquez ce qui pose problème. Notre équipe examinera votre signalement.'**
+  String get signalerAide;
+
+  /// No description provided for @signalementEnvoye.
+  ///
+  /// In fr, this message translates to:
+  /// **'Merci. Notre équipe va examiner ce signalement.'**
+  String get signalementEnvoye;
+
+  /// No description provided for @nEtoiles.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n, plural, =1{1 étoile} other{{n} étoiles}}'**
+  String nEtoiles(int n);
+
+  /// No description provided for @noteSur5.
+  ///
+  /// In fr, this message translates to:
+  /// **'Note {note} sur 5, {nb, plural, =1{1 avis} other{{nb} avis}}'**
+  String noteSur5(String note, int nb);
 }
 
 class _AppLocalizationsDelegate
