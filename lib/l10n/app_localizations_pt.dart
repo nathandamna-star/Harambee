@@ -504,4 +504,155 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get vousAvezUnCommerceAide =>
       'Mude para uma conta profissional para apresentá-lo no Harambee.';
+
+  @override
+  String get activerAdminTitre => 'Ativar acesso de administrador?';
+
+  @override
+  String get activerAdminTexte =>
+      'Reservado ao responsável do Harambee. Somente a conta designada na configuração pode se tornar o primeiro administrador.';
+
+  @override
+  String get adminActive =>
+      'Agora você é administrador. A aba Admin está disponível.';
+
+  @override
+  String get adminAucunCommerce => 'Nenhum comércio aqui por enquanto.';
+
+  @override
+  String get adminAucunSignalement => 'Nenhuma denúncia a tratar.';
+
+  @override
+  String get adminEnAttente => 'Pendentes';
+
+  @override
+  String get adminPublies => 'Publicados';
+
+  @override
+  String get adminSuspendus => 'Suspensos';
+
+  @override
+  String get adminSignalements => 'Denúncias';
+
+  @override
+  String get adminRienAVerifier => 'Tudo verificado!';
+
+  @override
+  String adminNomme(String email) {
+    return '$email agora é administrador. É preciso sair e entrar novamente.';
+  }
+
+  @override
+  String adminRetire(String email) {
+    return '$email não é mais administrador.';
+  }
+
+  @override
+  String get administrateurs => 'Administradores';
+
+  @override
+  String get administrateursAide =>
+      'Informe o e-mail de uma conta Harambee existente para conceder ou remover o acesso de administrador.';
+
+  @override
+  String get aucunePhoto => 'Nenhuma foto.';
+
+  @override
+  String get charteNonSignee => 'Carta cristã não assinada';
+
+  @override
+  String charteSigneeLe(String date) {
+    return 'Carta assinada em $date';
+  }
+
+  @override
+  String get cibleCommerce => 'Comércio denunciado';
+
+  @override
+  String get cibleAvis => 'Avaliação denunciada';
+
+  @override
+  String get cibleMessage => 'Mensagem denunciada';
+
+  @override
+  String get commerceIntrouvable => 'Este comércio não existe mais.';
+
+  @override
+  String get enregistrerLabels => 'Salvar selos';
+
+  @override
+  String get erreurAdminNonAutorise =>
+      'Esta conta não tem permissão para esta ação.';
+
+  @override
+  String get erreurAdminCompteIntrouvable =>
+      'Nenhuma conta Harambee com este e-mail.';
+
+  @override
+  String get erreurAdminDejaDesigne =>
+      'O primeiro administrador já foi designado.';
+
+  @override
+  String get erreurAdminSoiMeme => 'Você não pode remover seu próprio acesso.';
+
+  @override
+  String get fichePubliee => 'Página publicada.';
+
+  @override
+  String get ficheRefusee => 'Página recusada. O comerciante verá o motivo.';
+
+  @override
+  String get ficheSuspendue => 'Página suspensa.';
+
+  @override
+  String get labelsAConfirmer => 'Selos';
+
+  @override
+  String get labelsAConfirmerAide =>
+      'Solicitados pelo comerciante. Confirme ou remova antes de publicar.';
+
+  @override
+  String get labelsEnregistres => 'Selos salvos.';
+
+  @override
+  String get marquerTraite => 'Marcar como tratado';
+
+  @override
+  String get motif => 'Motivo';
+
+  @override
+  String get motifAide => 'Será exibido ao comerciante em seu espaço.';
+
+  @override
+  String motifActuel(String motif) {
+    return 'Motivo: $motif';
+  }
+
+  @override
+  String get nommerAdmin => 'Tornar administrador';
+
+  @override
+  String get retirerAdmin => 'Remover acesso de administrador';
+
+  @override
+  String get positionGps => 'Localização GPS';
+
+  @override
+  String get positionNonRenseignee =>
+      'Não informada: o comércio não aparecerá na busca por distância.';
+
+  @override
+  String get publierFiche => 'Publicar página';
+
+  @override
+  String get refuserFiche => 'Recusar';
+
+  @override
+  String get republierFiche => 'Republicar página';
+
+  @override
+  String get suspendreFiche => 'Suspender página';
+
+  @override
+  String get voirCommerce => 'Ver comércio';
 }

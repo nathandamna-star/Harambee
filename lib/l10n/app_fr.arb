@@ -198,5 +198,78 @@
   "validationPrix": "Indiquez un prix valide (ex. 8,50).",
   "valider": "Valider",
   "vousAvezUnCommerce": "Vous avez un commerce ?",
-  "vousAvezUnCommerceAide": "Passez en compte professionnel pour le présenter sur Harambee."
+  "vousAvezUnCommerceAide": "Passez en compte professionnel pour le présenter sur Harambee.",
+  "activerAdminTitre": "Activer l'accès administrateur ?",
+  "activerAdminTexte": "Réservé au responsable de Harambee. Seul le compte désigné lors de la mise en service peut devenir le premier administrateur.",
+  "adminActive": "Vous êtes maintenant administrateur. L'onglet Admin est disponible.",
+  "adminAucunCommerce": "Aucun commerce ici pour l'instant.",
+  "adminAucunSignalement": "Aucun signalement à traiter.",
+  "adminEnAttente": "En attente",
+  "adminPublies": "Publiés",
+  "adminSuspendus": "Suspendus",
+  "adminSignalements": "Signalements",
+  "adminRienAVerifier": "Tout est vérifié !",
+  "adminNomme": "{email} est maintenant administrateur. Il doit se déconnecter puis se reconnecter.",
+  "@adminNomme": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "adminRetire": "{email} n'est plus administrateur.",
+  "@adminRetire": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "administrateurs": "Administrateurs",
+  "administrateursAide": "Saisissez l'adresse e-mail d'un compte Harambee existant pour lui donner ou lui retirer l'accès administrateur.",
+  "aucunePhoto": "Aucune photo.",
+  "charteNonSignee": "Charte chrétienne non signée",
+  "charteSigneeLe": "Charte signée le {date}",
+  "@charteSigneeLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "cibleCommerce": "Commerce signalé",
+  "cibleAvis": "Avis signalé",
+  "cibleMessage": "Message signalé",
+  "commerceIntrouvable": "Ce commerce n'existe plus.",
+  "enregistrerLabels": "Enregistrer les labels",
+  "erreurAdminNonAutorise": "Ce compte n'est pas autorisé à faire cette action.",
+  "erreurAdminCompteIntrouvable": "Aucun compte Harambee avec cette adresse e-mail.",
+  "erreurAdminDejaDesigne": "Le premier administrateur a déjà été désigné.",
+  "erreurAdminSoiMeme": "Vous ne pouvez pas retirer votre propre accès.",
+  "fichePubliee": "Fiche publiée.",
+  "ficheRefusee": "Fiche refusée. Le commerçant verra le motif.",
+  "ficheSuspendue": "Fiche suspendue.",
+  "labelsAConfirmer": "Labels",
+  "labelsAConfirmerAide": "Demandés par le commerçant. Confirmez ou retirez-les avant de publier.",
+  "labelsEnregistres": "Labels enregistrés.",
+  "marquerTraite": "Marquer comme traité",
+  "motif": "Motif",
+  "motifAide": "Il sera affiché au commerçant dans son espace.",
+  "motifActuel": "Motif : {motif}",
+  "@motifActuel": {
+    "placeholders": {
+      "motif": {
+        "type": "String"
+      }
+    }
+  },
+  "nommerAdmin": "Nommer administrateur",
+  "retirerAdmin": "Retirer l'accès administrateur",
+  "positionGps": "Position GPS",
+  "positionNonRenseignee": "Non renseignée : le commerce n'apparaîtra pas dans la recherche par distance.",
+  "publierFiche": "Publier la fiche",
+  "refuserFiche": "Refuser",
+  "republierFiche": "Republier la fiche",
+  "suspendreFiche": "Suspendre la fiche",
+  "voirCommerce": "Voir le commerce"
 }

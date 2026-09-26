@@ -1,0 +1,5 @@
+node_modules/
+*.log
+# Valeurs des paramètres saisies au déploiement (ex. .env.harambee-75bab)
+.env.*
+!.env.local

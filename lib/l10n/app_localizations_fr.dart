@@ -505,4 +505,156 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get vousAvezUnCommerceAide =>
       'Passez en compte professionnel pour le présenter sur Harambee.';
+
+  @override
+  String get activerAdminTitre => 'Activer l\'accès administrateur ?';
+
+  @override
+  String get activerAdminTexte =>
+      'Réservé au responsable de Harambee. Seul le compte désigné lors de la mise en service peut devenir le premier administrateur.';
+
+  @override
+  String get adminActive =>
+      'Vous êtes maintenant administrateur. L\'onglet Admin est disponible.';
+
+  @override
+  String get adminAucunCommerce => 'Aucun commerce ici pour l\'instant.';
+
+  @override
+  String get adminAucunSignalement => 'Aucun signalement à traiter.';
+
+  @override
+  String get adminEnAttente => 'En attente';
+
+  @override
+  String get adminPublies => 'Publiés';
+
+  @override
+  String get adminSuspendus => 'Suspendus';
+
+  @override
+  String get adminSignalements => 'Signalements';
+
+  @override
+  String get adminRienAVerifier => 'Tout est vérifié !';
+
+  @override
+  String adminNomme(String email) {
+    return '$email est maintenant administrateur. Il doit se déconnecter puis se reconnecter.';
+  }
+
+  @override
+  String adminRetire(String email) {
+    return '$email n\'est plus administrateur.';
+  }
+
+  @override
+  String get administrateurs => 'Administrateurs';
+
+  @override
+  String get administrateursAide =>
+      'Saisissez l\'adresse e-mail d\'un compte Harambee existant pour lui donner ou lui retirer l\'accès administrateur.';
+
+  @override
+  String get aucunePhoto => 'Aucune photo.';
+
+  @override
+  String get charteNonSignee => 'Charte chrétienne non signée';
+
+  @override
+  String charteSigneeLe(String date) {
+    return 'Charte signée le $date';
+  }
+
+  @override
+  String get cibleCommerce => 'Commerce signalé';
+
+  @override
+  String get cibleAvis => 'Avis signalé';
+
+  @override
+  String get cibleMessage => 'Message signalé';
+
+  @override
+  String get commerceIntrouvable => 'Ce commerce n\'existe plus.';
+
+  @override
+  String get enregistrerLabels => 'Enregistrer les labels';
+
+  @override
+  String get erreurAdminNonAutorise =>
+      'Ce compte n\'est pas autorisé à faire cette action.';
+
+  @override
+  String get erreurAdminCompteIntrouvable =>
+      'Aucun compte Harambee avec cette adresse e-mail.';
+
+  @override
+  String get erreurAdminDejaDesigne =>
+      'Le premier administrateur a déjà été désigné.';
+
+  @override
+  String get erreurAdminSoiMeme =>
+      'Vous ne pouvez pas retirer votre propre accès.';
+
+  @override
+  String get fichePubliee => 'Fiche publiée.';
+
+  @override
+  String get ficheRefusee => 'Fiche refusée. Le commerçant verra le motif.';
+
+  @override
+  String get ficheSuspendue => 'Fiche suspendue.';
+
+  @override
+  String get labelsAConfirmer => 'Labels';
+
+  @override
+  String get labelsAConfirmerAide =>
+      'Demandés par le commerçant. Confirmez ou retirez-les avant de publier.';
+
+  @override
+  String get labelsEnregistres => 'Labels enregistrés.';
+
+  @override
+  String get marquerTraite => 'Marquer comme traité';
+
+  @override
+  String get motif => 'Motif';
+
+  @override
+  String get motifAide => 'Il sera affiché au commerçant dans son espace.';
+
+  @override
+  String motifActuel(String motif) {
+    return 'Motif : $motif';
+  }
+
+  @override
+  String get nommerAdmin => 'Nommer administrateur';
+
+  @override
+  String get retirerAdmin => 'Retirer l\'accès administrateur';
+
+  @override
+  String get positionGps => 'Position GPS';
+
+  @override
+  String get positionNonRenseignee =>
+      'Non renseignée : le commerce n\'apparaîtra pas dans la recherche par distance.';
+
+  @override
+  String get publierFiche => 'Publier la fiche';
+
+  @override
+  String get refuserFiche => 'Refuser';
+
+  @override
+  String get republierFiche => 'Republier la fiche';
+
+  @override
+  String get suspendreFiche => 'Suspendre la fiche';
+
+  @override
+  String get voirCommerce => 'Voir le commerce';
 }

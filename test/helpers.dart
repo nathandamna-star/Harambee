@@ -11,6 +11,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harambee/app.dart';
 import 'package:harambee/core/preferences/preferences.dart';
+import 'package:harambee/features/admin/admin_providers.dart';
+import 'package:harambee/features/admin/data/fonctions_admin.dart';
 import 'package:harambee/features/auth/auth_providers.dart';
 import 'package:harambee/features/auth/data/connexion_google.dart';
 import 'package:harambee/features/commerce/commerce_providers.dart';
@@ -53,6 +55,23 @@ class FausseLocalisation implements LocalisationService {
   Future<GeoPoint> positionActuelle() async => const GeoPoint(5.35, -4.02);
 }
 
+class FaussesFonctionsAdmin implements FonctionsAdmin {
+  final appels = <String>[];
+  ErreurAdmin? erreur;
+
+  @override
+  Future<void> revendiquerAdminInitial() async {
+    appels.add('revendiquer');
+    if (erreur != null) throw ExceptionAdmin(erreur!);
+  }
+
+  @override
+  Future<void> definirAdmin(String email, {required bool admin}) async {
+    appels.add('definir:$email:$admin');
+    if (erreur != null) throw ExceptionAdmin(erreur!);
+  }
+}
+
 /// Environnement de test : Firebase simulé, préférences en mémoire.
 class Banc {
   Banc({MockFirebaseAuth? auth, FakeFirebaseFirestore? firestore})
@@ -64,6 +83,7 @@ class Banc {
   final google = FausseConnexionGoogle();
   final storage = MockFirebaseStorage();
   final selecteur = FauxSelecteurPhoto();
+  final fonctionsAdmin = FaussesFonctionsAdmin();
 
   Future<void> lancer(
     WidgetTester tester, {
@@ -84,12 +104,29 @@ class Banc {
           firebaseStorageProvider.overrideWithValue(storage),
           selecteurPhotoProvider.overrideWithValue(selecteur),
           localisationServiceProvider.overrideWithValue(FausseLocalisation()),
+          fonctionsAdminProvider.overrideWithValue(fonctionsAdmin),
         ],
         child: const HarambeeApp(),
       ),
     );
     await tester.pumpAndSettle();
   }
+}
+
+/// Écran de téléphone (432 × 960) plutôt que la petite surface par défaut.
+/// [grand] : écran très haut, pour les pages longues.
+void ecranTelephone(WidgetTester tester, {bool grand = false}) {
+  tester.view.physicalSize = Size(1080, grand ? 4800 : 2400);
+  tester.view.devicePixelRatio = 2.5;
+  addTearDown(tester.view.reset);
+}
+
+/// Fait défiler jusqu'à la cible puis la touche.
+Future<void> toucher(WidgetTester tester, Finder cible) async {
+  await tester.ensureVisible(cible);
+  await tester.pumpAndSettle();
+  await tester.tap(cible);
+  await tester.pumpAndSettle();
 }
 
 /// Utilisateur déjà connecté, avec son profil Firestore.

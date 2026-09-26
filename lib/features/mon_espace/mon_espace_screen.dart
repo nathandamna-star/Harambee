@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../../shared/widgets/connexion_requise.dart';
+import '../admin/admin_providers.dart';
+import '../admin/presentation/message_erreur_admin.dart';
 import '../auth/auth_providers.dart';
 import '../auth/domain/role.dart';
 import '../commerce/presentation/espace_pro.dart';
@@ -43,25 +45,33 @@ class MonEspaceScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(16),
         children: [
           Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    l10n.monEspaceBonjour(nom),
-                    style: theme.textTheme.headlineSmall,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    user.email ?? '',
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
+            clipBehavior: Clip.antiAlias,
+            child: InkWell(
+              // Appui long : activation du premier administrateur (voir
+              // functions/index.js, revendiquerAdminInitial).
+              onLongPress: role == Role.admin
+                  ? null
+                  : () => _activerAdmin(context, ref),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l10n.monEspaceBonjour(nom),
+                      style: theme.textTheme.headlineSmall,
                     ),
-                  ),
-                  const SizedBox(height: 12),
-                  Chip(label: Text(libelleRole)),
-                ],
+                    const SizedBox(height: 4),
+                    Text(
+                      user.email ?? '',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Chip(label: Text(libelleRole)),
+                  ],
+                ),
               ),
             ),
           ),
@@ -90,5 +100,39 @@ class MonEspaceScreen extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _activerAdmin(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    final confirme = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(l10n.activerAdminTitre),
+        content: Text(l10n.activerAdminTexte),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(l10n.annuler),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(l10n.valider),
+          ),
+        ],
+      ),
+    );
+    if (confirme != true) return;
+    try {
+      await ref.read(fonctionsAdminProvider).revendiquerAdminInitial();
+      await ref.read(authRepositoryProvider).rafraichirJeton();
+      messenger
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(l10n.adminActive)));
+    } catch (e) {
+      messenger
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(messageErreurAdmin(l10n, e))));
+    }
   }
 }

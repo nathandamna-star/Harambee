@@ -76,6 +76,12 @@ class AuthRepository {
     );
   }
 
+  /// Recharge le jeton pour prendre en compte un rôle attribué par le serveur
+  /// (custom claim « admin »).
+  Future<void> rafraichirJeton() async {
+    await auth.currentUser?.getIdToken(true);
+  }
+
   Future<void> deconnexion() async {
     await google.deconnecter().catchError((_) {});
     await auth.signOut();

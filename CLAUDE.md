@@ -245,4 +245,11 @@ pose la question au lieu de choisir seul.
   Pays proposés : `lib/features/commerce/data/pays.dart` (continent et devise par défaut en découlent).
 - Charte chrétienne : texte provisoire (`charteTexteProvisoire` dans les ARB), à remplacer par le texte fourni.
 - Statistiques de l'espace pro (vues, favoris) : pas encore faites, prévues avec les Cloud Functions.
+- Cloud Functions (`functions/`, Node 22, JS, région europe-west1) : `revendiquerAdminInitial` (premier admin =
+  compte dont l'e-mail est le paramètre `EMAIL_ADMIN_INITIAL`, une seule fois ; dans l'app : appui long sur la
+  carte « Bonjour … » de Mon espace) et `definirAdmin` (admins seulement). Journal dans `systeme/admins/historique`.
+  Tests : `cd functions && npm install && npm test` (émulateurs auth + firestore + functions).
+- Admin (`lib/features/admin/`) : onglets En attente / Publiés / Suspendus / Signalements, fiche de vérification
+  (labels, publier, refuser/suspendre avec motif obligatoire, republier), écran Administrateurs.
+  Refuser = statut « suspendu » + `motifRefus` (le modèle n'a que 3 statuts).
 - Vérifier avant chaque commit : `flutter analyze` et `flutter test`.

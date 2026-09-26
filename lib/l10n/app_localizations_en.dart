@@ -502,4 +502,155 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get vousAvezUnCommerceAide =>
       'Switch to a business account to showcase it on Harambee.';
+
+  @override
+  String get activerAdminTitre => 'Enable administrator access?';
+
+  @override
+  String get activerAdminTexte =>
+      'Reserved for the Harambee manager. Only the account designated at setup can become the first administrator.';
+
+  @override
+  String get adminActive =>
+      'You are now an administrator. The Admin tab is available.';
+
+  @override
+  String get adminAucunCommerce => 'No businesses here yet.';
+
+  @override
+  String get adminAucunSignalement => 'No reports to handle.';
+
+  @override
+  String get adminEnAttente => 'Pending';
+
+  @override
+  String get adminPublies => 'Published';
+
+  @override
+  String get adminSuspendus => 'Suspended';
+
+  @override
+  String get adminSignalements => 'Reports';
+
+  @override
+  String get adminRienAVerifier => 'Everything is reviewed!';
+
+  @override
+  String adminNomme(String email) {
+    return '$email is now an administrator. They must sign out and back in.';
+  }
+
+  @override
+  String adminRetire(String email) {
+    return '$email is no longer an administrator.';
+  }
+
+  @override
+  String get administrateurs => 'Administrators';
+
+  @override
+  String get administrateursAide =>
+      'Enter the email of an existing Harambee account to grant or remove administrator access.';
+
+  @override
+  String get aucunePhoto => 'No photos.';
+
+  @override
+  String get charteNonSignee => 'Christian charter not signed';
+
+  @override
+  String charteSigneeLe(String date) {
+    return 'Charter signed on $date';
+  }
+
+  @override
+  String get cibleCommerce => 'Reported business';
+
+  @override
+  String get cibleAvis => 'Reported review';
+
+  @override
+  String get cibleMessage => 'Reported message';
+
+  @override
+  String get commerceIntrouvable => 'This business no longer exists.';
+
+  @override
+  String get enregistrerLabels => 'Save labels';
+
+  @override
+  String get erreurAdminNonAutorise =>
+      'This account is not allowed to do this.';
+
+  @override
+  String get erreurAdminCompteIntrouvable =>
+      'No Harambee account with this email.';
+
+  @override
+  String get erreurAdminDejaDesigne =>
+      'The first administrator has already been designated.';
+
+  @override
+  String get erreurAdminSoiMeme => 'You cannot remove your own access.';
+
+  @override
+  String get fichePubliee => 'Page published.';
+
+  @override
+  String get ficheRefusee => 'Page rejected. The owner will see the reason.';
+
+  @override
+  String get ficheSuspendue => 'Page suspended.';
+
+  @override
+  String get labelsAConfirmer => 'Labels';
+
+  @override
+  String get labelsAConfirmerAide =>
+      'Requested by the owner. Confirm or remove them before publishing.';
+
+  @override
+  String get labelsEnregistres => 'Labels saved.';
+
+  @override
+  String get marquerTraite => 'Mark as handled';
+
+  @override
+  String get motif => 'Reason';
+
+  @override
+  String get motifAide => 'It will be shown to the owner in their space.';
+
+  @override
+  String motifActuel(String motif) {
+    return 'Reason: $motif';
+  }
+
+  @override
+  String get nommerAdmin => 'Make administrator';
+
+  @override
+  String get retirerAdmin => 'Remove administrator access';
+
+  @override
+  String get positionGps => 'GPS location';
+
+  @override
+  String get positionNonRenseignee =>
+      'Not set: the business won\'t appear in distance search.';
+
+  @override
+  String get publierFiche => 'Publish page';
+
+  @override
+  String get refuserFiche => 'Reject';
+
+  @override
+  String get republierFiche => 'Republish page';
+
+  @override
+  String get suspendreFiche => 'Suspend page';
+
+  @override
+  String get voirCommerce => 'View business';
 }

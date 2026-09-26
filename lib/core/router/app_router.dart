@@ -2,7 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../features/admin/admin_screen.dart';
+import '../../features/admin/presentation/admin_screen.dart';
+import '../../features/admin/presentation/administrateurs_screen.dart';
+import '../../features/admin/presentation/verification_commerce_screen.dart';
 import '../../features/auth/auth_providers.dart';
 import '../../features/auth/domain/role.dart';
 import '../../features/auth/presentation/bienvenue_screen.dart';
@@ -81,7 +83,26 @@ final routerProvider = Provider<GoRouter>((ref) {
               ),
             ],
           ),
-          _branche(Routes.admin, const AdminScreen()),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.admin,
+                builder: (context, state) => const AdminScreen(),
+                routes: [
+                  GoRoute(
+                    path: 'commerce/:id',
+                    builder: (context, state) => VerificationCommerceScreen(
+                      commerceId: state.pathParameters['id']!,
+                    ),
+                  ),
+                  GoRoute(
+                    path: 'administrateurs',
+                    builder: (context, state) => const AdministrateursScreen(),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
     ],

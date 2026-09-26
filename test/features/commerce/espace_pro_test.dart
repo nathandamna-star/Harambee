@@ -4,20 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../helpers.dart';
 
-Future<void> toucher(WidgetTester tester, Finder cible) async {
-  await tester.ensureVisible(cible);
-  await tester.pumpAndSettle();
-  await tester.tap(cible);
-  await tester.pumpAndSettle();
-}
-
-/// Écran de téléphone (432 × 960) plutôt que la petite surface par défaut.
-void ecranTelephone(WidgetTester tester) {
-  tester.view.physicalSize = const Size(1080, 2400);
-  tester.view.devicePixelRatio = 2.5;
-  addTearDown(tester.view.reset);
-}
-
 Future<void> ouvrirMonEspace(WidgetTester tester) async {
   await tester.tap(find.text('Mon espace'));
   await tester.pumpAndSettle();

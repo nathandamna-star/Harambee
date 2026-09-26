@@ -7,6 +7,10 @@ abstract final class Routes {
   static const monEspace = '/mon-espace';
   static const admin = '/admin';
 
+  // Administration
+  static String adminCommerce(String id) => '/admin/commerce/$id';
+  static const administrateurs = '/admin/administrateurs';
+
   // Espace pro
   static const nouveauCommerce = '/mon-espace/commerce/nouveau';
   static String modifierCommerce(String id) => '/mon-espace/commerce/$id';

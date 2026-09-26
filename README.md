@@ -28,3 +28,20 @@ cd firebase
 npm install
 npm test
 ```
+
+Fonctions serveur (nécessite Node.js et Java 21) :
+
+```
+cd functions
+npm install
+npm test
+```
+
+## Déployer sur Firebase
+
+Depuis le dossier `firebase/` (après `npx firebase login`) :
+
+```
+npx firebase deploy --only firestore:rules,storage,functions
+```
+

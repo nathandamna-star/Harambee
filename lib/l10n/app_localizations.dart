@@ -1005,6 +1005,276 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Passez en compte professionnel pour le présenter sur Harambee.'**
   String get vousAvezUnCommerceAide;
+
+  /// No description provided for @activerAdminTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Activer l\'accès administrateur ?'**
+  String get activerAdminTitre;
+
+  /// No description provided for @activerAdminTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réservé au responsable de Harambee. Seul le compte désigné lors de la mise en service peut devenir le premier administrateur.'**
+  String get activerAdminTexte;
+
+  /// No description provided for @adminActive.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous êtes maintenant administrateur. L\'onglet Admin est disponible.'**
+  String get adminActive;
+
+  /// No description provided for @adminAucunCommerce.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun commerce ici pour l\'instant.'**
+  String get adminAucunCommerce;
+
+  /// No description provided for @adminAucunSignalement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun signalement à traiter.'**
+  String get adminAucunSignalement;
+
+  /// No description provided for @adminEnAttente.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente'**
+  String get adminEnAttente;
+
+  /// No description provided for @adminPublies.
+  ///
+  /// In fr, this message translates to:
+  /// **'Publiés'**
+  String get adminPublies;
+
+  /// No description provided for @adminSuspendus.
+  ///
+  /// In fr, this message translates to:
+  /// **'Suspendus'**
+  String get adminSuspendus;
+
+  /// No description provided for @adminSignalements.
+  ///
+  /// In fr, this message translates to:
+  /// **'Signalements'**
+  String get adminSignalements;
+
+  /// No description provided for @adminRienAVerifier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tout est vérifié !'**
+  String get adminRienAVerifier;
+
+  /// No description provided for @adminNomme.
+  ///
+  /// In fr, this message translates to:
+  /// **'{email} est maintenant administrateur. Il doit se déconnecter puis se reconnecter.'**
+  String adminNomme(String email);
+
+  /// No description provided for @adminRetire.
+  ///
+  /// In fr, this message translates to:
+  /// **'{email} n\'est plus administrateur.'**
+  String adminRetire(String email);
+
+  /// No description provided for @administrateurs.
+  ///
+  /// In fr, this message translates to:
+  /// **'Administrateurs'**
+  String get administrateurs;
+
+  /// No description provided for @administrateursAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisissez l\'adresse e-mail d\'un compte Harambee existant pour lui donner ou lui retirer l\'accès administrateur.'**
+  String get administrateursAide;
+
+  /// No description provided for @aucunePhoto.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune photo.'**
+  String get aucunePhoto;
+
+  /// No description provided for @charteNonSignee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Charte chrétienne non signée'**
+  String get charteNonSignee;
+
+  /// No description provided for @charteSigneeLe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Charte signée le {date}'**
+  String charteSigneeLe(String date);
+
+  /// No description provided for @cibleCommerce.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commerce signalé'**
+  String get cibleCommerce;
+
+  /// No description provided for @cibleAvis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Avis signalé'**
+  String get cibleAvis;
+
+  /// No description provided for @cibleMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Message signalé'**
+  String get cibleMessage;
+
+  /// No description provided for @commerceIntrouvable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce commerce n\'existe plus.'**
+  String get commerceIntrouvable;
+
+  /// No description provided for @enregistrerLabels.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer les labels'**
+  String get enregistrerLabels;
+
+  /// No description provided for @erreurAdminNonAutorise.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce compte n\'est pas autorisé à faire cette action.'**
+  String get erreurAdminNonAutorise;
+
+  /// No description provided for @erreurAdminCompteIntrouvable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun compte Harambee avec cette adresse e-mail.'**
+  String get erreurAdminCompteIntrouvable;
+
+  /// No description provided for @erreurAdminDejaDesigne.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le premier administrateur a déjà été désigné.'**
+  String get erreurAdminDejaDesigne;
+
+  /// No description provided for @erreurAdminSoiMeme.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous ne pouvez pas retirer votre propre accès.'**
+  String get erreurAdminSoiMeme;
+
+  /// No description provided for @fichePubliee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fiche publiée.'**
+  String get fichePubliee;
+
+  /// No description provided for @ficheRefusee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fiche refusée. Le commerçant verra le motif.'**
+  String get ficheRefusee;
+
+  /// No description provided for @ficheSuspendue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fiche suspendue.'**
+  String get ficheSuspendue;
+
+  /// No description provided for @labelsAConfirmer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Labels'**
+  String get labelsAConfirmer;
+
+  /// No description provided for @labelsAConfirmerAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Demandés par le commerçant. Confirmez ou retirez-les avant de publier.'**
+  String get labelsAConfirmerAide;
+
+  /// No description provided for @labelsEnregistres.
+  ///
+  /// In fr, this message translates to:
+  /// **'Labels enregistrés.'**
+  String get labelsEnregistres;
+
+  /// No description provided for @marquerTraite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Marquer comme traité'**
+  String get marquerTraite;
+
+  /// No description provided for @motif.
+  ///
+  /// In fr, this message translates to:
+  /// **'Motif'**
+  String get motif;
+
+  /// No description provided for @motifAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Il sera affiché au commerçant dans son espace.'**
+  String get motifAide;
+
+  /// No description provided for @motifActuel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Motif : {motif}'**
+  String motifActuel(String motif);
+
+  /// No description provided for @nommerAdmin.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nommer administrateur'**
+  String get nommerAdmin;
+
+  /// No description provided for @retirerAdmin.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer l\'accès administrateur'**
+  String get retirerAdmin;
+
+  /// No description provided for @positionGps.
+  ///
+  /// In fr, this message translates to:
+  /// **'Position GPS'**
+  String get positionGps;
+
+  /// No description provided for @positionNonRenseignee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Non renseignée : le commerce n\'apparaîtra pas dans la recherche par distance.'**
+  String get positionNonRenseignee;
+
+  /// No description provided for @publierFiche.
+  ///
+  /// In fr, this message translates to:
+  /// **'Publier la fiche'**
+  String get publierFiche;
+
+  /// No description provided for @refuserFiche.
+  ///
+  /// In fr, this message translates to:
+  /// **'Refuser'**
+  String get refuserFiche;
+
+  /// No description provided for @republierFiche.
+  ///
+  /// In fr, this message translates to:
+  /// **'Republier la fiche'**
+  String get republierFiche;
+
+  /// No description provided for @suspendreFiche.
+  ///
+  /// In fr, this message translates to:
+  /// **'Suspendre la fiche'**
+  String get suspendreFiche;
+
+  /// No description provided for @voirCommerce.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir le commerce'**
+  String get voirCommerce;
 }
 
 class _AppLocalizationsDelegate
