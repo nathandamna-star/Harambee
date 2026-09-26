@@ -14,6 +14,13 @@ Le cahier des charges complet se trouve dans [CLAUDE.md](CLAUDE.md).
    flutter run
    ```
 
+## Clé Google Maps
+
+La clé n'est pas dans le dépôt. Sur l'ordinateur qui compile l'app :
+
+- iPhone : créer `ios/Flutter/Secrets.xcconfig` contenant `MAPS_API_KEY=la_cle`
+- Android : ajouter `MAPS_API_KEY=la_cle` dans `android/local.properties`
+
 ## Vérifier le code
 
 ```

@@ -795,4 +795,40 @@ class AppLocalizationsEn extends AppLocalizations {
     );
     return 'Rated $note out of 5, $_temp0';
   }
+
+  @override
+  String get ajusterPosition => 'Adjust on the map';
+
+  @override
+  String get ajusterPositionAide =>
+      'Tap the map at the exact location of your business, or drag the pin.';
+
+  @override
+  String get validerPosition => 'Confirm this location';
+
+  @override
+  String get presDeMoi => 'Near me';
+
+  @override
+  String get rayon => 'Search radius';
+
+  @override
+  String rayonKm(int km) {
+    return '$km km';
+  }
+
+  @override
+  String aucunCommerceProche(int km) {
+    return 'No business within $km km';
+  }
+
+  @override
+  String get aucunCommerceProcheAide =>
+      'Increase the radius or remove some filters.';
+
+  @override
+  String get vueCarte => 'Show map';
+
+  @override
+  String get vueListe => 'Show list';
 }

@@ -6,10 +6,13 @@ import '../../../core/router/routes.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/models/enums.dart';
 import '../../../shared/widgets/etat_vide.dart';
+import '../../commerce/commerce_providers.dart';
+import '../../commerce/data/localisation_service.dart';
 import '../../commerce/presentation/libelles.dart';
 import '../data/filtres.dart';
 import '../explorer_providers.dart';
 import 'carte_commerce.dart';
+import 'carte_resultats.dart';
 
 class ExplorerScreen extends ConsumerStatefulWidget {
   const ExplorerScreen({super.key});
@@ -29,6 +32,40 @@ class _ExplorerScreenState extends ConsumerState<ExplorerScreen> {
     super.dispose();
   }
 
+  bool _localisationEnCours = false;
+
+  /// Active « Près de moi » : demande la position du téléphone.
+  Future<void> _presDeMoi(bool activer) async {
+    final notifier = ref.read(rechercheProcheProvider.notifier);
+    if (!activer) {
+      notifier.desactiver();
+      return;
+    }
+    final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    setState(() => _localisationEnCours = true);
+    try {
+      notifier.activer(
+        await ref.read(localisationServiceProvider).positionActuelle(),
+      );
+    } on ExceptionLocalisation catch (e) {
+      messenger
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          SnackBar(
+            content: Text(switch (e.erreur) {
+              ErreurLocalisation.serviceDesactive =>
+                l10n.localisationDesactivee,
+              ErreurLocalisation.permissionRefusee => l10n.localisationRefusee,
+              ErreurLocalisation.inconnue => l10n.localisationIndisponible,
+            }),
+          ),
+        );
+    } finally {
+      if (mounted) setState(() => _localisationEnCours = false);
+    }
+  }
+
   void _rechercher(String texte) {
     final f = ref.read(filtresProvider);
     ref.read(filtresProvider.notifier).definir(f.copyWith(recherche: texte));
@@ -40,9 +77,21 @@ class _ExplorerScreenState extends ConsumerState<ExplorerScreen> {
     final filtres = ref.watch(filtresProvider);
     final resultats = ref.watch(resultatsExplorerProvider);
     final limite = ref.watch(limiteProvider);
+    final proche = ref.watch(rechercheProcheProvider);
+    final vueCarte = ref.watch(vueCarteProvider);
+    void ouvrir(String id) => context.push(Routes.commerceExplorer(id));
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.appTitle)),
+      appBar: AppBar(
+        title: Text(l10n.appTitle),
+        actions: [
+          IconButton(
+            tooltip: vueCarte ? l10n.vueListe : l10n.vueCarte,
+            icon: Icon(vueCarte ? Icons.view_list : Icons.map_outlined),
+            onPressed: () => ref.read(vueCarteProvider.notifier).basculer(),
+          ),
+        ],
+      ),
       body: Column(
         children: [
           Padding(
@@ -94,6 +143,47 @@ class _ExplorerScreenState extends ConsumerState<ExplorerScreen> {
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: FilterChip(
+                    avatar: _localisationEnCours
+                        ? SizedBox.square(
+                            dimension: 16,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              semanticsLabel: l10n.chargement,
+                            ),
+                          )
+                        : const Icon(Icons.near_me_outlined, size: 18),
+                    label: Text(l10n.presDeMoi),
+                    selected: proche != null,
+                    onSelected: _localisationEnCours ? null : _presDeMoi,
+                  ),
+                ),
+                if (proche != null)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: PopupMenuButton<double>(
+                      tooltip: l10n.rayon,
+                      initialValue: proche.rayonKm,
+                      onSelected: (r) => ref
+                          .read(rechercheProcheProvider.notifier)
+                          .definirRayon(r),
+                      itemBuilder: (_) => [
+                        for (final r in RechercheProche.rayons)
+                          PopupMenuItem(
+                            value: r,
+                            child: Text(l10n.rayonKm(r.round())),
+                          ),
+                      ],
+                      child: Chip(
+                        label: Text(l10n.rayonKm(proche.rayonKm.round())),
+                        deleteIcon: const Icon(Icons.arrow_drop_down),
+                        onDeleted: null,
+                        avatar: const Icon(Icons.radar, size: 18),
+                      ),
+                    ),
+                  ),
                 _Raccourci(
                   libelle: l10n.labelAfricain,
                   actif: filtres.africain,
@@ -140,20 +230,33 @@ class _ExplorerScreenState extends ConsumerState<ExplorerScreen> {
                 titre: l10n.erreurReseau,
                 texte: '',
               ),
-              data: (liste) => liste.isEmpty
+              data: (liste) => vueCarte
+                  ? ref.watch(constructeurCarteProvider)(
+                      resultats: liste,
+                      proche: proche,
+                      onOuvrir: (c) => ouvrir(c.id),
+                    )
+                  : liste.isEmpty
                   ? EtatVide(
-                      icone: Icons.storefront_outlined,
-                      titre: filtres == const FiltresExplorer()
+                      icone: proche != null
+                          ? Icons.near_me_disabled_outlined
+                          : Icons.storefront_outlined,
+                      titre: proche != null
+                          ? l10n.aucunCommerceProche(proche.rayonKm.round())
+                          : filtres == const FiltresExplorer()
                           ? l10n.explorerVideTitre
                           : l10n.aucunResultatTitre,
-                      texte: filtres == const FiltresExplorer()
+                      texte: proche != null
+                          ? l10n.aucunCommerceProcheAide
+                          : filtres == const FiltresExplorer()
                           ? l10n.explorerVideTexte
                           : l10n.aucunResultatTexte,
                     )
                   : ListView.separated(
                       padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
                       itemCount:
-                          liste.length + (liste.length >= limite ? 1 : 0),
+                          liste.length +
+                          (proche == null && liste.length >= limite ? 1 : 0),
                       separatorBuilder: (_, _) => const SizedBox(height: 12),
                       itemBuilder: (context, i) => i == liste.length
                           ? OutlinedButton(
@@ -162,10 +265,9 @@ class _ExplorerScreenState extends ConsumerState<ExplorerScreen> {
                               child: Text(l10n.voirPlus),
                             )
                           : CarteCommerce(
-                              commerce: liste[i],
-                              onTap: () => context.push(
-                                Routes.commerceExplorer(liste[i].id),
-                              ),
+                              commerce: liste[i].commerce,
+                              distanceKm: liste[i].distanceKm,
+                              onTap: () => ouvrir(liste[i].commerce.id),
                             ),
                     ),
             ),

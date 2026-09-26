@@ -19,6 +19,8 @@ import 'package:harambee/features/commerce/commerce_providers.dart';
 import 'package:harambee/features/commerce/data/localisation_service.dart';
 import 'package:harambee/features/commerce/data/photos_service.dart';
 import 'package:harambee/features/explorer/explorer_providers.dart';
+import 'package:harambee/features/explorer/presentation/carte_resultats.dart';
+import 'package:harambee/shared/models/commerce.dart';
 import 'package:harambee/shared/services/lanceur.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -52,10 +54,32 @@ class FauxSelecteurPhoto implements SelecteurPhoto {
   }
 }
 
+/// Position simulée : Abidjan (Plateau), ou erreur si [erreur] est définie.
 class FausseLocalisation implements LocalisationService {
+  ErreurLocalisation? erreur;
+
   @override
-  Future<GeoPoint> positionActuelle() async => const GeoPoint(5.35, -4.02);
+  Future<GeoPoint> positionActuelle() async {
+    if (erreur != null) throw ExceptionLocalisation(erreur!);
+    return const GeoPoint(5.32, -4.02);
+  }
 }
+
+/// Remplace la carte Google (vue native indisponible en test) par une liste
+/// de repères cliquables.
+Widget fausseCarte({
+  required List<ResultatExplorer> resultats,
+  required RechercheProche? proche,
+  required void Function(Commerce) onOuvrir,
+}) => ListView(
+  children: [
+    for (final r in resultats)
+      TextButton(
+        onPressed: () => onOuvrir(r.commerce),
+        child: Text('Repère ${r.commerce.nom}'),
+      ),
+  ],
+);
 
 class FaussesFonctionsAdmin implements FonctionsAdmin {
   final appels = <String>[];
@@ -106,6 +130,7 @@ class Banc {
   final selecteur = FauxSelecteurPhoto();
   final fonctionsAdmin = FaussesFonctionsAdmin();
   final lanceur = FauxLanceur();
+  final localisation = FausseLocalisation();
 
   Future<void> lancer(
     WidgetTester tester, {
@@ -125,7 +150,8 @@ class Banc {
           connexionGoogleProvider.overrideWithValue(google),
           firebaseStorageProvider.overrideWithValue(storage),
           selecteurPhotoProvider.overrideWithValue(selecteur),
-          localisationServiceProvider.overrideWithValue(FausseLocalisation()),
+          localisationServiceProvider.overrideWithValue(localisation),
+          constructeurCarteProvider.overrideWithValue(fausseCarte),
           fonctionsAdminProvider.overrideWithValue(fonctionsAdmin),
           lanceurProvider.overrideWithValue(lanceur),
           horlogeProvider.overrideWithValue(() => maintenantTest),

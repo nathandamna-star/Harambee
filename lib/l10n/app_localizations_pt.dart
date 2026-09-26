@@ -796,4 +796,39 @@ class AppLocalizationsPt extends AppLocalizations {
     );
     return 'Nota $note de 5, $_temp0';
   }
+
+  @override
+  String get ajusterPosition => 'Ajustar no mapa';
+
+  @override
+  String get ajusterPositionAide =>
+      'Toque no mapa no local exato do seu comércio ou arraste o marcador.';
+
+  @override
+  String get validerPosition => 'Confirmar esta localização';
+
+  @override
+  String get presDeMoi => 'Perto de mim';
+
+  @override
+  String get rayon => 'Raio de busca';
+
+  @override
+  String rayonKm(int km) {
+    return '$km km';
+  }
+
+  @override
+  String aucunCommerceProche(int km) {
+    return 'Nenhum comércio a menos de $km km';
+  }
+
+  @override
+  String get aucunCommerceProcheAide => 'Aumente o raio ou remova filtros.';
+
+  @override
+  String get vueCarte => 'Ver no mapa';
+
+  @override
+  String get vueListe => 'Ver lista';
 }

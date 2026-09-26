@@ -800,4 +800,40 @@ class AppLocalizationsFr extends AppLocalizations {
     );
     return 'Note $note sur 5, $_temp0';
   }
+
+  @override
+  String get ajusterPosition => 'Ajuster sur la carte';
+
+  @override
+  String get ajusterPositionAide =>
+      'Touchez la carte à l\'emplacement exact de votre commerce, ou faites glisser le repère.';
+
+  @override
+  String get validerPosition => 'Valider cette position';
+
+  @override
+  String get presDeMoi => 'Près de moi';
+
+  @override
+  String get rayon => 'Rayon de recherche';
+
+  @override
+  String rayonKm(int km) {
+    return '$km km';
+  }
+
+  @override
+  String aucunCommerceProche(int km) {
+    return 'Aucun commerce à moins de $km km';
+  }
+
+  @override
+  String get aucunCommerceProcheAide =>
+      'Agrandissez le rayon ou retirez des filtres.';
+
+  @override
+  String get vueCarte => 'Voir sur la carte';
+
+  @override
+  String get vueListe => 'Voir la liste';
 }

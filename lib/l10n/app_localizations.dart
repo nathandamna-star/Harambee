@@ -1521,6 +1521,66 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Note {note} sur 5, {nb, plural, =1{1 avis} other{{nb} avis}}'**
   String noteSur5(String note, int nb);
+
+  /// No description provided for @ajusterPosition.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajuster sur la carte'**
+  String get ajusterPosition;
+
+  /// No description provided for @ajusterPositionAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Touchez la carte à l\'emplacement exact de votre commerce, ou faites glisser le repère.'**
+  String get ajusterPositionAide;
+
+  /// No description provided for @validerPosition.
+  ///
+  /// In fr, this message translates to:
+  /// **'Valider cette position'**
+  String get validerPosition;
+
+  /// No description provided for @presDeMoi.
+  ///
+  /// In fr, this message translates to:
+  /// **'Près de moi'**
+  String get presDeMoi;
+
+  /// No description provided for @rayon.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rayon de recherche'**
+  String get rayon;
+
+  /// No description provided for @rayonKm.
+  ///
+  /// In fr, this message translates to:
+  /// **'{km} km'**
+  String rayonKm(int km);
+
+  /// No description provided for @aucunCommerceProche.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun commerce à moins de {km} km'**
+  String aucunCommerceProche(int km);
+
+  /// No description provided for @aucunCommerceProcheAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Agrandissez le rayon ou retirez des filtres.'**
+  String get aucunCommerceProcheAide;
+
+  /// No description provided for @vueCarte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir sur la carte'**
+  String get vueCarte;
+
+  /// No description provided for @vueListe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir la liste'**
+  String get vueListe;
 }
 
 class _AppLocalizationsDelegate

@@ -329,5 +329,29 @@
         "type": "int"
       }
     }
-  }
+  },
+  "ajusterPosition": "Ajuster sur la carte",
+  "ajusterPositionAide": "Touchez la carte à l'emplacement exact de votre commerce, ou faites glisser le repère.",
+  "validerPosition": "Valider cette position",
+  "presDeMoi": "Près de moi",
+  "rayon": "Rayon de recherche",
+  "rayonKm": "{km} km",
+  "@rayonKm": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "aucunCommerceProche": "Aucun commerce à moins de {km} km",
+  "@aucunCommerceProche": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "aucunCommerceProcheAide": "Agrandissez le rayon ou retirez des filtres.",
+  "vueCarte": "Voir sur la carte",
+  "vueListe": "Voir la liste"
 }

@@ -18,6 +18,8 @@
 	<string>Harambee utilise l'appareil photo pour photographier votre commerce et vos produits.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Harambee utilise votre position pour situer votre commerce et trouver les commerces proches de vous.</string>
+	<key>GMSApiKey</key>
+	<string>$(MAPS_API_KEY)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Harambee</string>
 	<key>CFBundleExecutable</key>

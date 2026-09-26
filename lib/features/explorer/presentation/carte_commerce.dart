@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/models/commerce.dart';
+import '../../../shared/models/geo.dart';
 import '../../../shared/models/horaires.dart';
 import '../../../shared/widgets/label_chip.dart';
 import '../../commerce/presentation/libelles.dart';
@@ -10,10 +11,18 @@ import '../explorer_providers.dart';
 
 /// Carte d'un commerce dans une liste (Explorer, Favoris).
 class CarteCommerce extends ConsumerWidget {
-  const CarteCommerce({super.key, required this.commerce, required this.onTap});
+  const CarteCommerce({
+    super.key,
+    required this.commerce,
+    required this.onTap,
+    this.distanceKm,
+  });
 
   final Commerce commerce;
   final VoidCallback onTap;
+
+  /// Distance depuis l'utilisateur (mode « Près de moi »).
+  final double? distanceKm;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -68,7 +77,15 @@ class CarteCommerce extends ConsumerWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    '${l10n.categorie(commerce.categorie)} · ${commerce.ville}',
+                    [
+                      l10n.categorie(commerce.categorie),
+                      commerce.ville,
+                      if (distanceKm != null)
+                        formaterDistance(
+                          distanceKm!,
+                          Localizations.localeOf(context).toString(),
+                        ),
+                    ].join(' · '),
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),

@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../shared/models/avis.dart';
 import '../../../shared/models/commerce.dart';
 import '../../../shared/models/enums.dart';
+import '../../../shared/models/geo.dart';
 import '../../../shared/models/produit.dart';
 import '../../../shared/models/recherche.dart';
 import '../../../shared/models/signalement.dart';
@@ -58,6 +59,34 @@ class ExplorerRepository {
       });
       return liste;
     });
+  }
+
+  /// Commerces publiés à moins de [rayonKm] de [centre], du plus proche au
+  /// plus éloigné. Requête par zones geohash (index composite statut +
+  /// geohash, voir firebase/firestore.indexes.json).
+  Future<List<(Commerce, double)>> commercesProches(
+    GeoPoint centre,
+    double rayonKm,
+  ) async {
+    final requetes = zonesRecherche(centre, rayonKm).map(
+      (zone) => _commerces
+          .where('statut', isEqualTo: StatutCommerce.publie.valeur)
+          .where('geohash', isGreaterThanOrEqualTo: zone)
+          .where('geohash', isLessThan: '$zone~')
+          .get(),
+    );
+    final vus = <String>{};
+    final resultat = <(Commerce, double)>[];
+    for (final s in await Future.wait(requetes)) {
+      for (final doc in s.docs) {
+        if (!vus.add(doc.id)) continue;
+        final c = Commerce.depuisFirestore(doc);
+        if (c.geo == null) continue;
+        final d = distanceKm(centre, c.geo!);
+        if (d <= rayonKm) resultat.add((c, d));
+      }
+    }
+    return resultat..sort((a, b) => a.$2.compareTo(b.$2));
   }
 
   /// Produits visibles par les clients, dans l'ordre choisi par le commerçant.

@@ -55,3 +55,6 @@ app.*.map.json
 *.jks
 key.properties
 service-account*.json
+
+# Clé Google Maps (iOS)
+ios/Flutter/Secrets.xcconfig

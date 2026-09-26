@@ -191,6 +191,15 @@ describe('lectures et écritures des clients (Explorer, fiche, favoris)', () => 
       where('motsCles', 'array-contains', 'ma'), limit(30))));
   });
 
+  it('« près de moi » : zone geohash des commerces publiés', async () => {
+    await preparer(env, base);
+    await assertSucceeds(getDocs(query(collection(visiteur(), 'commerces'),
+      where('statut', '==', 'publie'), where('geohash', '>=', 's0'),
+      where('geohash', '<', 's0~'))));
+    await assertFails(getDocs(query(collection(visiteur(), 'commerces'),
+      where('geohash', '>=', 's0'), where('geohash', '<', 's0~'))));
+  });
+
   it('favoris : lecture par identifiants et ajout', async () => {
     await preparer(env, base);
     await assertSucceeds(getDocs(query(collection(client(), 'commerces'),

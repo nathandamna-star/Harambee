@@ -236,5 +236,15 @@
   "signalerAide": "Explique o problema. Nossa equipe analisará sua denúncia.",
   "signalementEnvoye": "Obrigado. Nossa equipe vai analisar esta denúncia.",
   "nEtoiles": "{n, plural, =1{1 estrela} other{{n} estrelas}}",
-  "noteSur5": "Nota {note} de 5, {nb, plural, =1{1 avaliação} other{{nb} avaliações}}"
+  "noteSur5": "Nota {note} de 5, {nb, plural, =1{1 avaliação} other{{nb} avaliações}}",
+  "ajusterPosition": "Ajustar no mapa",
+  "ajusterPositionAide": "Toque no mapa no local exato do seu comércio ou arraste o marcador.",
+  "validerPosition": "Confirmar esta localização",
+  "presDeMoi": "Perto de mim",
+  "rayon": "Raio de busca",
+  "rayonKm": "{km} km",
+  "aucunCommerceProche": "Nenhum comércio a menos de {km} km",
+  "aucunCommerceProcheAide": "Aumente o raio ou remova filtros.",
+  "vueCarte": "Ver no mapa",
+  "vueListe": "Ver lista"
 }

@@ -1,1 +1,3 @@
 #include "Generated.xcconfig"
+// Clé Google Maps (fichier non versionné, voir README)
+#include? "Secrets.xcconfig"

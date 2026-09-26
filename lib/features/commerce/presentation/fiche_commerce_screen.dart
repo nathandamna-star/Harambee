@@ -14,6 +14,7 @@ import '../data/commerce_repository.dart';
 import '../data/localisation_service.dart';
 import '../data/pays.dart';
 import 'charte_screen.dart';
+import 'choisir_position_screen.dart';
 import 'editeur_horaires.dart';
 import 'grille_photos.dart';
 import 'libelles.dart';
@@ -428,6 +429,21 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
                 )
               : null,
           onTap: _localisationEnCours ? null : _localiser,
+        ),
+      ),
+      Align(
+        alignment: Alignment.centerLeft,
+        child: TextButton.icon(
+          onPressed: () async {
+            final choisie = await Navigator.of(context).push<GeoPoint>(
+              MaterialPageRoute(
+                builder: (_) => ChoisirPositionScreen(initiale: _geo),
+              ),
+            );
+            if (choisie != null) setState(() => _geo = choisie);
+          },
+          icon: const Icon(Icons.map_outlined),
+          label: Text(l10n.ajusterPosition),
         ),
       ),
       const SizedBox(height: 16),

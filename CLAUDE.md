@@ -260,4 +260,12 @@ pose la question au lieu de choisir seul.
 - Cloud Function `recalculerNote` : recalcule `noteMoyenne` (1 décimale) et `nbAvis` à chaque écriture d'avis.
   Dans l'environnement cloud de Claude, le proxy empêche aussi l'émulateur Functions d'enregistrer les triggers
   Firestore : `npm test` dans `functions/` n'y tourne pas ; il tourne sur GitHub Actions.
+- Carte et distance : `lib/shared/models/geo.dart` (haversine, zones geohash selon le rayon) ;
+  `ExplorerRepository.commercesProches` interroge 9 zones (index composite statut + geohash dans
+  `firebase/firestore.indexes.json`), puis filtre et trie sur le téléphone. Vue carte `carte_resultats.dart`
+  (remplacée par `fausseCarte` dans les tests). Choix précis de la position du commerce :
+  `choisir_position_screen.dart`.
+- Clé Google Maps hors dépôt : iOS `ios/Flutter/Secrets.xcconfig` (`MAPS_API_KEY=…`, inclus par Debug/Release
+  xcconfig, lu dans Info.plist `GMSApiKey`, passé à `GMSServices` dans AppDelegate) ; Android
+  `android/local.properties` (`MAPS_API_KEY=…`). Build iOS jamais vérifié ici (pas de macOS).
 - Vérifier avant chaque commit : `flutter analyze` et `flutter test`.

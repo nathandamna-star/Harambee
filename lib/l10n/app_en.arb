@@ -236,5 +236,15 @@
   "signalerAide": "Explain the problem. Our team will review your report.",
   "signalementEnvoye": "Thank you. Our team will review this report.",
   "nEtoiles": "{n, plural, =1{1 star} other{{n} stars}}",
-  "noteSur5": "Rated {note} out of 5, {nb, plural, =1{1 review} other{{nb} reviews}}"
+  "noteSur5": "Rated {note} out of 5, {nb, plural, =1{1 review} other{{nb} reviews}}",
+  "ajusterPosition": "Adjust on the map",
+  "ajusterPositionAide": "Tap the map at the exact location of your business, or drag the pin.",
+  "validerPosition": "Confirm this location",
+  "presDeMoi": "Near me",
+  "rayon": "Search radius",
+  "rayonKm": "{km} km",
+  "aucunCommerceProche": "No business within {km} km",
+  "aucunCommerceProcheAide": "Increase the radius or remove some filters.",
+  "vueCarte": "Show map",
+  "vueListe": "Show list"
 }
