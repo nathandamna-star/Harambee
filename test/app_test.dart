@@ -1,79 +1,95 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:harambee/app.dart';
-import 'package:harambee/core/auth/role.dart';
 
-Future<void> lancer(
-  WidgetTester tester, {
-  Role role = Role.client,
-  Locale locale = const Locale('fr'),
-}) async {
-  tester.platformDispatcher.localesTestValue = [locale];
-  addTearDown(tester.platformDispatcher.clearLocalesTestValue);
-  await tester.pumpWidget(
-    ProviderScope(
-      overrides: [roleProvider.overrideWithValue(role)],
-      child: const HarambeeApp(),
-    ),
-  );
-  await tester.pumpAndSettle();
-}
+import 'helpers.dart';
 
 void main() {
   setUpAll(() => GoogleFonts.config.allowRuntimeFetching = false);
 
-  testWidgets('démarre sur Explorer avec 4 onglets pour un client', (
-    tester,
-  ) async {
-    await lancer(tester);
-    expect(find.text('Trouvez un commerce près de chez vous'), findsOneWidget);
-    expect(find.byType(NavigationDestination), findsNWidgets(4));
-    expect(find.text('Admin'), findsNothing);
-    expect(find.text('Africain'), findsOneWidget);
-    expect(find.text('Chrétien'), findsOneWidget);
+  group('navigation', () {
+    testWidgets('premier lancement : écran de bienvenue', (tester) async {
+      await Banc().lancer(tester, bienvenueVue: false);
+      expect(find.text('Bienvenue sur Harambee'), findsOneWidget);
+      expect(find.text('Je cherche un commerce'), findsOneWidget);
+      expect(find.text('J\'ai un commerce'), findsOneWidget);
+    });
+
+    testWidgets('explorer sans compte', (tester) async {
+      await Banc().lancer(tester, bienvenueVue: false);
+      await tester.tap(find.text('Explorer sans compte'));
+      await tester.pumpAndSettle();
+      expect(
+        find.text('Trouvez un commerce près de chez vous'),
+        findsOneWidget,
+      );
+      expect(find.byType(NavigationDestination), findsNWidgets(4));
+    });
+
+    testWidgets('sans compte, Favoris invite à se connecter', (tester) async {
+      await Banc().lancer(tester);
+      await tester.tap(find.text('Favoris'));
+      await tester.pumpAndSettle();
+      expect(find.text('Connectez-vous'), findsOneWidget);
+      await tester.tap(find.widgetWithText(FilledButton, 'Se connecter'));
+      await tester.pumpAndSettle();
+      expect(find.text('Bienvenue sur Harambee'), findsOneWidget);
+    });
+
+    testWidgets('client connecté : 4 onglets, écrans accessibles', (
+      tester,
+    ) async {
+      await (await bancConnecte()).lancer(tester);
+      expect(find.byType(NavigationDestination), findsNWidgets(4));
+      expect(find.text('Admin'), findsNothing);
+
+      await tester.tap(find.text('Favoris'));
+      await tester.pumpAndSettle();
+      expect(find.text('Aucun favori pour l\'instant'), findsOneWidget);
+
+      await tester.tap(find.text('Messages'));
+      await tester.pumpAndSettle();
+      expect(find.text('Aucune conversation'), findsOneWidget);
+
+      await tester.tap(find.text('Mon espace'));
+      await tester.pumpAndSettle();
+      expect(find.text('Bonjour Awa'), findsOneWidget);
+      expect(find.text('Client'), findsOneWidget);
+    });
+
+    testWidgets('administrateur (custom claim) : onglet Admin', (tester) async {
+      await (await bancConnecte(claims: {'admin': true})).lancer(tester);
+      expect(find.byType(NavigationDestination), findsNWidgets(5));
+      await tester.tap(find.text('Admin'));
+      await tester.pumpAndSettle();
+      expect(find.text('Administration'), findsWidgets);
+    });
+
+    testWidgets('« admin » écrit dans le profil ne donne pas l\'accès admin', (
+      tester,
+    ) async {
+      await (await bancConnecte(role: 'admin')).lancer(tester);
+      expect(find.byType(NavigationDestination), findsNWidgets(4));
+      expect(find.text('Admin'), findsNothing);
+    });
   });
 
-  testWidgets('la navigation change d\'écran', (tester) async {
-    await lancer(tester);
-    await tester.tap(find.text('Favoris'));
-    await tester.pumpAndSettle();
-    expect(find.text('Aucun favori pour l\'instant'), findsOneWidget);
+  group('langues', () {
+    testWidgets('anglais', (tester) async {
+      await Banc().lancer(tester, locale: const Locale('en'));
+      expect(find.text('Explore'), findsOneWidget);
+      expect(find.text('African'), findsOneWidget);
+    });
 
-    await tester.tap(find.text('Messages'));
-    await tester.pumpAndSettle();
-    expect(find.text('Aucune conversation'), findsOneWidget);
+    testWidgets('portugais', (tester) async {
+      await Banc().lancer(tester, locale: const Locale('pt', 'BR'));
+      expect(find.text('Explorar'), findsOneWidget);
+      expect(find.text('Cristão'), findsOneWidget);
+    });
 
-    await tester.tap(find.text('Mon espace'));
-    await tester.pumpAndSettle();
-    expect(find.text('Votre espace'), findsOneWidget);
-  });
-
-  testWidgets('un administrateur voit l\'onglet Admin', (tester) async {
-    await lancer(tester, role: Role.admin);
-    expect(find.byType(NavigationDestination), findsNWidgets(5));
-    await tester.tap(find.text('Admin'));
-    await tester.pumpAndSettle();
-    expect(find.text('Administration'), findsWidgets);
-  });
-
-  testWidgets('traduit en anglais', (tester) async {
-    await lancer(tester, locale: const Locale('en'));
-    expect(find.text('Explore'), findsOneWidget);
-    expect(find.text('African'), findsOneWidget);
-  });
-
-  testWidgets('traduit en portugais', (tester) async {
-    await lancer(tester, locale: const Locale('pt', 'BR'));
-    expect(find.text('Explorar'), findsOneWidget);
-    expect(find.text('Cristão'), findsOneWidget);
-  });
-
-  testWidgets('langue non prise en charge : français par défaut', (
-    tester,
-  ) async {
-    await lancer(tester, locale: const Locale('de'));
-    expect(find.text('Explorer'), findsOneWidget);
+    testWidgets('langue non prise en charge : français', (tester) async {
+      await Banc().lancer(tester, locale: const Locale('de'));
+      expect(find.text('Explorer'), findsOneWidget);
+    });
   });
 }

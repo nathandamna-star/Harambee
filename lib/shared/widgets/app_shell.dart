@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/auth/role.dart';
+import '../../features/auth/auth_providers.dart';
+import '../../features/auth/domain/role.dart';
 import '../../l10n/app_localizations.dart';
 
 /// Squelette commun : barre de navigation en bas.

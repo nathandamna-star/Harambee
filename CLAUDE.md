@@ -227,4 +227,9 @@ pose la question au lieu de choisir seul.
 - Structure : `lib/core/` (thème, navigation, auth), `lib/features/<fonctionnalité>/`, `lib/shared/widgets/`.
 - Traductions : `lib/l10n/app_fr.arb` (modèle), `app_en.arb`, `app_pt.arb` ; code généré par `flutter gen-l10n`.
 - Polices incluses dans `assets/google_fonts/` (pas de téléchargement à l'exécution).
+- Auth (`lib/features/auth/`) : `roleProvider` renvoie null (non connecté), client, pro ou admin.
+  Admin = uniquement le custom claim `admin: true` ; la valeur « admin » dans `users/{uid}.role` est ignorée.
+  Le profil `users/{uid}` est créé à la première connexion avec le rôle choisi sur l'écran de bienvenue.
+- On peut explorer sans compte (exigence App Store) ; Favoris, Messages et Mon espace demandent une connexion.
+- Tests : Firebase simulé (`firebase_auth_mocks`, `fake_cloud_firestore`), voir `test/helpers.dart`.
 - Vérifier avant chaque commit : `flutter analyze` et `flutter test`.

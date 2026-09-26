@@ -1,7 +1,9 @@
 {
   "@@locale": "fr",
   "appTitle": "Harambee",
-  "@appTitle": { "description": "Nom de l'application" },
+  "@appTitle": {
+    "description": "Nom de l'application"
+  },
   "navExplorer": "Explorer",
   "navFavoris": "Favoris",
   "navMessages": "Messages",
@@ -20,5 +22,58 @@
   "labelAfricain": "Africain",
   "labelChretien": "Chrétien",
   "badgeVerifie": "Vérifié",
-  "bientotDisponible": "Bientôt disponible"
+  "bientotDisponible": "Bientôt disponible",
+  "bienvenueTitre": "Bienvenue sur Harambee",
+  "bienvenueSousTitre": "Les commerces africains et chrétiens près de chez vous et partout où vous allez.",
+  "choixClient": "Je cherche un commerce",
+  "choixClientDetail": "Trouver, contacter, commander",
+  "choixPro": "J'ai un commerce",
+  "choixProDetail": "Présenter mon commerce et mes produits",
+  "continuerGoogle": "Continuer avec Google",
+  "continuerApple": "Continuer avec Apple",
+  "continuerEmail": "Continuer avec l'e-mail",
+  "explorerSansCompte": "Explorer sans compte",
+  "seConnecter": "Se connecter",
+  "creerCompte": "Créer un compte",
+  "champNom": "Nom",
+  "champEmail": "Adresse e-mail",
+  "champMotDePasse": "Mot de passe",
+  "afficherMotDePasse": "Afficher le mot de passe",
+  "masquerMotDePasse": "Masquer le mot de passe",
+  "motDePasseOublie": "Mot de passe oublié ?",
+  "emailReinitialisationEnvoye": "Un e-mail pour choisir un nouveau mot de passe a été envoyé à {email}.",
+  "@emailReinitialisationEnvoye": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "validationNomRequis": "Indiquez votre nom.",
+  "validationEmail": "Indiquez une adresse e-mail valide.",
+  "validationMotDePasse": "Au moins 8 caractères.",
+  "erreurEmailInvalide": "Cette adresse e-mail n'est pas valide.",
+  "erreurMotDePasseFaible": "Ce mot de passe est trop faible. Utilisez au moins 8 caractères.",
+  "erreurEmailDejaUtilise": "Un compte existe déjà avec cette adresse. Connectez-vous plutôt.",
+  "erreurIdentifiantsIncorrects": "Adresse e-mail ou mot de passe incorrect.",
+  "erreurTropDeTentatives": "Trop de tentatives. Réessayez dans quelques minutes.",
+  "erreurReseau": "Pas de connexion internet. Vérifiez votre réseau et réessayez.",
+  "erreurInconnue": "Une erreur est survenue. Réessayez.",
+  "connexionRequiseTitre": "Connectez-vous",
+  "connexionRequiseFavoris": "Créez un compte ou connectez-vous pour enregistrer vos commerces préférés.",
+  "connexionRequiseMessages": "Connectez-vous pour échanger avec les commerces.",
+  "seDeconnecter": "Se déconnecter",
+  "roleClient": "Client",
+  "rolePro": "Professionnel",
+  "roleAdmin": "Administrateur",
+  "monEspaceBonjour": "Bonjour {nom}",
+  "@monEspaceBonjour": {
+    "placeholders": {
+      "nom": {
+        "type": "String"
+      }
+    }
+  },
+  "monEspaceProBientot": "Vous pourrez bientôt créer la fiche de votre commerce ici.",
+  "chargement": "Chargement"
 }

@@ -219,6 +219,240 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Bientôt disponible'**
   String get bientotDisponible;
+
+  /// No description provided for @bienvenueTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bienvenue sur Harambee'**
+  String get bienvenueTitre;
+
+  /// No description provided for @bienvenueSousTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les commerces africains et chrétiens près de chez vous et partout où vous allez.'**
+  String get bienvenueSousTitre;
+
+  /// No description provided for @choixClient.
+  ///
+  /// In fr, this message translates to:
+  /// **'Je cherche un commerce'**
+  String get choixClient;
+
+  /// No description provided for @choixClientDetail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Trouver, contacter, commander'**
+  String get choixClientDetail;
+
+  /// No description provided for @choixPro.
+  ///
+  /// In fr, this message translates to:
+  /// **'J\'ai un commerce'**
+  String get choixPro;
+
+  /// No description provided for @choixProDetail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Présenter mon commerce et mes produits'**
+  String get choixProDetail;
+
+  /// No description provided for @continuerGoogle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Continuer avec Google'**
+  String get continuerGoogle;
+
+  /// No description provided for @continuerApple.
+  ///
+  /// In fr, this message translates to:
+  /// **'Continuer avec Apple'**
+  String get continuerApple;
+
+  /// No description provided for @continuerEmail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Continuer avec l\'e-mail'**
+  String get continuerEmail;
+
+  /// No description provided for @explorerSansCompte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Explorer sans compte'**
+  String get explorerSansCompte;
+
+  /// No description provided for @seConnecter.
+  ///
+  /// In fr, this message translates to:
+  /// **'Se connecter'**
+  String get seConnecter;
+
+  /// No description provided for @creerCompte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer un compte'**
+  String get creerCompte;
+
+  /// No description provided for @champNom.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom'**
+  String get champNom;
+
+  /// No description provided for @champEmail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse e-mail'**
+  String get champEmail;
+
+  /// No description provided for @champMotDePasse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe'**
+  String get champMotDePasse;
+
+  /// No description provided for @afficherMotDePasse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Afficher le mot de passe'**
+  String get afficherMotDePasse;
+
+  /// No description provided for @masquerMotDePasse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Masquer le mot de passe'**
+  String get masquerMotDePasse;
+
+  /// No description provided for @motDePasseOublie.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe oublié ?'**
+  String get motDePasseOublie;
+
+  /// No description provided for @emailReinitialisationEnvoye.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un e-mail pour choisir un nouveau mot de passe a été envoyé à {email}.'**
+  String emailReinitialisationEnvoye(String email);
+
+  /// No description provided for @validationNomRequis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Indiquez votre nom.'**
+  String get validationNomRequis;
+
+  /// No description provided for @validationEmail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Indiquez une adresse e-mail valide.'**
+  String get validationEmail;
+
+  /// No description provided for @validationMotDePasse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Au moins 8 caractères.'**
+  String get validationMotDePasse;
+
+  /// No description provided for @erreurEmailInvalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette adresse e-mail n\'est pas valide.'**
+  String get erreurEmailInvalide;
+
+  /// No description provided for @erreurMotDePasseFaible.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce mot de passe est trop faible. Utilisez au moins 8 caractères.'**
+  String get erreurMotDePasseFaible;
+
+  /// No description provided for @erreurEmailDejaUtilise.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un compte existe déjà avec cette adresse. Connectez-vous plutôt.'**
+  String get erreurEmailDejaUtilise;
+
+  /// No description provided for @erreurIdentifiantsIncorrects.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse e-mail ou mot de passe incorrect.'**
+  String get erreurIdentifiantsIncorrects;
+
+  /// No description provided for @erreurTropDeTentatives.
+  ///
+  /// In fr, this message translates to:
+  /// **'Trop de tentatives. Réessayez dans quelques minutes.'**
+  String get erreurTropDeTentatives;
+
+  /// No description provided for @erreurReseau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas de connexion internet. Vérifiez votre réseau et réessayez.'**
+  String get erreurReseau;
+
+  /// No description provided for @erreurInconnue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une erreur est survenue. Réessayez.'**
+  String get erreurInconnue;
+
+  /// No description provided for @connexionRequiseTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Connectez-vous'**
+  String get connexionRequiseTitre;
+
+  /// No description provided for @connexionRequiseFavoris.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créez un compte ou connectez-vous pour enregistrer vos commerces préférés.'**
+  String get connexionRequiseFavoris;
+
+  /// No description provided for @connexionRequiseMessages.
+  ///
+  /// In fr, this message translates to:
+  /// **'Connectez-vous pour échanger avec les commerces.'**
+  String get connexionRequiseMessages;
+
+  /// No description provided for @seDeconnecter.
+  ///
+  /// In fr, this message translates to:
+  /// **'Se déconnecter'**
+  String get seDeconnecter;
+
+  /// No description provided for @roleClient.
+  ///
+  /// In fr, this message translates to:
+  /// **'Client'**
+  String get roleClient;
+
+  /// No description provided for @rolePro.
+  ///
+  /// In fr, this message translates to:
+  /// **'Professionnel'**
+  String get rolePro;
+
+  /// No description provided for @roleAdmin.
+  ///
+  /// In fr, this message translates to:
+  /// **'Administrateur'**
+  String get roleAdmin;
+
+  /// No description provided for @monEspaceBonjour.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bonjour {nom}'**
+  String monEspaceBonjour(String nom);
+
+  /// No description provided for @monEspaceProBientot.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous pourrez bientôt créer la fiche de votre commerce ici.'**
+  String get monEspaceProBientot;
+
+  /// No description provided for @chargement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chargement'**
+  String get chargement;
 }
 
 class _AppLocalizationsDelegate
