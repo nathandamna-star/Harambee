@@ -393,15 +393,20 @@ h1{color:#B4451F;font-size:1.5rem}</style></head>
 export const stripeWebhook = onRequest(
   { secrets: [STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET] },
   async (requete, reponse) => {
+    // Deux destinations Stripe (votre compte, comptes connectés des commerces),
+    // chacune avec son secret : STRIPE_WEBHOOK_SECRET = « whsec_A,whsec_B ».
     let evenement;
-    try {
-      evenement = stripe().webhooks.constructEvent(
-        requete.rawBody,
-        requete.get('stripe-signature'),
-        STRIPE_WEBHOOK_SECRET.value(),
-      );
-    } catch (e) {
-      logger.warn('Webhook Stripe refusé (signature invalide)', { message: e.message });
+    for (const secret of STRIPE_WEBHOOK_SECRET.value().split(',').map((x) => x.trim()).filter(Boolean)) {
+      try {
+        evenement = stripe().webhooks.constructEvent(
+          requete.rawBody, requete.get('stripe-signature'), secret);
+        break;
+      } catch {
+        // Essayer le secret suivant.
+      }
+    }
+    if (!evenement) {
+      logger.warn('Webhook Stripe refusé (signature invalide)');
       reponse.status(400).send('Signature invalide');
       return;
     }
