@@ -6,6 +6,7 @@ import '../../shared/widgets/connexion_requise.dart';
 import '../admin/admin_providers.dart';
 import '../admin/presentation/message_erreur_admin.dart';
 import '../auth/auth_providers.dart';
+import '../notifications/notifications_providers.dart';
 import '../auth/domain/role.dart';
 import '../commerce/presentation/espace_pro.dart';
 
@@ -93,7 +94,10 @@ class MonEspaceScreen extends ConsumerWidget {
             ),
           const SizedBox(height: 24),
           OutlinedButton.icon(
-            onPressed: () => ref.read(authRepositoryProvider).deconnexion(),
+            onPressed: () async {
+              await ref.read(notificationsServiceProvider).desactiver(user.uid);
+              await ref.read(authRepositoryProvider).deconnexion();
+            },
             icon: const Icon(Icons.logout),
             label: Text(l10n.seDeconnecter),
           ),

@@ -278,7 +278,6 @@
   "appeler": "Appeler",
   "itineraire": "Itinéraire",
   "envoyerMessage": "Message",
-  "messagerieBientot": "La messagerie arrive bientôt.",
   "aucunAvis": "Aucun avis pour l'instant. Soyez le premier !",
   "aucunProduitPublic": "Ce commerce n'a pas encore publié de produits.",
   "aucunResultatTitre": "Aucun résultat",
@@ -353,5 +352,22 @@
   },
   "aucunCommerceProcheAide": "Agrandissez le rayon ou retirez des filtres.",
   "vueCarte": "Voir sur la carte",
-  "vueListe": "Voir la liste"
+  "vueListe": "Voir la liste",
+  "apercuPhoto": "📷 Photo",
+  "conversationIntrouvable": "Cette conversation n'existe plus.",
+  "ecrireMessage": "Écrire un message…",
+  "envoyer": "Envoyer",
+  "envoyerPhoto": "Envoyer une photo",
+  "erreurEnvoiMessage": "Message non envoyé. Vérifiez votre connexion et réessayez.",
+  "messagesNonLus": "{n, plural, =1{1 message non lu} other{{n} messages non lus}}",
+  "@messagesNonLus": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "photoEnvoyee": "Photo envoyée dans la conversation",
+  "premierMessageTitre": "Dites bonjour !",
+  "premierMessageTexte": "Posez vos questions : disponibilité, horaires, commande… Le commerçant vous répondra ici."
 }

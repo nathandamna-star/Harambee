@@ -3,14 +3,41 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/router/app_router.dart';
+import 'features/auth/auth_providers.dart';
+import 'features/notifications/notifications_providers.dart';
 import 'core/theme/app_theme.dart';
 import 'l10n/app_localizations.dart';
 
-class HarambeeApp extends ConsumerWidget {
+class HarambeeApp extends ConsumerStatefulWidget {
   const HarambeeApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HarambeeApp> createState() => _HarambeeAppState();
+}
+
+class _HarambeeAppState extends ConsumerState<HarambeeApp> {
+  @override
+  void initState() {
+    super.initState();
+    // Toucher une notification ouvre la conversation concernée.
+    ref
+        .read(notificationsServiceProvider)
+        .conversationsTouchees
+        .listen((id) => ref.read(routerProvider).go(Routes.conversation(id)));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Notifications activées pour chaque utilisateur qui se connecte.
+    ref.listen(utilisateurFirebaseProvider.select((u) => u.value?.uid), (
+      avant,
+      uid,
+    ) {
+      if (uid != null && uid != avant) {
+        ref.read(notificationsServiceProvider).activer(uid);
+      }
+    });
+
     return MaterialApp.router(
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       debugShowCheckedModeBanner: false,

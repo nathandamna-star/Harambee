@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/auth/auth_providers.dart';
 import '../../features/auth/domain/role.dart';
+import '../../features/messages/messagerie_providers.dart';
 import '../../l10n/app_localizations.dart';
 
 /// Squelette commun : barre de navigation en bas.
@@ -17,6 +18,12 @@ class AppShell extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final estAdmin = ref.watch(roleProvider) == Role.admin;
+    final nonLus = ref.watch(totalNonLusProvider);
+    Widget pastille(Icon icone) => Badge(
+      isLabelVisible: nonLus > 0,
+      label: Text(nonLus > 99 ? '99+' : '$nonLus'),
+      child: icone,
+    );
 
     final destinations = [
       NavigationDestination(
@@ -30,9 +37,10 @@ class AppShell extends ConsumerWidget {
         label: l10n.navFavoris,
       ),
       NavigationDestination(
-        icon: const Icon(Icons.chat_bubble_outline),
-        selectedIcon: const Icon(Icons.chat_bubble),
+        icon: pastille(const Icon(Icons.chat_bubble_outline)),
+        selectedIcon: pastille(const Icon(Icons.chat_bubble)),
         label: l10n.navMessages,
+        tooltip: nonLus > 0 ? l10n.messagesNonLus(nonLus) : null,
       ),
       NavigationDestination(
         icon: const Icon(Icons.person_outline),

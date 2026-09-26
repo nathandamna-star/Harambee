@@ -343,6 +343,57 @@ describe('messagerie', () => {
   });
 });
 
+describe('messagerie telle que l\'app l\'utilise', () => {
+  const conv = {
+    commerceId: 'publie', commerceNom: 'Chez Mama', clientId: 'client1', clientNom: 'Awa',
+    proId: 'pro1', participants: ['client1', 'pro1'], dernierMessage: '',
+    nonLusClient: 0, nonLusPro: 0,
+  };
+
+  it('le client vérifie si sa conversation existe avant de la créer', async () => {
+    await preparer(env, base);
+    await assertSucceeds(getDoc(doc(client(), 'conversations/publie__client1')));
+    await assertFails(getDoc(doc(client2(), 'conversations/publie__client1')));
+    await assertSucceeds(setDoc(doc(client(), 'conversations/publie__client1'),
+      { ...conv, updatedAt: serverTimestamp() }));
+  });
+
+  it('liste de ses conversations (client comme pro)', async () => {
+    await preparer(env, { ...base, 'conversations/publie__client1': conv });
+    await assertSucceeds(getDocs(query(collection(client(), 'conversations'),
+      where('participants', 'array-contains', 'client1'))));
+    await assertSucceeds(getDocs(query(collection(pro(), 'conversations'),
+      where('participants', 'array-contains', 'pro1'))));
+    await assertFails(getDocs(query(collection(client2(), 'conversations'),
+      where('participants', 'array-contains', 'client1'))));
+  });
+
+  it('envoi d\'un message et compteurs de non-lus', async () => {
+    await preparer(env, { ...base, 'conversations/publie__client1': conv });
+    await assertSucceeds(setDoc(doc(client(), 'conversations/publie__client1/messages/m1'),
+      { auteur: 'client1', texte: '', photoUrl: 'https://x/p.jpg', createdAt: serverTimestamp() }));
+    await assertSucceeds(updateDoc(doc(client(), 'conversations/publie__client1'), {
+      dernierMessage: 'Bonjour', updatedAt: serverTimestamp(), nonLusPro: 1,
+    }));
+    await assertSucceeds(updateDoc(doc(pro(), 'conversations/publie__client1'), { nonLusPro: 0 }));
+    await assertSucceeds(getDocs(query(
+      collection(pro(), 'conversations/publie__client1/messages'),
+      orderBy('createdAt', 'desc'), limit(50))));
+  });
+
+  it('champs inattendus refusés à la création', async () => {
+    await preparer(env, base);
+    await assertFails(setDoc(doc(client(), 'conversations/publie__client1'),
+      { ...conv, admin: true }));
+  });
+
+  it('jeton de notification enregistré dans son profil', async () => {
+    await preparer(env, base);
+    await assertSucceeds(updateDoc(doc(client(), 'users/client1'),
+      { jetonsNotif: arrayUnion('jeton-abc') }));
+  });
+});
+
 describe('signalements', () => {
   const signalement = { auteur: 'client1', cible: 'avis', cibleId: 'x', motif: 'Insultant', traite: false };
 

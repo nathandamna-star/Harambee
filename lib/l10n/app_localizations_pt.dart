@@ -675,9 +675,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get envoyerMessage => 'Mensagem';
 
   @override
-  String get messagerieBientot => 'As mensagens chegam em breve.';
-
-  @override
   String get aucunAvis => 'Nenhuma avaliação ainda. Seja o primeiro!';
 
   @override
@@ -831,4 +828,44 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get vueListe => 'Ver lista';
+
+  @override
+  String get apercuPhoto => '📷 Foto';
+
+  @override
+  String get conversationIntrouvable => 'Esta conversa não existe mais.';
+
+  @override
+  String get ecrireMessage => 'Escreva uma mensagem…';
+
+  @override
+  String get envoyer => 'Enviar';
+
+  @override
+  String get envoyerPhoto => 'Enviar foto';
+
+  @override
+  String get erreurEnvoiMessage =>
+      'Mensagem não enviada. Verifique sua conexão e tente novamente.';
+
+  @override
+  String messagesNonLus(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n mensagens não lidas',
+      one: '1 mensagem não lida',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get photoEnvoyee => 'Foto enviada na conversa';
+
+  @override
+  String get premierMessageTitre => 'Diga olá!';
+
+  @override
+  String get premierMessageTexte =>
+      'Faça suas perguntas: disponibilidade, horários, pedidos… O comerciante responderá aqui.';
 }

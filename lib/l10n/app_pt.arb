@@ -202,7 +202,6 @@
   "appeler": "Ligar",
   "itineraire": "Rota",
   "envoyerMessage": "Mensagem",
-  "messagerieBientot": "As mensagens chegam em breve.",
   "aucunAvis": "Nenhuma avaliação ainda. Seja o primeiro!",
   "aucunProduitPublic": "Este comércio ainda não publicou produtos.",
   "aucunResultatTitre": "Nenhum resultado",
@@ -246,5 +245,15 @@
   "aucunCommerceProche": "Nenhum comércio a menos de {km} km",
   "aucunCommerceProcheAide": "Aumente o raio ou remova filtros.",
   "vueCarte": "Ver no mapa",
-  "vueListe": "Ver lista"
+  "vueListe": "Ver lista",
+  "apercuPhoto": "📷 Foto",
+  "conversationIntrouvable": "Esta conversa não existe mais.",
+  "ecrireMessage": "Escreva uma mensagem…",
+  "envoyer": "Enviar",
+  "envoyerPhoto": "Enviar foto",
+  "erreurEnvoiMessage": "Mensagem não enviada. Verifique sua conexão e tente novamente.",
+  "messagesNonLus": "{n, plural, =1{1 mensagem não lida} other{{n} mensagens não lidas}}",
+  "photoEnvoyee": "Foto enviada na conversa",
+  "premierMessageTitre": "Diga olá!",
+  "premierMessageTexte": "Faça suas perguntas: disponibilidade, horários, pedidos… O comerciante responderá aqui."
 }

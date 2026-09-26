@@ -7,6 +7,7 @@ class Conversation {
     required this.commerceNom,
     required this.clientId,
     required this.proId,
+    this.clientNom = '',
     this.dernierMessage = '',
     this.updatedAt,
     this.nonLusClient = 0,
@@ -16,6 +17,7 @@ class Conversation {
   final String commerceId;
   final String commerceNom;
   final String clientId;
+  final String clientNom;
   final String proId;
   final String dernierMessage;
   final DateTime? updatedAt;
@@ -28,6 +30,12 @@ class Conversation {
   String get id => identifiant(commerceId, clientId);
   List<String> get participants => [clientId, proId];
 
+  /// Nombre de messages non lus pour [uid].
+  int nonLusPour(String uid) => uid == clientId ? nonLusClient : nonLusPro;
+
+  /// Nom affiché pour l'interlocuteur de [uid].
+  String interlocuteur(String uid) => uid == clientId ? commerceNom : clientNom;
+
   factory Conversation.depuisFirestore(
     DocumentSnapshot<Map<String, dynamic>> doc,
   ) {
@@ -36,6 +44,7 @@ class Conversation {
       commerceId: d['commerceId'] as String? ?? '',
       commerceNom: d['commerceNom'] as String? ?? '',
       clientId: d['clientId'] as String? ?? '',
+      clientNom: d['clientNom'] as String? ?? '',
       proId: d['proId'] as String? ?? '',
       dernierMessage: d['dernierMessage'] as String? ?? '',
       updatedAt: (d['updatedAt'] as Timestamp?)?.toDate(),
@@ -48,6 +57,7 @@ class Conversation {
     'commerceId': commerceId,
     'commerceNom': commerceNom,
     'clientId': clientId,
+    'clientNom': clientNom,
     'proId': proId,
     'participants': participants,
     'dernierMessage': dernierMessage,

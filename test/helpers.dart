@@ -1,5 +1,6 @@
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 
+import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -20,6 +21,8 @@ import 'package:harambee/features/commerce/data/localisation_service.dart';
 import 'package:harambee/features/commerce/data/photos_service.dart';
 import 'package:harambee/features/explorer/explorer_providers.dart';
 import 'package:harambee/features/explorer/presentation/carte_resultats.dart';
+import 'package:harambee/features/notifications/notifications_providers.dart';
+import 'package:harambee/features/notifications/notifications_service.dart';
 import 'package:harambee/shared/models/commerce.dart';
 import 'package:harambee/shared/services/lanceur.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -114,6 +117,21 @@ class FauxLanceur implements Lanceur {
   }
 }
 
+class FaussesNotifications implements NotificationsService {
+  final actives = <String>[];
+  final desactivees = <String>[];
+  final touchees = StreamController<String>.broadcast();
+
+  @override
+  Future<void> activer(String uid) async => actives.add(uid);
+
+  @override
+  Future<void> desactiver(String uid) async => desactivees.add(uid);
+
+  @override
+  Stream<String> get conversationsTouchees => touchees.stream;
+}
+
 /// Lundi 28 septembre 2026, 10 h.
 final maintenantTest = DateTime(2026, 9, 28, 10);
 
@@ -131,6 +149,7 @@ class Banc {
   final fonctionsAdmin = FaussesFonctionsAdmin();
   final lanceur = FauxLanceur();
   final localisation = FausseLocalisation();
+  final notifications = FaussesNotifications();
 
   Future<void> lancer(
     WidgetTester tester, {
@@ -152,6 +171,7 @@ class Banc {
           selecteurPhotoProvider.overrideWithValue(selecteur),
           localisationServiceProvider.overrideWithValue(localisation),
           constructeurCarteProvider.overrideWithValue(fausseCarte),
+          notificationsServiceProvider.overrideWithValue(notifications),
           fonctionsAdminProvider.overrideWithValue(fonctionsAdmin),
           lanceurProvider.overrideWithValue(lanceur),
           horlogeProvider.overrideWithValue(() => maintenantTest),

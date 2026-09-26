@@ -3,11 +3,14 @@
 // chaque fonction vérifie elle-même qui l'appelle.
 import { initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
+import { getMessaging } from 'firebase-admin/messaging';
 import { AggregateField, FieldValue, getFirestore } from 'firebase-admin/firestore';
 import { setGlobalOptions } from 'firebase-functions/v2';
-import { onDocumentWritten } from 'firebase-functions/v2/firestore';
+import { onDocumentCreated, onDocumentWritten } from 'firebase-functions/v2/firestore';
+import { logger } from 'firebase-functions';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineString } from 'firebase-functions/params';
+import { jetonsInvalides, notificationMessage } from './notifications.js';
 
 initializeApp();
 
@@ -125,6 +128,45 @@ export const recalculerNote = onDocumentWritten(
     } catch (e) {
       // Commerce supprimé entre-temps : rien à mettre à jour.
       if (e.code !== 5) throw e;
+    }
+  },
+);
+
+/**
+ * Notifie le destinataire d'un nouveau message sur tous ses téléphones.
+ */
+export const notifierMessage = onDocumentCreated(
+  'conversations/{conversationId}/messages/{messageId}',
+  async (evenement) => {
+    const db = getFirestore();
+    const { conversationId } = evenement.params;
+    const conversation = (await db.doc(`conversations/${conversationId}`).get()).data();
+    const message = evenement.data?.data();
+    if (!conversation || !message) return;
+
+    const premier = notificationMessage({ conversationId, conversation, message, langue: 'fr' });
+    if (!premier) return;
+    const refProfil = db.doc(`users/${premier.destinataire}`);
+    const profil = (await refProfil.get()).data() ?? {};
+    const jetons = profil.jetonsNotif ?? [];
+    if (jetons.length === 0) return;
+
+    const { notification, data } = notificationMessage({
+      conversationId, conversation, message, langue: profil.langue,
+    });
+    if (process.env.FUNCTIONS_EMULATOR === 'true') {
+      logger.info('Émulateur : notification non envoyée', { notification, jetons });
+      return;
+    }
+    const resultat = await getMessaging().sendEachForMulticast({
+      tokens: jetons,
+      notification,
+      data,
+      apns: { payload: { aps: { sound: 'default' } } },
+    });
+    const invalides = jetonsInvalides(jetons, resultat.responses);
+    if (invalides.length > 0) {
+      await refProfil.update({ jetonsNotif: FieldValue.arrayRemove(...invalides) });
     }
   },
 );

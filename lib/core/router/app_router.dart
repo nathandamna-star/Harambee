@@ -15,7 +15,8 @@ import '../../features/commerce/presentation/produit_screen.dart';
 import '../../features/explorer/presentation/explorer_screen.dart';
 import '../../features/explorer/presentation/fiche_publique_screen.dart';
 import '../../features/favoris/favoris_screen.dart';
-import '../../features/messages/messages_screen.dart';
+import '../../features/messages/presentation/conversation_screen.dart';
+import '../../features/messages/presentation/messages_screen.dart';
 import '../../features/mon_espace/mon_espace_screen.dart';
 import '../../shared/models/produit.dart';
 import '../../shared/widgets/app_shell.dart';
@@ -74,7 +75,14 @@ final routerProvider = Provider<GoRouter>((ref) {
         branches: [
           _branche(Routes.explorer, const ExplorerScreen(), [_routeFiche]),
           _branche(Routes.favoris, const FavorisScreen(), [_routeFiche]),
-          _branche(Routes.messages, const MessagesScreen()),
+          _branche(Routes.messages, const MessagesScreen(), [
+            GoRoute(
+              path: ':id',
+              builder: (context, state) => ConversationScreen(
+                conversationId: state.pathParameters['id']!,
+              ),
+            ),
+          ]),
           StatefulShellBranch(
             routes: [
               GoRoute(

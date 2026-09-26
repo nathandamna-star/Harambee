@@ -17,6 +17,7 @@ import '../../auth/auth_providers.dart';
 import '../../commerce/commerce_providers.dart';
 import '../../commerce/data/pays.dart';
 import '../../commerce/presentation/libelles.dart';
+import '../../messages/messagerie_providers.dart';
 import '../explorer_providers.dart';
 import 'carte_commerce.dart';
 
@@ -66,6 +67,30 @@ String? _exigerConnexion(BuildContext context, WidgetRef ref) {
   final uid = ref.read(utilisateurFirebaseProvider).value?.uid;
   if (uid == null) context.push(Routes.bienvenue);
   return uid;
+}
+
+Future<void> _ouvrirConversation(
+  BuildContext context,
+  WidgetRef ref,
+  Commerce commerce,
+) async {
+  final uid = _exigerConnexion(context, ref);
+  if (uid == null) return;
+  final l10n = AppLocalizations.of(context);
+  final messenger = ScaffoldMessenger.of(context);
+  final router = GoRouter.of(context);
+  final nom =
+      ref.read(profilProvider).value?.nom ??
+      ref.read(utilisateurFirebaseProvider).value?.displayName ??
+      '';
+  try {
+    final id = await ref
+        .read(messagerieRepositoryProvider)
+        .ouvrir(commerce: commerce, clientId: uid, clientNom: nom);
+    router.go(Routes.conversation(id));
+  } catch (_) {
+    messenger.showSnackBar(SnackBar(content: Text(l10n.erreurReseau)));
+  }
 }
 
 Future<void> _signaler(
@@ -300,11 +325,11 @@ class _EnTeteState extends ConsumerState<_EnTete> {
                 children: [
                   Expanded(
                     child: FilledButton.icon(
-                      onPressed: () => ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(
-                          SnackBar(content: Text(l10n.messagerieBientot)),
-                        ),
+                      onPressed:
+                          ref.watch(utilisateurFirebaseProvider).value?.uid ==
+                              c.proprietaire
+                          ? null
+                          : () => _ouvrirConversation(context, ref, c),
                       icon: const Icon(Icons.chat_bubble_outline),
                       label: Text(l10n.envoyerMessage),
                     ),

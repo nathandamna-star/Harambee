@@ -1312,12 +1312,6 @@ abstract class AppLocalizations {
   /// **'Message'**
   String get envoyerMessage;
 
-  /// No description provided for @messagerieBientot.
-  ///
-  /// In fr, this message translates to:
-  /// **'La messagerie arrive bientôt.'**
-  String get messagerieBientot;
-
   /// No description provided for @aucunAvis.
   ///
   /// In fr, this message translates to:
@@ -1581,6 +1575,66 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Voir la liste'**
   String get vueListe;
+
+  /// No description provided for @apercuPhoto.
+  ///
+  /// In fr, this message translates to:
+  /// **'📷 Photo'**
+  String get apercuPhoto;
+
+  /// No description provided for @conversationIntrouvable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette conversation n\'existe plus.'**
+  String get conversationIntrouvable;
+
+  /// No description provided for @ecrireMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Écrire un message…'**
+  String get ecrireMessage;
+
+  /// No description provided for @envoyer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer'**
+  String get envoyer;
+
+  /// No description provided for @envoyerPhoto.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer une photo'**
+  String get envoyerPhoto;
+
+  /// No description provided for @erreurEnvoiMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Message non envoyé. Vérifiez votre connexion et réessayez.'**
+  String get erreurEnvoiMessage;
+
+  /// No description provided for @messagesNonLus.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n, plural, =1{1 message non lu} other{{n} messages non lus}}'**
+  String messagesNonLus(int n);
+
+  /// No description provided for @photoEnvoyee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Photo envoyée dans la conversation'**
+  String get photoEnvoyee;
+
+  /// No description provided for @premierMessageTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dites bonjour !'**
+  String get premierMessageTitre;
+
+  /// No description provided for @premierMessageTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Posez vos questions : disponibilité, horaires, commande… Le commerçant vous répondra ici.'**
+  String get premierMessageTexte;
 }
 
 class _AppLocalizationsDelegate

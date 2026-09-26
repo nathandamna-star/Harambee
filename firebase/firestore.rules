@@ -168,7 +168,13 @@ service cloud.firestore {
         return connecte() && moi() in resource.data.participants;
       }
 
-      allow read: if estParticipant();
+      // Le client peut aussi lire « sa » conversation avec un commerce avant
+      // qu'elle n'existe (pour savoir s'il faut la créer).
+      allow get: if (connecte()
+          && conversationId.split('__').size() == 2
+          && conversationId.split('__')[1] == moi())
+        || estParticipant();
+      allow list: if estParticipant();
 
       // Ouverte par le client ; identifiant = commerceId__clientUid.
       allow create: if connecte()
@@ -177,7 +183,10 @@ service cloud.firestore {
         && commercePublie(request.resource.data.commerceId)
         && request.resource.data.proId == commerce(request.resource.data.commerceId).proprietaire
         && request.resource.data.proId != moi()
-        && request.resource.data.participants == [moi(), request.resource.data.proId];
+        && request.resource.data.participants == [moi(), request.resource.data.proId]
+        && request.resource.data.keys().hasOnly([
+          'commerceId', 'commerceNom', 'clientId', 'clientNom', 'proId', 'participants',
+          'dernierMessage', 'updatedAt', 'nonLusClient', 'nonLusPro']);
 
       allow update: if estParticipant()
         && seulement(['dernierMessage', 'updatedAt', 'nonLusClient', 'nonLusPro']);

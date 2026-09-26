@@ -268,4 +268,13 @@ pose la question au lieu de choisir seul.
 - Clé Google Maps hors dépôt : iOS `ios/Flutter/Secrets.xcconfig` (`MAPS_API_KEY=…`, inclus par Debug/Release
   xcconfig, lu dans Info.plist `GMSApiKey`, passé à `GMSServices` dans AppDelegate) ; Android
   `android/local.properties` (`MAPS_API_KEY=…`). Build iOS jamais vérifié ici (pas de macOS).
+- Messagerie (`lib/features/messages/`) : conversation `commerceId__clientUid` (avec `clientNom`), créée depuis le
+  bouton Message de la fiche ; compteurs `nonLusClient`/`nonLusPro` tenus par l'app (incrément à l'envoi, remise
+  à zéro à l'ouverture) ; pastille sur l'onglet ; photos dans Storage `conversations/{id}/…` ; appui long sur
+  un message reçu = signaler. Règle `get` : le client peut lire son id de conversation même inexistant.
+- Notifications (`lib/features/notifications/`) : jetons FCM dans `users/{uid}.jetonsNotif` (ajoutés à la
+  connexion, retirés à la déconnexion) ; Cloud Function `notifierMessage` (texte dans la langue du destinataire,
+  jetons invalides nettoyés ; pas d'envoi dans l'émulateur). Sur iPhone, il faut un compte Apple Developer payant :
+  clé APNs (.p8) dans Firebase + capacités « Push Notifications » et « Background Modes > Remote notifications »
+  dans Xcode. Tant que ce n'est pas fait, l'app marche sans notifications (erreur de jeton ignorée).
 - Vérifier avant chaque commit : `flutter analyze` et `flutter test`.

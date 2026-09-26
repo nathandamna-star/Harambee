@@ -11,6 +11,9 @@ abstract final class Routes {
   static String commerceExplorer(String id) => '/explorer/commerce/$id';
   static String commerceFavoris(String id) => '/favoris/commerce/$id';
 
+  // Messagerie
+  static String conversation(String id) => '/messages/$id';
+
   // Administration
   static String adminCommerce(String id) => '/admin/commerce/$id';
   static const administrateurs = '/admin/administrateurs';

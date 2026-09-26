@@ -202,7 +202,6 @@
   "appeler": "Call",
   "itineraire": "Directions",
   "envoyerMessage": "Message",
-  "messagerieBientot": "Messaging is coming soon.",
   "aucunAvis": "No reviews yet. Be the first!",
   "aucunProduitPublic": "This business hasn't published any products yet.",
   "aucunResultatTitre": "No results",
@@ -246,5 +245,15 @@
   "aucunCommerceProche": "No business within {km} km",
   "aucunCommerceProcheAide": "Increase the radius or remove some filters.",
   "vueCarte": "Show map",
-  "vueListe": "Show list"
+  "vueListe": "Show list",
+  "apercuPhoto": "📷 Photo",
+  "conversationIntrouvable": "This conversation no longer exists.",
+  "ecrireMessage": "Write a message…",
+  "envoyer": "Send",
+  "envoyerPhoto": "Send a photo",
+  "erreurEnvoiMessage": "Message not sent. Check your connection and try again.",
+  "messagesNonLus": "{n, plural, =1{1 unread message} other{{n} unread messages}}",
+  "photoEnvoyee": "Photo sent in the conversation",
+  "premierMessageTitre": "Say hello!",
+  "premierMessageTexte": "Ask your questions: availability, hours, orders… The business will reply here."
 }
