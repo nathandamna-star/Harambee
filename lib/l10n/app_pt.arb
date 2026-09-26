@@ -1,0 +1,23 @@
+{
+  "@@locale": "pt",
+  "appTitle": "Harambee",
+  "navExplorer": "Explorar",
+  "navFavoris": "Favoritos",
+  "navMessages": "Mensagens",
+  "navMonEspace": "Meu espaço",
+  "navAdmin": "Admin",
+  "explorerVideTitre": "Encontre um comércio perto de você",
+  "explorerVideTexte": "Lojas, restaurantes, alojamentos e serviços africanos e cristãos na Europa, na África e nas Américas.",
+  "favorisVideTitre": "Nenhum favorito por enquanto",
+  "favorisVideTexte": "Toque no coração na página de um comércio para encontrá-lo aqui.",
+  "messagesVideTitre": "Nenhuma conversa",
+  "messagesVideTexte": "Suas conversas com os comércios aparecerão aqui.",
+  "monEspaceVideTitre": "Seu espaço",
+  "monEspaceVideTexte": "Entre para gerenciar seu perfil ou seu comércio.",
+  "adminVideTitre": "Administração",
+  "adminVideTexte": "Os comércios aguardando verificação e as denúncias aparecerão aqui.",
+  "labelAfricain": "Africano",
+  "labelChretien": "Cristão",
+  "badgeVerifie": "Verificado",
+  "bientotDisponible": "Em breve"
+}
