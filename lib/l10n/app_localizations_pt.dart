@@ -1427,4 +1427,28 @@ class AppLocalizationsPt extends AppLocalizations {
   String demoSupprimee(int n) {
     return '$n comércios de demonstração excluídos.';
   }
+
+  @override
+  String get bloquer => 'Bloquear';
+
+  @override
+  String get debloquer => 'Desbloquear';
+
+  @override
+  String get bloquerTitre => 'Bloquear este contato?';
+
+  @override
+  String get bloquerTexte =>
+      'Nenhuma mensagem poderá mais ser trocada nesta conversa. Você pode desbloquear a qualquer momento. Em caso de abuso, denuncie também a mensagem.';
+
+  @override
+  String get vousAvezBloque =>
+      'Você bloqueou este contato. Desbloqueie pelo menu para retomar a conversa.';
+
+  @override
+  String get conversationIndisponible =>
+      'Esta conversa não está mais disponível.';
+
+  @override
+  String get conversationBloquee => 'Conversa bloqueada';
 }

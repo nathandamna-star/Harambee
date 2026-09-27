@@ -627,5 +627,12 @@
         "type": "int"
       }
     }
-  }
+  },
+  "bloquer": "Bloquer",
+  "debloquer": "Débloquer",
+  "bloquerTitre": "Bloquer ce contact ?",
+  "bloquerTexte": "Plus aucun message ne pourra être échangé dans cette conversation. Vous pourrez débloquer à tout moment. Pour un comportement abusif, pensez aussi à signaler le message.",
+  "vousAvezBloque": "Vous avez bloqué ce contact. Débloquez-le depuis le menu pour reprendre la conversation.",
+  "conversationIndisponible": "Cette conversation n'est plus disponible.",
+  "conversationBloquee": "Conversation bloquée"
 }

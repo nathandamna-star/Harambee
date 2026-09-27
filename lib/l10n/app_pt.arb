@@ -419,5 +419,12 @@
   "chargerDemo": "Carregar",
   "supprimerDemo": "Excluir tudo",
   "demoChargee": "{n} comércios de demonstração carregados.",
-  "demoSupprimee": "{n} comércios de demonstração excluídos."
+  "demoSupprimee": "{n} comércios de demonstração excluídos.",
+  "bloquer": "Bloquear",
+  "debloquer": "Desbloquear",
+  "bloquerTitre": "Bloquear este contato?",
+  "bloquerTexte": "Nenhuma mensagem poderá mais ser trocada nesta conversa. Você pode desbloquear a qualquer momento. Em caso de abuso, denuncie também a mensagem.",
+  "vousAvezBloque": "Você bloqueou este contato. Desbloqueie pelo menu para retomar a conversa.",
+  "conversationIndisponible": "Esta conversa não está mais disponível.",
+  "conversationBloquee": "Conversa bloqueada"
 }

@@ -12,6 +12,7 @@ class Conversation {
     this.updatedAt,
     this.nonLusClient = 0,
     this.nonLusPro = 0,
+    this.bloquePar = const [],
   });
 
   final String commerceId;
@@ -23,6 +24,11 @@ class Conversation {
   final DateTime? updatedAt;
   final int nonLusClient;
   final int nonLusPro;
+
+  /// Participants ayant bloqué la conversation (plus aucun message possible).
+  final List<String> bloquePar;
+
+  bool get bloquee => bloquePar.isNotEmpty;
 
   static String identifiant(String commerceId, String clientId) =>
       '${commerceId}__$clientId';
@@ -50,6 +56,7 @@ class Conversation {
       updatedAt: (d['updatedAt'] as Timestamp?)?.toDate(),
       nonLusClient: (d['nonLusClient'] as num? ?? 0).toInt(),
       nonLusPro: (d['nonLusPro'] as num? ?? 0).toInt(),
+      bloquePar: List<String>.from(d['bloquePar'] as List? ?? const []),
     );
   }
 

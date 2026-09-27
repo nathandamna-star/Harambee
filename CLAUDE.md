@@ -311,3 +311,10 @@ pose la question au lieu de choisir seul.
 - Pages légales : modèles FR dans `assets/legal/` (à compléter entre [ ] et à faire relire par un juriste),
   affichées par `LegalScreen`, accessibles sans compte (`/legal/...`), liens sur l'accueil et à l'inscription.
 - Vérifier avant chaque commit : `flutter analyze` et `flutter test`.
+
+### Étape 11 — publication
+- Blocage (App Store 1.2) : champ `bloquePar` (liste d'uid) sur la conversation ; chacun ne peut ajouter/retirer
+  que lui-même ; aucun message ne peut être créé tant que la liste n'est pas vide. Menu ⋮ dans la conversation.
+- Pages légales en ligne : fonction HTTP `legal` (`?page=confidentialite|cgu|support`), textes dans
+  `functions/legal/` (copies exactes de `assets/legal/`, vérifiées par un test).
+- Textes des stores : `docs/fiches-stores.md` ; démarche complète : `docs/publication.md`.

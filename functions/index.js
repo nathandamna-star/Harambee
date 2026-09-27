@@ -7,6 +7,7 @@ import { getMessaging } from 'firebase-admin/messaging';
 import { getDownloadURL, getStorage } from 'firebase-admin/storage';
 import { readFileSync } from 'node:fs';
 import { construireCommerce } from './demo/construire.js';
+import { versHtml } from './legal.js';
 import { AggregateField, FieldValue, GeoPoint, Timestamp, getFirestore } from 'firebase-admin/firestore';
 import { setGlobalOptions } from 'firebase-functions/v2';
 import { onDocumentCreated, onDocumentUpdated, onDocumentWritten } from 'firebase-functions/v2/firestore';
@@ -615,4 +616,22 @@ export const supprimerDemo = onCall({ timeoutSeconds: 120 }, async (requete) => 
     await c.ref.delete();
   }
   return { commerces: commerces.size };
+});
+
+const PAGES = {
+  cgu: ['cgu_fr.md', 'Conditions d\'utilisation'],
+  confidentialite: ['confidentialite_fr.md', 'Politique de confidentialité'],
+  support: ['support_fr.md', 'Aide et contact'],
+};
+
+/**
+ * Pages publiques : …/legal?page=confidentialite (ou cgu, support).
+ * Adresses à indiquer dans App Store Connect et la Google Play Console.
+ */
+export const legal = onRequest((requete, reponse) => {
+  const [fichier, titre] = PAGES[requete.query.page] ?? PAGES.confidentialite;
+  const texte = readFileSync(new URL(`./legal/${fichier}`, import.meta.url), 'utf8');
+  reponse.set('Cache-Control', 'public, max-age=3600')
+    .set('Content-Type', 'text/html; charset=utf-8')
+    .send(versHtml(texte, titre));
 });

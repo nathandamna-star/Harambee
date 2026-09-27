@@ -419,5 +419,12 @@
   "chargerDemo": "Load",
   "supprimerDemo": "Delete all",
   "demoChargee": "{n} demo businesses loaded.",
-  "demoSupprimee": "{n} demo businesses deleted."
+  "demoSupprimee": "{n} demo businesses deleted.",
+  "bloquer": "Block",
+  "debloquer": "Unblock",
+  "bloquerTitre": "Block this contact?",
+  "bloquerTexte": "No more messages can be exchanged in this conversation. You can unblock at any time. For abusive behavior, please also report the message.",
+  "vousAvezBloque": "You have blocked this contact. Unblock from the menu to resume the conversation.",
+  "conversationIndisponible": "This conversation is no longer available.",
+  "conversationBloquee": "Blocked conversation"
 }

@@ -136,6 +136,33 @@ class _ConversationState extends ConsumerState<_Conversation> {
     if (octets != null) await _envoyer(photo: octets);
   }
 
+  Future<void> _basculerBlocage(bool bloqueParMoi) async {
+    final l10n = AppLocalizations.of(context);
+    if (!bloqueParMoi) {
+      final ok = await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(l10n.bloquerTitre),
+          content: Text(l10n.bloquerTexte),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: Text(l10n.annuler),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: Text(l10n.bloquer),
+            ),
+          ],
+        ),
+      );
+      if (ok != true) return;
+    }
+    await ref
+        .read(messagerieRepositoryProvider)
+        .definirBlocage(c.id, widget.uid, !bloqueParMoi);
+  }
+
   Future<void> _signaler(Message m) async {
     final l10n = AppLocalizations.of(context);
     final motif = await demanderTexte(
@@ -166,8 +193,24 @@ class _ConversationState extends ConsumerState<_Conversation> {
     final messages = ref.watch(messagesProvider(c.id));
     final nom = c.interlocuteur(widget.uid);
 
+    final bloqueParMoi = c.bloquePar.contains(widget.uid);
+
     return Scaffold(
-      appBar: AppBar(title: Text(nom.isEmpty ? l10n.anonyme : nom)),
+      appBar: AppBar(
+        title: Text(nom.isEmpty ? l10n.anonyme : nom),
+        actions: [
+          PopupMenuButton<String>(
+            tooltip: l10n.actions,
+            onSelected: (_) => _basculerBlocage(bloqueParMoi),
+            itemBuilder: (_) => [
+              PopupMenuItem(
+                value: 'bloquer',
+                child: Text(bloqueParMoi ? l10n.debloquer : l10n.bloquer),
+              ),
+            ],
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -205,47 +248,59 @@ class _ConversationState extends ConsumerState<_Conversation> {
               ),
             ),
             const Divider(height: 1),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(4, 8, 8, 8),
-              child: Row(
-                children: [
-                  IconButton(
-                    tooltip: l10n.envoyerPhoto,
-                    icon: const Icon(Icons.add_photo_alternate_outlined),
-                    onPressed: _envoiEnCours ? null : _envoyerPhoto,
-                  ),
-                  Expanded(
-                    child: TextField(
-                      controller: _texte,
-                      minLines: 1,
-                      maxLines: 5,
-                      maxLength: 5000,
-                      textCapitalization: TextCapitalization.sentences,
-                      decoration: InputDecoration(
-                        hintText: l10n.ecrireMessage,
-                        counterText: '',
-                        isDense: true,
+            if (c.bloquee)
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  bloqueParMoi
+                      ? l10n.vousAvezBloque
+                      : l10n.conversationIndisponible,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: theme.colorScheme.onSurfaceVariant),
+                ),
+              )
+            else
+              Padding(
+                padding: const EdgeInsets.fromLTRB(4, 8, 8, 8),
+                child: Row(
+                  children: [
+                    IconButton(
+                      tooltip: l10n.envoyerPhoto,
+                      icon: const Icon(Icons.add_photo_alternate_outlined),
+                      onPressed: _envoiEnCours ? null : _envoyerPhoto,
+                    ),
+                    Expanded(
+                      child: TextField(
+                        controller: _texte,
+                        minLines: 1,
+                        maxLines: 5,
+                        maxLength: 5000,
+                        textCapitalization: TextCapitalization.sentences,
+                        decoration: InputDecoration(
+                          hintText: l10n.ecrireMessage,
+                          counterText: '',
+                          isDense: true,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 4),
-                  IconButton.filled(
-                    tooltip: l10n.envoyer,
-                    icon: _envoiEnCours
-                        ? SizedBox.square(
-                            dimension: 20,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              color: theme.colorScheme.onPrimary,
-                              semanticsLabel: l10n.chargement,
-                            ),
-                          )
-                        : const Icon(Icons.send),
-                    onPressed: _envoiEnCours ? null : () => _envoyer(),
-                  ),
-                ],
+                    const SizedBox(width: 4),
+                    IconButton.filled(
+                      tooltip: l10n.envoyer,
+                      icon: _envoiEnCours
+                          ? SizedBox.square(
+                              dimension: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: theme.colorScheme.onPrimary,
+                                semanticsLabel: l10n.chargement,
+                              ),
+                            )
+                          : const Icon(Icons.send),
+                      onPressed: _envoiEnCours ? null : () => _envoyer(),
+                    ),
+                  ],
+                ),
               ),
-            ),
           ],
         ),
       ),

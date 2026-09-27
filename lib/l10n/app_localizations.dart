@@ -2619,6 +2619,48 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{n} commerces de démonstration supprimés.'**
   String demoSupprimee(int n);
+
+  /// No description provided for @bloquer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bloquer'**
+  String get bloquer;
+
+  /// No description provided for @debloquer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Débloquer'**
+  String get debloquer;
+
+  /// No description provided for @bloquerTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bloquer ce contact ?'**
+  String get bloquerTitre;
+
+  /// No description provided for @bloquerTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plus aucun message ne pourra être échangé dans cette conversation. Vous pourrez débloquer à tout moment. Pour un comportement abusif, pensez aussi à signaler le message.'**
+  String get bloquerTexte;
+
+  /// No description provided for @vousAvezBloque.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous avez bloqué ce contact. Débloquez-le depuis le menu pour reprendre la conversation.'**
+  String get vousAvezBloque;
+
+  /// No description provided for @conversationIndisponible.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette conversation n\'est plus disponible.'**
+  String get conversationIndisponible;
+
+  /// No description provided for @conversationBloquee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Conversation bloquée'**
+  String get conversationBloquee;
 }
 
 class _AppLocalizationsDelegate

@@ -391,6 +391,21 @@ describe('messagerie telle que l\'app l\'utilise', () => {
       orderBy('createdAt', 'desc'), limit(50))));
   });
 
+  it('blocage : chacun bloque pour soi, plus aucun message ensuite', async () => {
+    await preparer(env, { ...base, 'conversations/publie__client1': conv });
+    const ref = (db) => doc(db, 'conversations/publie__client1');
+    const msg = (auteur) => ({ auteur, texte: 'Salut', createdAt: serverTimestamp() });
+    // On ne peut pas bloquer au nom de l'autre.
+    await assertFails(updateDoc(ref(client()), { bloquePar: ['pro1'] }));
+    await assertSucceeds(updateDoc(ref(client()), { bloquePar: ['client1'] }));
+    await assertFails(setDoc(doc(pro(), 'conversations/publie__client1/messages/m1'), msg('pro1')));
+    await assertFails(setDoc(doc(client(), 'conversations/publie__client1/messages/m2'), msg('client1')));
+    // Le pro ne peut pas retirer le blocage du client.
+    await assertFails(updateDoc(ref(pro()), { bloquePar: [] }));
+    await assertSucceeds(updateDoc(ref(client()), { bloquePar: [] }));
+    await assertSucceeds(setDoc(doc(pro(), 'conversations/publie__client1/messages/m3'), msg('pro1')));
+  });
+
   it('champs inattendus refusés à la création', async () => {
     await preparer(env, base);
     await assertFails(setDoc(doc(client(), 'conversations/publie__client1'),

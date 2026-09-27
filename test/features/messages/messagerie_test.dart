@@ -137,6 +137,52 @@ void main() {
     );
   });
 
+  testWidgets('bloquer puis débloquer un contact', (tester) async {
+    ecranTelephone(tester);
+    final banc = await bancConnecte(role: 'pro');
+    await banc.firestore.doc('conversations/mama__client9').set(conversation());
+    await banc.lancer(tester);
+    await tester.tap(find.text('Messages'));
+    await tester.pumpAndSettle();
+    await toucher(tester, find.text('Kofi'));
+
+    await toucher(tester, find.byTooltip('Actions'));
+    await toucher(tester, find.text('Bloquer'));
+    expect(find.text('Bloquer ce contact ?'), findsOneWidget);
+    await toucher(tester, find.widgetWithText(FilledButton, 'Bloquer'));
+
+    final ref = banc.firestore.doc('conversations/mama__client9');
+    expect((await ref.get()).data()!['bloquePar'], ['u1']);
+    expect(find.byType(TextField), findsNothing);
+    expect(find.textContaining('Vous avez bloqué ce contact'), findsOneWidget);
+
+    await toucher(tester, find.byTooltip('Actions'));
+    await toucher(tester, find.text('Débloquer'));
+    expect((await ref.get()).data()!['bloquePar'], isEmpty);
+    expect(find.byType(TextField), findsOneWidget);
+  });
+
+  testWidgets('conversation bloquée par l\'autre : saisie masquée', (
+    tester,
+  ) async {
+    ecranTelephone(tester);
+    final banc = await bancConnecte(role: 'pro');
+    await banc.firestore.doc('conversations/mama__client9').set({
+      ...conversation(),
+      'bloquePar': ['client9'],
+    });
+    await banc.lancer(tester);
+    await tester.tap(find.text('Messages'));
+    await tester.pumpAndSettle();
+    expect(find.text('Conversation bloquée'), findsOneWidget);
+    await toucher(tester, find.text('Kofi'));
+    expect(find.byType(TextField), findsNothing);
+    expect(
+      find.text('Cette conversation n\'est plus disponible.'),
+      findsOneWidget,
+    );
+  });
+
   testWidgets('pas de message à son propre commerce', (tester) async {
     ecranTelephone(tester);
     final banc = await bancConnecte(role: 'pro');

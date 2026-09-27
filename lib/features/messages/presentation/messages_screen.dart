@@ -66,7 +66,9 @@ class MessagesScreen extends ConsumerWidget {
                                     : null,
                               ),
                               subtitle: Text(
-                                c.dernierMessage,
+                                c.bloquee
+                                    ? l10n.conversationBloquee
+                                    : c.dernierMessage,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),

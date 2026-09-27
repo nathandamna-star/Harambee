@@ -117,6 +117,17 @@ class MessagerieRepository {
     });
   }
 
+  /// Bloque ou débloque la conversation pour [uid].
+  Future<void> definirBlocage(
+    String conversationId,
+    String uid,
+    bool bloquer,
+  ) => _conversations.doc(conversationId).update({
+    'bloquePar': bloquer
+        ? FieldValue.arrayUnion([uid])
+        : FieldValue.arrayRemove([uid]),
+  });
+
   static String _apercu(String texte) =>
       texte.length <= 100 ? texte : '${texte.substring(0, 100)}…';
 }
