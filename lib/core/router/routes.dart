@@ -35,6 +35,7 @@ abstract final class Routes {
   static const nouveauCommerce = '/mon-espace/commerce/nouveau';
   static String modifierCommerce(String id) => '/mon-espace/commerce/$id';
   static String catalogue(String id) => '/mon-espace/commerce/$id/catalogue';
+  static String affiche(String id) => '/mon-espace/commerce/$id/affiche';
   static String nouveauProduit(String id) =>
       '/mon-espace/commerce/$id/catalogue/nouveau';
   static String modifierProduit(String id, String produitId) =>

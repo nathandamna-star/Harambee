@@ -1458,4 +1458,39 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get conversationBloquee => 'Conversation bloquée';
+
+  @override
+  String get partager => 'Partager';
+
+  @override
+  String partagerCommerceTexte(String nom, String lien) {
+    return 'Découvrez $nom sur Harambee : $lien';
+  }
+
+  @override
+  String get afficheEtLien => 'Affiche et lien à partager';
+
+  @override
+  String get afficheTitre => 'Affiche de votre commerce';
+
+  @override
+  String get afficheAppel => 'Retrouvez-nous sur Harambee';
+
+  @override
+  String get afficheScanner =>
+      'Scannez pour voir nos produits, commander et nous écrire.';
+
+  @override
+  String get afficheAide =>
+      'Imprimez cette affiche et placez-la sur votre vitrine ou près de la caisse. Vos clients scannent le QR code avec l\'appareil photo de leur téléphone.';
+
+  @override
+  String get afficheImprimer => 'Partager ou imprimer l\'affiche';
+
+  @override
+  String get partagerLien => 'Partager le lien';
+
+  @override
+  String get afficheIndisponible =>
+      'L\'affiche et le lien seront disponibles dès que votre commerce sera publié.';
 }

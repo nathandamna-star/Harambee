@@ -426,5 +426,15 @@
   "bloquerTexte": "No more messages can be exchanged in this conversation. You can unblock at any time. For abusive behavior, please also report the message.",
   "vousAvezBloque": "You have blocked this contact. Unblock from the menu to resume the conversation.",
   "conversationIndisponible": "This conversation is no longer available.",
-  "conversationBloquee": "Blocked conversation"
+  "conversationBloquee": "Blocked conversation",
+  "partager": "Share",
+  "partagerCommerceTexte": "Discover {nom} on Harambee: {lien}",
+  "afficheEtLien": "Poster and link to share",
+  "afficheTitre": "Your business poster",
+  "afficheAppel": "Find us on Harambee",
+  "afficheScanner": "Scan to see our products, order and message us.",
+  "afficheAide": "Print this poster and put it in your window or near the till. Customers scan the QR code with their phone camera.",
+  "afficheImprimer": "Share or print the poster",
+  "partagerLien": "Share the link",
+  "afficheIndisponible": "The poster and link will be available as soon as your business is published."
 }

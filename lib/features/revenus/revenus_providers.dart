@@ -3,11 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../shared/models/commande.dart';
 import '../auth/auth_providers.dart';
-import 'data/partage.dart';
-
-final partageFichierProvider = Provider<PartageFichier>(
-  (ref) => PartageNatif(),
-);
 
 /// Toutes les commandes d'une année (administrateurs seulement).
 final commandesAnneeProvider = StreamProvider.family<List<Commande>, int>(

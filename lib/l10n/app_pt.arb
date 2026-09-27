@@ -426,5 +426,15 @@
   "bloquerTexte": "Nenhuma mensagem poderá mais ser trocada nesta conversa. Você pode desbloquear a qualquer momento. Em caso de abuso, denuncie também a mensagem.",
   "vousAvezBloque": "Você bloqueou este contato. Desbloqueie pelo menu para retomar a conversa.",
   "conversationIndisponible": "Esta conversa não está mais disponível.",
-  "conversationBloquee": "Conversa bloqueada"
+  "conversationBloquee": "Conversa bloqueada",
+  "partager": "Partilhar",
+  "partagerCommerceTexte": "Descubra {nom} no Harambee: {lien}",
+  "afficheEtLien": "Cartaz e link para partilhar",
+  "afficheTitre": "Cartaz do seu comércio",
+  "afficheAppel": "Encontre-nos no Harambee",
+  "afficheScanner": "Digitalize para ver os nossos produtos, encomendar e escrever-nos.",
+  "afficheAide": "Imprima este cartaz e coloque-o na montra ou perto da caixa. Os clientes digitalizam o código QR com a câmara do telemóvel.",
+  "afficheImprimer": "Partilhar ou imprimir o cartaz",
+  "partagerLien": "Partilhar o link",
+  "afficheIndisponible": "O cartaz e o link ficarão disponíveis assim que o seu comércio for publicado."
 }

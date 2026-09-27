@@ -634,5 +634,25 @@
   "bloquerTexte": "Plus aucun message ne pourra être échangé dans cette conversation. Vous pourrez débloquer à tout moment. Pour un comportement abusif, pensez aussi à signaler le message.",
   "vousAvezBloque": "Vous avez bloqué ce contact. Débloquez-le depuis le menu pour reprendre la conversation.",
   "conversationIndisponible": "Cette conversation n'est plus disponible.",
-  "conversationBloquee": "Conversation bloquée"
+  "conversationBloquee": "Conversation bloquée",
+  "partager": "Partager",
+  "partagerCommerceTexte": "Découvrez {nom} sur Harambee : {lien}",
+  "@partagerCommerceTexte": {
+    "placeholders": {
+      "nom": {
+        "type": "String"
+      },
+      "lien": {
+        "type": "String"
+      }
+    }
+  },
+  "afficheEtLien": "Affiche et lien à partager",
+  "afficheTitre": "Affiche de votre commerce",
+  "afficheAppel": "Retrouvez-nous sur Harambee",
+  "afficheScanner": "Scannez pour voir nos produits, commander et nous écrire.",
+  "afficheAide": "Imprimez cette affiche et placez-la sur votre vitrine ou près de la caisse. Vos clients scannent le QR code avec l'appareil photo de leur téléphone.",
+  "afficheImprimer": "Partager ou imprimer l'affiche",
+  "partagerLien": "Partager le lien",
+  "afficheIndisponible": "L'affiche et le lien seront disponibles dès que votre commerce sera publié."
 }

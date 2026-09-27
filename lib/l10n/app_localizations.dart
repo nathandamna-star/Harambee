@@ -2661,6 +2661,66 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Conversation bloquée'**
   String get conversationBloquee;
+
+  /// No description provided for @partager.
+  ///
+  /// In fr, this message translates to:
+  /// **'Partager'**
+  String get partager;
+
+  /// No description provided for @partagerCommerceTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Découvrez {nom} sur Harambee : {lien}'**
+  String partagerCommerceTexte(String nom, String lien);
+
+  /// No description provided for @afficheEtLien.
+  ///
+  /// In fr, this message translates to:
+  /// **'Affiche et lien à partager'**
+  String get afficheEtLien;
+
+  /// No description provided for @afficheTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Affiche de votre commerce'**
+  String get afficheTitre;
+
+  /// No description provided for @afficheAppel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retrouvez-nous sur Harambee'**
+  String get afficheAppel;
+
+  /// No description provided for @afficheScanner.
+  ///
+  /// In fr, this message translates to:
+  /// **'Scannez pour voir nos produits, commander et nous écrire.'**
+  String get afficheScanner;
+
+  /// No description provided for @afficheAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Imprimez cette affiche et placez-la sur votre vitrine ou près de la caisse. Vos clients scannent le QR code avec l\'appareil photo de leur téléphone.'**
+  String get afficheAide;
+
+  /// No description provided for @afficheImprimer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Partager ou imprimer l\'affiche'**
+  String get afficheImprimer;
+
+  /// No description provided for @partagerLien.
+  ///
+  /// In fr, this message translates to:
+  /// **'Partager le lien'**
+  String get partagerLien;
+
+  /// No description provided for @afficheIndisponible.
+  ///
+  /// In fr, this message translates to:
+  /// **'L\'affiche et le lien seront disponibles dès que votre commerce sera publié.'**
+  String get afficheIndisponible;
 }
 
 class _AppLocalizationsDelegate

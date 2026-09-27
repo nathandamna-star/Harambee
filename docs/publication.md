@@ -99,3 +99,7 @@ espace commerçant.
       stores (Admin → Données de démonstration → Supprimer).
 - [ ] Numéro de version à jour dans `pubspec.yaml` (`1.0.0+1`, puis `+2`,
       `+3`… à chaque nouvel envoi).
+- [ ] Une fois l'app publiée : ajouter les liens App Store et Google Play dans
+      `functions/pageCommerce.js` (`LIENS_STORES`), puis
+      `npx firebase deploy --only functions:commerce`. Les pages partagées et
+      les QR codes proposeront alors le téléchargement.

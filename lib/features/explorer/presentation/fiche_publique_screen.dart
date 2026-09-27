@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/config/liens.dart';
+import '../../../core/partage/partage.dart';
 import '../../../core/router/routes.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/models/avis.dart';
@@ -174,6 +176,22 @@ class _Fiche extends ConsumerWidget {
               pinned: true,
               title: Text(commerce.nom),
               actions: [
+                Builder(
+                  builder: (bouton) => IconButton(
+                    tooltip: l10n.partager,
+                    icon: const Icon(Icons.ios_share),
+                    onPressed: () => ref
+                        .read(partageProvider)
+                        .partagerTexte(
+                          l10n.partagerCommerceTexte(
+                            commerce.nom,
+                            lienCommerce(commerce.id),
+                          ),
+                          sujet: commerce.nom,
+                          origine: zoneDe(bouton),
+                        ),
+                  ),
+                ),
                 IconButton(
                   tooltip: favori ? l10n.retirerFavori : l10n.ajouterFavori,
                   isSelected: favori,

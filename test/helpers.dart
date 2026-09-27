@@ -28,8 +28,7 @@ import 'package:harambee/features/explorer/presentation/carte_resultats.dart';
 import 'package:harambee/features/notifications/notifications_providers.dart';
 import 'package:harambee/features/profil/compte_service.dart';
 import 'package:harambee/features/profil/profil_screen.dart';
-import 'package:harambee/features/revenus/data/partage.dart';
-import 'package:harambee/features/revenus/revenus_providers.dart';
+import 'package:harambee/core/partage/partage.dart';
 import 'package:harambee/features/notifications/notifications_service.dart';
 import 'package:harambee/shared/models/commerce.dart';
 import 'package:harambee/shared/services/lanceur.dart';
@@ -241,15 +240,32 @@ class FauxCompteService implements CompteService {
 }
 
 /// Partage de fichier simulé.
-class FauxPartage implements PartageFichier {
+class FauxPartage implements Partage {
   final fichiers = <String, String>{};
+  final textes = <String>[];
+  final images = <String, Uint8List>{};
 
   @override
-  Future<void> partager({
+  Future<void> partagerFichier({
     required String nom,
     required String contenu,
     required String typeMime,
   }) async => fichiers[nom] = contenu;
+
+  @override
+  Future<void> partagerTexte(
+    String texte, {
+    String? sujet,
+    Rect? origine,
+  }) async => textes.add(texte);
+
+  @override
+  Future<void> partagerImage(
+    Uint8List png, {
+    required String nom,
+    String? texte,
+    Rect? origine,
+  }) async => images[nom] = png;
 }
 
 /// Formulaire de paiement simulé.
@@ -313,7 +329,7 @@ class Banc {
           notificationsServiceProvider.overrideWithValue(notifications),
           fonctionsCommandeProvider.overrideWithValue(fonctionsCommande),
           paiementServiceProvider.overrideWithValue(paiement),
-          partageFichierProvider.overrideWithValue(partage),
+          partageProvider.overrideWithValue(partage),
           compteServiceProvider.overrideWithValue(compte),
           fonctionsAdminProvider.overrideWithValue(fonctionsAdmin),
           lanceurProvider.overrideWithValue(lanceur),

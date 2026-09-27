@@ -190,6 +190,14 @@ class _CarteCommerce extends StatelessWidget {
                         : l10n.activerCommande,
                   ),
                 ),
+                if (commerce.statut == StatutCommerce.publie) ...[
+                  const SizedBox(height: 8),
+                  OutlinedButton.icon(
+                    onPressed: () => context.push(Routes.affiche(commerce.id)),
+                    icon: const Icon(Icons.qr_code_2),
+                    label: Text(l10n.afficheEtLien),
+                  ),
+                ],
               ],
             ),
           ),

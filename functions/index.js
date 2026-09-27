@@ -8,6 +8,7 @@ import { getDownloadURL, getStorage } from 'firebase-admin/storage';
 import { readFileSync } from 'node:fs';
 import { construireCommerce } from './demo/construire.js';
 import { versHtml } from './legal.js';
+import { pageCommerce, pageIntrouvable } from './pageCommerce.js';
 import { AggregateField, FieldValue, GeoPoint, Timestamp, getFirestore } from 'firebase-admin/firestore';
 import { setGlobalOptions } from 'firebase-functions/v2';
 import { onDocumentCreated, onDocumentUpdated, onDocumentWritten } from 'firebase-functions/v2/firestore';
@@ -634,4 +635,22 @@ export const legal = onRequest((requete, reponse) => {
   reponse.set('Cache-Control', 'public, max-age=3600')
     .set('Content-Type', 'text/html; charset=utf-8')
     .send(versHtml(texte, titre));
+});
+
+/**
+ * Page publique d'un commerce : …/commerce?id=<id>. C'est le lien partagé
+ * depuis l'app et celui des QR codes ; seuls les commerces publiés s'affichent.
+ */
+export const commerce = onRequest(async (requete, reponse) => {
+  const id = String(requete.query.id ?? '');
+  const doc = /^[A-Za-z0-9_-]{1,128}$/.test(id)
+    ? await getFirestore().doc(`commerces/${id}`).get()
+    : null;
+  reponse.set('Content-Type', 'text/html; charset=utf-8');
+  if (!doc?.exists || doc.get('statut') !== 'publie') {
+    reponse.status(404).set('Cache-Control', 'no-store').send(pageIntrouvable());
+    return;
+  }
+  reponse.set('Cache-Control', 'public, max-age=300')
+    .send(pageCommerce(id, doc.data(), `${urlFonction('commerce')}?id=${id}`));
 });

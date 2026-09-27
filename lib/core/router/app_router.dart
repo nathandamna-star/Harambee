@@ -14,6 +14,7 @@ import '../../features/auth/auth_providers.dart';
 import '../../features/auth/domain/role.dart';
 import '../../features/auth/presentation/bienvenue_screen.dart';
 import '../../features/auth/presentation/connexion_email_screen.dart';
+import '../../features/commerce/presentation/affiche_screen.dart';
 import '../../features/commerce/presentation/catalogue_screen.dart';
 import '../../features/commerce/presentation/fiche_commerce_screen.dart';
 import '../../features/commerce/presentation/produit_screen.dart';
@@ -44,6 +45,8 @@ final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: Routes.explorer,
     refreshListenable: rafraichir,
+    // Lien inconnu (ancien lien, retour d'un service externe) : Explorer.
+    onException: (context, state, router) => router.go(Routes.explorer),
     redirect: (context, state) {
       final role = ref.read(roleProvider);
       final lieu = state.matchedLocation;
@@ -211,6 +214,11 @@ final _routesEspacePro = [
         path: 'commande',
         builder: (context, state) =>
             ReglagesCommandeScreen(commerceId: state.pathParameters['id']!),
+      ),
+      GoRoute(
+        path: 'affiche',
+        builder: (context, state) =>
+            AfficheScreen(commerceId: state.pathParameters['id']!),
       ),
       GoRoute(
         path: 'catalogue',

@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/partage/partage.dart';
+
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/models/enums.dart';
 import '../../../shared/widgets/etat_vide.dart';
 import '../../commandes/commandes_providers.dart';
 import '../../commerce/presentation/libelles.dart';
 import '../data/revenus.dart';
-import '../revenus_providers.dart';
 
 /// Récapitulatif mensuel du commerçant, téléchargeable en CSV.
 class RecapitulatifScreen extends ConsumerStatefulWidget {
@@ -40,8 +41,8 @@ class _RecapitulatifScreenState extends ConsumerState<RecapitulatifScreen> {
     ]);
     try {
       await ref
-          .read(partageFichierProvider)
-          .partager(
+          .read(partageProvider)
+          .partagerFichier(
             nom:
                 'harambee-${mois.annee}-${mois.mois.toString().padLeft(2, '0')}.csv',
             contenu: csv,

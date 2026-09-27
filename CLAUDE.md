@@ -321,3 +321,9 @@ pose la question au lieu de choisir seul.
 - Connexion Google : fournisseur activé dans Firebase ; identifiants OAuth publics dans
   `lib/core/firebase/firebase_options.dart` (client Web = serverClientId, client iOS = clientId,
   schéma inversé dans `ios/Runner/Info.plist`). Android : ajouter l'empreinte SHA-1 dans Firebase.
+- Promotion : page web publique d'un commerce publié, fonction HTTP `commerce?id=…` (`functions/pageCommerce.js`,
+  aperçu de lien Open Graph, bouton « Ouvrir dans l'app » = `harambee://app/explorer/commerce/<id>`, liens des
+  stores dans `LIENS_STORES`). Liens profonds : schéma `harambee` (iOS Info.plist, Android intent-filter hôte
+  `app`) ; route inconnue → Explorer (`onException`). Partage : `lib/core/partage/partage.dart` (texte, image,
+  fichier) ; bouton Partager sur la fiche publique ; affiche A4 avec QR code (`qr_flutter`) dans l'espace pro
+  (`affiche_screen.dart`, commerces publiés seulement). Kit de textes : `docs/promotion.md`.

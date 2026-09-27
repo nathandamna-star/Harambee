@@ -1451,4 +1451,39 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get conversationBloquee => 'Conversa bloqueada';
+
+  @override
+  String get partager => 'Partilhar';
+
+  @override
+  String partagerCommerceTexte(String nom, String lien) {
+    return 'Descubra $nom no Harambee: $lien';
+  }
+
+  @override
+  String get afficheEtLien => 'Cartaz e link para partilhar';
+
+  @override
+  String get afficheTitre => 'Cartaz do seu comércio';
+
+  @override
+  String get afficheAppel => 'Encontre-nos no Harambee';
+
+  @override
+  String get afficheScanner =>
+      'Digitalize para ver os nossos produtos, encomendar e escrever-nos.';
+
+  @override
+  String get afficheAide =>
+      'Imprima este cartaz e coloque-o na montra ou perto da caixa. Os clientes digitalizam o código QR com a câmara do telemóvel.';
+
+  @override
+  String get afficheImprimer => 'Partilhar ou imprimir o cartaz';
+
+  @override
+  String get partagerLien => 'Partilhar o link';
+
+  @override
+  String get afficheIndisponible =>
+      'O cartaz e o link ficarão disponíveis assim que o seu comércio for publicado.';
 }
