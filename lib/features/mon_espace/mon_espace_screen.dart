@@ -99,9 +99,9 @@ class MonEspaceScreen extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 24),
-          if (role == Role.pro)
+          if (ref.watch(roleProfilProvider) == Role.pro)
             const EspacePro()
-          else if (role == Role.client)
+          else
             Card(
               child: ListTile(
                 leading: Icon(

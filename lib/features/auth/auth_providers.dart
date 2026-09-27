@@ -70,6 +70,14 @@ final roleProvider = Provider<Role?>((ref) {
   return ref.watch(profilProvider).value?.role ?? Role.client;
 });
 
+/// Rôle du profil (client ou pro), indépendant du droit administrateur :
+/// un administrateur peut aussi avoir son propre commerce.
+final roleProfilProvider = Provider<Role?>((ref) {
+  final user = ref.watch(utilisateurFirebaseProvider).value;
+  if (user == null) return null;
+  return ref.watch(profilProvider).value?.role ?? Role.client;
+});
+
 /// Choix fait sur l'écran de bienvenue avant de se connecter.
 final roleSouhaiteProvider = NotifierProvider<RoleSouhaite, Role>(
   RoleSouhaite.new,

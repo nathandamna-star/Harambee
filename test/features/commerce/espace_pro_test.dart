@@ -146,6 +146,18 @@ void main() {
     expect(produits.docs.single.data()['prix'], 8.5);
   });
 
+  testWidgets('un administrateur peut aussi créer son commerce', (
+    tester,
+  ) async {
+    ecranTelephone(tester);
+    final banc = await bancConnecte(claims: {'admin': true});
+    await banc.lancer(tester);
+    await ouvrirMonEspace(tester);
+    await toucher(tester, find.text('Vous avez un commerce ?'));
+    await toucher(tester, find.text('Créer la fiche de mon commerce'));
+    expect(find.text('Étape 1 sur 3'), findsOneWidget);
+  });
+
   testWidgets('un client ne peut pas ouvrir l\'espace pro', (tester) async {
     ecranTelephone(tester);
     final banc = await bancConnecte();

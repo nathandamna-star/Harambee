@@ -39,6 +39,7 @@ final routerProvider = Provider<GoRouter>((ref) {
   // Relance les redirections quand la connexion ou le rôle change.
   final rafraichir = ValueNotifier(0);
   ref.listen(roleProvider, (_, _) => rafraichir.value++);
+  ref.listen(roleProfilProvider, (_, _) => rafraichir.value++);
   ref.listen(bienvenueVueProvider, (_, _) => rafraichir.value++);
   ref.onDispose(rafraichir.dispose);
 
@@ -65,7 +66,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       // L'espace pro est réservé aux professionnels.
       if ((lieu.startsWith('${Routes.monEspace}/commerce') ||
               lieu.startsWith(Routes.commandesPro)) &&
-          role != Role.pro) {
+          ref.read(roleProfilProvider) != Role.pro) {
         return Routes.monEspace;
       }
       // L'espace admin est réservé aux administrateurs.
