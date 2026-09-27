@@ -18,6 +18,8 @@ abstract final class Routes {
   static String reglagesCommande(String id) =>
       '/mon-espace/commerce/$id/commande';
   static const tarifs = '/admin/tarifs';
+  static const revenus = '/admin/revenus';
+  static const recapitulatif = '/mon-espace/commandes-pro/recapitulatif';
 
   // Messagerie
   static String conversation(String id) => '/messages/$id';

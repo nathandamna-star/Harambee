@@ -23,6 +23,8 @@ import '../../features/favoris/favoris_screen.dart';
 import '../../features/messages/presentation/conversation_screen.dart';
 import '../../features/messages/presentation/messages_screen.dart';
 import '../../features/mon_espace/mon_espace_screen.dart';
+import '../../features/revenus/presentation/recapitulatif_screen.dart';
+import '../../features/revenus/presentation/revenus_screen.dart';
 import '../../shared/models/produit.dart';
 import '../../shared/widgets/app_shell.dart';
 import '../preferences/preferences.dart';
@@ -119,6 +121,10 @@ final routerProvider = Provider<GoRouter>((ref) {
                     path: 'tarifs',
                     builder: (context, state) => const TarifsScreen(),
                   ),
+                  GoRoute(
+                    path: 'revenus',
+                    builder: (context, state) => const RevenusScreen(),
+                  ),
                 ],
               ),
             ],
@@ -171,6 +177,12 @@ final _routesEspacePro = [
   GoRoute(
     path: 'commandes-pro',
     builder: (context, state) => const ListeCommandesScreen(pourPro: true),
+    routes: [
+      GoRoute(
+        path: 'recapitulatif',
+        builder: (context, state) => const RecapitulatifScreen(),
+      ),
+    ],
   ),
   GoRoute(
     path: 'commerce/nouveau',

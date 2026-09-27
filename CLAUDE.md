@@ -298,4 +298,9 @@ pose la question au lieu de choisir seul.
   `functions/.secret.local` pour l'émulateur) ; clé publiable dans `lib/core/config/stripe.dart` (vide = carte
   désactivée). Le pro ne voit une commande par carte qu'une fois payée. Android : FlutterFragmentActivity +
   thème AppCompat ; iOS : schéma d'URL `harambee` pour le retour Bancontact / 3-D Secure.
+- Revenus (étape 9, partie 3, `lib/features/revenus/`) : calculs purs dans `data/revenus.dart` (commandes
+  comptées = livrées/retirées, et payées si carte). Admin : écran Revenus par mois/pays (commissions, frais de
+  service, écart frais de paiement retenus − réels, « à facturer » par commerce sur les espèces). Pro :
+  récapitulatif mensuel (net, versé par Stripe, encaissé en espèces, dû à Harambee) et export CSV partagé
+  (`;`, BOM UTF-8). La facturation des sommes dues sur les espèces reste manuelle pour l'instant.
 - Vérifier avant chaque commit : `flutter analyze` et `flutter test`.

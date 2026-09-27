@@ -1264,4 +1264,88 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get fraisPaiementCarteAide =>
       'Estimativa das taxas do provedor (Stripe), descontadas do comércio em cada pagamento com cartão.';
+
+  @override
+  String get revenus => 'Receitas';
+
+  @override
+  String get anneePrecedente => 'Ano anterior';
+
+  @override
+  String get anneeSuivante => 'Próximo ano';
+
+  @override
+  String get tousLesPays => 'Todos os países';
+
+  @override
+  String get aucunRevenu => 'Nenhum pedido concluído neste período.';
+
+  @override
+  String get revenusAbonnementsBientot =>
+      'Assinaturas premium e destaques aparecerão aqui quando disponíveis.';
+
+  @override
+  String nCommandes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n pedidos',
+      one: '1 pedido',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get commissions => 'Comissões';
+
+  @override
+  String get ecartFraisPaiement =>
+      'Diferença de taxas de pagamento (retidas − reais)';
+
+  @override
+  String get totalRevenus => 'Receita Harambee';
+
+  @override
+  String get aFacturerEspeces => 'A faturar (pedidos em dinheiro)';
+
+  @override
+  String get recapitulatifMensuel => 'Resumo mensal';
+
+  @override
+  String get aucunRecap => 'Nenhum resumo ainda';
+
+  @override
+  String get aucunRecapAide =>
+      'Aparecerá com seu primeiro pedido entregue ou retirado.';
+
+  @override
+  String get nbCommandesTerminees => 'Pedidos concluídos';
+
+  @override
+  String get dontLivraison => 'dos quais taxas de entrega';
+
+  @override
+  String get verseParStripe => 'Pago pela Stripe (cartões)';
+
+  @override
+  String get encaisseEspeces => 'Recebido em dinheiro';
+
+  @override
+  String get duAHarambee => 'A pagar à Harambee';
+
+  @override
+  String get duAHarambeeAide =>
+      'Taxas de serviço e comissão dos pedidos em dinheiro, faturados no fim do mês.';
+
+  @override
+  String get telechargerCsv => 'Baixar (planilha CSV)';
+
+  @override
+  String get csvDate => 'Data';
+
+  @override
+  String get csvNumero => 'Número';
+
+  @override
+  String get csvClient => 'Cliente';
 }

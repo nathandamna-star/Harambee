@@ -46,6 +46,14 @@ class _ListeCommandesScreenState extends ConsumerState<ListeCommandesScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.pourPro ? l10n.commandes : l10n.mesCommandes),
+          actions: [
+            if (widget.pourPro)
+              IconButton(
+                tooltip: l10n.recapitulatifMensuel,
+                icon: const Icon(Icons.summarize_outlined),
+                onPressed: () => context.push(Routes.recapitulatif),
+              ),
+          ],
           bottom: TabBar(
             tabs: [
               Tab(text: l10n.enCours),

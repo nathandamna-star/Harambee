@@ -37,6 +37,11 @@ class AdminScreen extends ConsumerWidget {
           title: Text(l10n.adminVideTitre),
           actions: [
             IconButton(
+              tooltip: l10n.revenus,
+              icon: const Icon(Icons.bar_chart),
+              onPressed: () => context.push(Routes.revenus),
+            ),
+            IconButton(
               tooltip: l10n.tarifs,
               icon: const Icon(Icons.percent),
               onPressed: () => context.push(Routes.tarifs),

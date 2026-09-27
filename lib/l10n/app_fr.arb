@@ -552,5 +552,36 @@
   "paiementCarteAide": "Recevez les paiements par carte et Bancontact directement sur votre compte bancaire, via Stripe.",
   "activerPaiementCarte": "Activer le paiement par carte",
   "fraisPaiementCarte": "Frais de paiement par carte",
-  "fraisPaiementCarteAide": "Estimation des frais du prestataire (Stripe), retenus au commerce sur chaque paiement par carte."
+  "fraisPaiementCarteAide": "Estimation des frais du prestataire (Stripe), retenus au commerce sur chaque paiement par carte.",
+  "revenus": "Revenus",
+  "anneePrecedente": "Année précédente",
+  "anneeSuivante": "Année suivante",
+  "tousLesPays": "Tous les pays",
+  "aucunRevenu": "Aucune commande terminée sur cette période.",
+  "revenusAbonnementsBientot": "Les abonnements premium et les mises en avant apparaîtront ici quand ils seront disponibles.",
+  "nCommandes": "{n, plural, =1{1 commande} other{{n} commandes}}",
+  "@nCommandes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "commissions": "Commissions",
+  "ecartFraisPaiement": "Écart frais de paiement (retenus − réels)",
+  "totalRevenus": "Revenu Harambee",
+  "aFacturerEspeces": "À facturer (commandes en espèces)",
+  "recapitulatifMensuel": "Récapitulatif mensuel",
+  "aucunRecap": "Pas encore de récapitulatif",
+  "aucunRecapAide": "Il apparaîtra dès votre première commande livrée ou retirée.",
+  "nbCommandesTerminees": "Commandes terminées",
+  "dontLivraison": "dont frais de livraison",
+  "verseParStripe": "Versé par Stripe (cartes)",
+  "encaisseEspeces": "Encaissé en espèces",
+  "duAHarambee": "À régler à Harambee",
+  "duAHarambeeAide": "Frais de service et commission des commandes payées en espèces, facturés en fin de mois.",
+  "telechargerCsv": "Télécharger (tableur CSV)",
+  "csvDate": "Date",
+  "csvNumero": "Numéro",
+  "csvClient": "Client"
 }

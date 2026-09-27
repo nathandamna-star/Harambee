@@ -2337,6 +2337,150 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Estimation des frais du prestataire (Stripe), retenus au commerce sur chaque paiement par carte.'**
   String get fraisPaiementCarteAide;
+
+  /// No description provided for @revenus.
+  ///
+  /// In fr, this message translates to:
+  /// **'Revenus'**
+  String get revenus;
+
+  /// No description provided for @anneePrecedente.
+  ///
+  /// In fr, this message translates to:
+  /// **'Année précédente'**
+  String get anneePrecedente;
+
+  /// No description provided for @anneeSuivante.
+  ///
+  /// In fr, this message translates to:
+  /// **'Année suivante'**
+  String get anneeSuivante;
+
+  /// No description provided for @tousLesPays.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous les pays'**
+  String get tousLesPays;
+
+  /// No description provided for @aucunRevenu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune commande terminée sur cette période.'**
+  String get aucunRevenu;
+
+  /// No description provided for @revenusAbonnementsBientot.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les abonnements premium et les mises en avant apparaîtront ici quand ils seront disponibles.'**
+  String get revenusAbonnementsBientot;
+
+  /// No description provided for @nCommandes.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n, plural, =1{1 commande} other{{n} commandes}}'**
+  String nCommandes(int n);
+
+  /// No description provided for @commissions.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commissions'**
+  String get commissions;
+
+  /// No description provided for @ecartFraisPaiement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Écart frais de paiement (retenus − réels)'**
+  String get ecartFraisPaiement;
+
+  /// No description provided for @totalRevenus.
+  ///
+  /// In fr, this message translates to:
+  /// **'Revenu Harambee'**
+  String get totalRevenus;
+
+  /// No description provided for @aFacturerEspeces.
+  ///
+  /// In fr, this message translates to:
+  /// **'À facturer (commandes en espèces)'**
+  String get aFacturerEspeces;
+
+  /// No description provided for @recapitulatifMensuel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Récapitulatif mensuel'**
+  String get recapitulatifMensuel;
+
+  /// No description provided for @aucunRecap.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas encore de récapitulatif'**
+  String get aucunRecap;
+
+  /// No description provided for @aucunRecapAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Il apparaîtra dès votre première commande livrée ou retirée.'**
+  String get aucunRecapAide;
+
+  /// No description provided for @nbCommandesTerminees.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commandes terminées'**
+  String get nbCommandesTerminees;
+
+  /// No description provided for @dontLivraison.
+  ///
+  /// In fr, this message translates to:
+  /// **'dont frais de livraison'**
+  String get dontLivraison;
+
+  /// No description provided for @verseParStripe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Versé par Stripe (cartes)'**
+  String get verseParStripe;
+
+  /// No description provided for @encaisseEspeces.
+  ///
+  /// In fr, this message translates to:
+  /// **'Encaissé en espèces'**
+  String get encaisseEspeces;
+
+  /// No description provided for @duAHarambee.
+  ///
+  /// In fr, this message translates to:
+  /// **'À régler à Harambee'**
+  String get duAHarambee;
+
+  /// No description provided for @duAHarambeeAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Frais de service et commission des commandes payées en espèces, facturés en fin de mois.'**
+  String get duAHarambeeAide;
+
+  /// No description provided for @telechargerCsv.
+  ///
+  /// In fr, this message translates to:
+  /// **'Télécharger (tableur CSV)'**
+  String get telechargerCsv;
+
+  /// No description provided for @csvDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Date'**
+  String get csvDate;
+
+  /// No description provided for @csvNumero.
+  ///
+  /// In fr, this message translates to:
+  /// **'Numéro'**
+  String get csvNumero;
+
+  /// No description provided for @csvClient.
+  ///
+  /// In fr, this message translates to:
+  /// **'Client'**
+  String get csvClient;
 }
 
 class _AppLocalizationsDelegate

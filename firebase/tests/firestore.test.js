@@ -477,6 +477,17 @@ describe('commandes : lectures de l\'app', () => {
     await assertSucceeds(getDocs(collection(admin(), 'commandes')));
   });
 
+  it('revenus : seul l\'admin liste les commandes d\'une année', async () => {
+    await preparer(env, {
+      ...base,
+      'commandes/c1': { clientId: 'client1', proId: 'pro1', statut: 'retiree', createdAt: new Date('2026-09-12') },
+    });
+    const annee = (db) => query(collection(db, 'commandes'),
+      where('createdAt', '>=', new Date('2026-01-01')), where('createdAt', '<', new Date('2027-01-01')));
+    await assertSucceeds(getDocs(annee(admin())));
+    await assertFails(getDocs(annee(pro())));
+  });
+
   it('le pro accepte en ajoutant une étape à l\'historique', async () => {
     await preparer(env, {
       ...base,

@@ -26,6 +26,8 @@ import 'package:harambee/features/commerce/data/photos_service.dart';
 import 'package:harambee/features/explorer/explorer_providers.dart';
 import 'package:harambee/features/explorer/presentation/carte_resultats.dart';
 import 'package:harambee/features/notifications/notifications_providers.dart';
+import 'package:harambee/features/revenus/data/partage.dart';
+import 'package:harambee/features/revenus/revenus_providers.dart';
 import 'package:harambee/features/notifications/notifications_service.dart';
 import 'package:harambee/shared/models/commerce.dart';
 import 'package:harambee/shared/services/lanceur.dart';
@@ -212,6 +214,18 @@ class FaussesFonctionsCommande implements FonctionsCommande {
   }
 }
 
+/// Partage de fichier simulé.
+class FauxPartage implements PartageFichier {
+  final fichiers = <String, String>{};
+
+  @override
+  Future<void> partager({
+    required String nom,
+    required String contenu,
+    required String typeMime,
+  }) async => fichiers[nom] = contenu;
+}
+
 /// Formulaire de paiement simulé.
 class FauxPaiement implements PaiementService {
   ResultatPaiement resultat = ResultatPaiement.reussi;
@@ -247,6 +261,7 @@ class Banc {
   final notifications = FaussesNotifications();
   late final fonctionsCommande = FaussesFonctionsCommande(firestore);
   final paiement = FauxPaiement();
+  final partage = FauxPartage();
 
   Future<void> lancer(
     WidgetTester tester, {
@@ -271,6 +286,7 @@ class Banc {
           notificationsServiceProvider.overrideWithValue(notifications),
           fonctionsCommandeProvider.overrideWithValue(fonctionsCommande),
           paiementServiceProvider.overrideWithValue(paiement),
+          partageFichierProvider.overrideWithValue(partage),
           fonctionsAdminProvider.overrideWithValue(fonctionsAdmin),
           lanceurProvider.overrideWithValue(lanceur),
           horlogeProvider.overrideWithValue(() => maintenantTest),

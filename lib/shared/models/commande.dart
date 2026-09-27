@@ -162,6 +162,8 @@ class Commande {
     this.instructions,
     this.motifRefus,
     this.createdAt,
+    this.pays,
+    this.fraisPaiementReel,
   });
 
   final String id;
@@ -189,6 +191,12 @@ class Commande {
   final String? instructions;
   final String? motifRefus;
   final DateTime? createdAt;
+
+  /// Pays du commerce (code ISO), pour les revenus par pays.
+  final String? pays;
+
+  /// Frais exacts du prestataire de paiement (carte), connus après paiement.
+  final num? fraisPaiementReel;
 
   /// Numéro court affiché (« #A1B2C3 »).
   String get numero =>
@@ -251,6 +259,8 @@ class Commande {
       instructions: adresse?['instructions'] as String?,
       motifRefus: d['motifRefus'] as String?,
       createdAt: (d['createdAt'] as Timestamp?)?.toDate(),
+      pays: d['pays'] as String?,
+      fraisPaiementReel: d['fraisPaiementReel'] as num?,
     );
   }
 }
