@@ -327,3 +327,6 @@ pose la question au lieu de choisir seul.
   `app`) ; route inconnue → Explorer (`onException`). Partage : `lib/core/partage/partage.dart` (texte, image,
   fichier) ; bouton Partager sur la fiche publique ; affiche A4 avec QR code (`qr_flutter`) dans l'espace pro
   (`affiche_screen.dart`, commerces publiés seulement). Kit de textes : `docs/promotion.md`.
+- Site web du commerce : champ facultatif `siteWeb` (adresse complète http/https), saisie libre normalisée par
+  `normaliserSiteWeb` (`lib/shared/models/site_web.dart`), vérifiée par les règles (`siteWebValide`) ; bouton
+  « Site web » sur la fiche publique, onglet Infos, écran de vérification admin et page web du commerce.

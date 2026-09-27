@@ -7,6 +7,7 @@ import '../../../core/router/routes.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/models/commerce.dart';
 import '../../../shared/models/enums.dart';
+import '../../../shared/models/site_web.dart';
 import '../../../shared/widgets/label_chip.dart';
 import '../../auth/auth_providers.dart';
 import '../commerce_providers.dart';
@@ -72,6 +73,11 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
   );
   late final _adresse = TextEditingController(text: widget.existant?.adresse);
   late final _ville = TextEditingController(text: widget.existant?.ville);
+  late final _siteWeb = TextEditingController(
+    text: widget.existant?.siteWeb == null
+        ? null
+        : siteWebLisible(widget.existant!.siteWeb!),
+  );
   late final _telephone = TextEditingController(
     text: widget.existant?.telephone,
   );
@@ -98,7 +104,14 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
 
   @override
   void dispose() {
-    for (final c in [_nom, _description, _adresse, _ville, _telephone]) {
+    for (final c in [
+      _nom,
+      _description,
+      _adresse,
+      _ville,
+      _telephone,
+      _siteWeb,
+    ]) {
       c.dispose();
     }
     super.dispose();
@@ -187,6 +200,7 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
       adresse: _adresse.text.trim(),
       description: _description.text.trim(),
       telephone: _telephone.text.trim().isEmpty ? null : _telephone.text.trim(),
+      siteWeb: normaliserSiteWeb(_siteWeb.text),
       geo: _geo,
       horaires: _horaires,
       devise: _devise,
@@ -397,6 +411,20 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
         controller: _telephone,
         decoration: InputDecoration(labelText: l10n.champTelephone),
         keyboardType: TextInputType.phone,
+      ),
+      const SizedBox(height: 16),
+      TextFormField(
+        controller: _siteWeb,
+        decoration: InputDecoration(
+          labelText: l10n.champSiteWeb,
+          hintText: l10n.siteWebExemple,
+        ),
+        keyboardType: TextInputType.url,
+        autocorrect: false,
+        validator: (v) =>
+            (v ?? '').trim().isEmpty || normaliserSiteWeb(v!) != null
+            ? null
+            : l10n.siteWebInvalide,
       ),
       const SizedBox(height: 16),
       DropdownButtonFormField<Devise>(

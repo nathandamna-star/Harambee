@@ -29,6 +29,13 @@ test('la page présente le commerce et échappe le HTML', () => {
   assert.match(html, /arrive bientôt/);
 });
 
+test('lien vers le site web, seulement en http(s)', () => {
+  const avecSite = pageCommerce('m', { ...commerce, siteWeb: 'https://chezmama.be' });
+  assert.match(avecSite, /href="https:\/\/chezmama.be"/);
+  const piege = pageCommerce('m', { ...commerce, siteWeb: 'javascript:alert(1)' });
+  assert.doesNotMatch(piege, /javascript:/);
+});
+
 test('lien vers l\'app encodé, page introuvable sans données', () => {
   assert.equal(lienApp('a/b'), 'harambee://app/explorer/commerce/a%2Fb');
   const html = pageIntrouvable();

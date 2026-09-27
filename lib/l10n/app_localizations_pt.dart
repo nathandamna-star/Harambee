@@ -1486,4 +1486,16 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get afficheIndisponible =>
       'O cartaz e o link ficarão disponíveis assim que o seu comércio for publicado.';
+
+  @override
+  String get champSiteWeb => 'Site web (opcional)';
+
+  @override
+  String get siteWebExemple => 'Ex. minhaloja.pt';
+
+  @override
+  String get siteWebInvalide => 'Este endereço de site não é válido.';
+
+  @override
+  String get siteWeb => 'Site web';
 }

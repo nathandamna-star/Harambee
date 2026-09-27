@@ -179,6 +179,7 @@ class _DetailState extends ConsumerState<_Detail> {
                   : '${c.geo!.latitude.toStringAsFixed(5)}, ${c.geo!.longitude.toStringAsFixed(5)}',
             ),
             info(Icons.phone_outlined, l10n.champTelephone, c.telephone),
+            info(Icons.language, l10n.siteWeb, c.siteWeb),
             info(Icons.schedule, l10n.champHoraires, horaires.join('\n')),
             const Divider(height: 32),
             Text(l10n.labelsAConfirmer, style: theme.textTheme.titleMedium),

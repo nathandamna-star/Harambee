@@ -108,6 +108,7 @@ ${labels ? `<ul class="labels">${labels}</ul>` : ''}
 ${note}
 ${commerce.description ? `<p>${echapper(extrait(commerce.description, 600))}</p>` : ''}
 ${commerce.adresse ? `<p class="meta">${echapper(commerce.adresse)}</p>` : ''}
+${/^https?:\/\//i.test(commerce.siteWeb ?? '') ? `<a class="bouton secondaire" href="${echapper(commerce.siteWeb)}" rel="noopener nofollow">Site web du commerce</a>` : ''}
 <a class="bouton principal" href="${echapper(lienApp(id))}">Ouvrir dans l'app Harambee</a>
 ${boutonsStores()}
 </div></article>

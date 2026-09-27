@@ -654,5 +654,9 @@
   "afficheAide": "Imprimez cette affiche et placez-la sur votre vitrine ou près de la caisse. Vos clients scannent le QR code avec l'appareil photo de leur téléphone.",
   "afficheImprimer": "Partager ou imprimer l'affiche",
   "partagerLien": "Partager le lien",
-  "afficheIndisponible": "L'affiche et le lien seront disponibles dès que votre commerce sera publié."
+  "afficheIndisponible": "L'affiche et le lien seront disponibles dès que votre commerce sera publié.",
+  "champSiteWeb": "Site web (facultatif)",
+  "siteWebExemple": "Ex. monmagasin.be",
+  "siteWebInvalide": "Cette adresse de site web n'est pas valide.",
+  "siteWeb": "Site web"
 }

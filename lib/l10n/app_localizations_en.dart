@@ -1486,4 +1486,16 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get afficheIndisponible =>
       'The poster and link will be available as soon as your business is published.';
+
+  @override
+  String get champSiteWeb => 'Website (optional)';
+
+  @override
+  String get siteWebExemple => 'e.g. myshop.com';
+
+  @override
+  String get siteWebInvalide => 'This website address is not valid.';
+
+  @override
+  String get siteWeb => 'Website';
 }

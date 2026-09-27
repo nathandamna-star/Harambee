@@ -436,5 +436,9 @@
   "afficheAide": "Imprima este cartaz e coloque-o na montra ou perto da caixa. Os clientes digitalizam o código QR com a câmara do telemóvel.",
   "afficheImprimer": "Partilhar ou imprimir o cartaz",
   "partagerLien": "Partilhar o link",
-  "afficheIndisponible": "O cartaz e o link ficarão disponíveis assim que o seu comércio for publicado."
+  "afficheIndisponible": "O cartaz e o link ficarão disponíveis assim que o seu comércio for publicado.",
+  "champSiteWeb": "Site web (opcional)",
+  "siteWebExemple": "Ex. minhaloja.pt",
+  "siteWebInvalide": "Este endereço de site não é válido.",
+  "siteWeb": "Site web"
 }

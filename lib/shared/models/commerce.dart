@@ -21,6 +21,7 @@ class Commerce {
     this.ville = '',
     this.horaires = const {},
     this.telephone,
+    this.siteWeb,
     this.devise = Devise.EUR,
     this.commande,
     this.paiementCarteActif = false,
@@ -50,6 +51,9 @@ class Commerce {
   /// Horaires par jour, ex. `{"lundi": ["09:00-12:00", "14:00-19:00"]}`.
   final Map<String, List<String>> horaires;
   final String? telephone;
+
+  /// Site web du commerce (adresse complète, voir `normaliserSiteWeb`).
+  final String? siteWeb;
 
   /// Devise par défaut des prix du catalogue.
   final Devise devise;
@@ -96,6 +100,7 @@ class Commerce {
     ville: ville,
     horaires: horaires,
     telephone: telephone,
+    siteWeb: siteWeb,
     devise: devise,
     commande: commande,
     paiementCarteActif: paiementCarteActif,
@@ -137,6 +142,7 @@ class Commerce {
           e.key as String: List<String>.from(e.value as List? ?? const []),
       },
       telephone: d['telephone'] as String?,
+      siteWeb: d['siteWeb'] as String?,
       devise: enumDepuis(Devise.values, d['devise'] as String?, Devise.EUR),
       commande: ReglagesCommande.depuis(d['commande']),
       paiementCarteActif: d['paiementCarteActif'] as bool? ?? false,
@@ -187,6 +193,7 @@ class Commerce {
     'continent': continent.name,
     'horaires': horaires,
     'telephone': telephone,
+    'siteWeb': siteWeb,
     'devise': devise.name,
     'charteSigneeLe': charteSigneeLe == null
         ? null

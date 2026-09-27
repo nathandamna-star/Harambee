@@ -12,6 +12,7 @@ import '../../../shared/models/commerce.dart';
 import '../../../shared/models/enums.dart';
 import '../../../shared/models/horaires.dart';
 import '../../../shared/models/signalement.dart';
+import '../../../shared/models/site_web.dart';
 import '../../../shared/widgets/dialogue_texte.dart';
 import '../../../shared/widgets/etat_vide.dart';
 import '../../../shared/widgets/label_chip.dart';
@@ -380,6 +381,14 @@ class _EnTeteState extends ConsumerState<_EnTete> {
                       label: Text(l10n.envoyerMessage),
                     ),
                   ),
+                  if (c.siteWeb != null) ...[
+                    const SizedBox(width: 8),
+                    IconButton.outlined(
+                      tooltip: l10n.siteWeb,
+                      icon: const Icon(Icons.language),
+                      onPressed: () => lanceur.ouvrir(Uri.parse(c.siteWeb!)),
+                    ),
+                  ],
                   if (c.telephone != null) ...[
                     const SizedBox(width: 8),
                     IconButton.outlined(
@@ -841,6 +850,14 @@ class _OngletInfos extends ConsumerWidget {
             leading: const Icon(Icons.phone_outlined),
             title: Text(c.telephone!),
             onTap: () => ref.read(lanceurProvider).appeler(c.telephone!),
+          ),
+        if (c.siteWeb != null)
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.language),
+            title: Text(siteWebLisible(c.siteWeb!)),
+            onTap: () =>
+                ref.read(lanceurProvider).ouvrir(Uri.parse(c.siteWeb!)),
           ),
         const SizedBox(height: 8),
         Row(

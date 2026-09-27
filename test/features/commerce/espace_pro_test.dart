@@ -53,6 +53,15 @@ void main() {
       find.widgetWithText(TextFormField, 'Adresse'),
       'Rue des Jardins, Cocody',
     );
+    final site = find.widgetWithText(TextFormField, 'Site web (facultatif)');
+    await tester.ensureVisible(site);
+    await tester.enterText(site, 'mon site');
+    await toucher(tester, find.text('Suivant'));
+    expect(
+      find.text('Cette adresse de site web n\'est pas valide.'),
+      findsOneWidget,
+    );
+    await tester.enterText(site, 'WWW.MaquisAwa.ci');
     await toucher(tester, find.text('Enregistrer la position du commerce'));
     expect(find.text('Position enregistrée'), findsOneWidget);
     await toucher(tester, find.text('Suivant'));
@@ -85,6 +94,7 @@ void main() {
     expect(docs, hasLength(1));
     final d = docs.single.data();
     expect(d['nom'], 'Maquis Chez Awa');
+    expect(d['siteWeb'], 'https://www.maquisawa.ci');
     expect(d['statut'], 'en_verification');
     expect(d['proprietaire'], 'u1');
     expect(d['pays'], 'CI');

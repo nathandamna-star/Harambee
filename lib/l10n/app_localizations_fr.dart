@@ -1493,4 +1493,16 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get afficheIndisponible =>
       'L\'affiche et le lien seront disponibles dès que votre commerce sera publié.';
+
+  @override
+  String get champSiteWeb => 'Site web (facultatif)';
+
+  @override
+  String get siteWebExemple => 'Ex. monmagasin.be';
+
+  @override
+  String get siteWebInvalide => 'Cette adresse de site web n\'est pas valide.';
+
+  @override
+  String get siteWeb => 'Site web';
 }

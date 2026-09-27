@@ -41,6 +41,20 @@ void main() {
     ]);
   });
 
+  testWidgets('site web du commerce : bouton sur la fiche', (tester) async {
+    ecranTelephone(tester);
+    final banc = Banc();
+    await banc.firestore.doc('commerces/mama').set({
+      ...commerce(),
+      'proprietaire': 'pro1',
+      'siteWeb': 'https://www.chezmama.be',
+    });
+    await banc.lancer(tester);
+    await toucher(tester, find.text('Chez Mama'));
+    await toucher(tester, find.byTooltip('Site web'));
+    expect(banc.lanceur.appels, ['ouvrir:https://www.chezmama.be']);
+  });
+
   testWidgets('lien profond vers une fiche, lien inconnu vers Explorer', (
     tester,
   ) async {

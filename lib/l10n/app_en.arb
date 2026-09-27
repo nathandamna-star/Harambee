@@ -436,5 +436,9 @@
   "afficheAide": "Print this poster and put it in your window or near the till. Customers scan the QR code with their phone camera.",
   "afficheImprimer": "Share or print the poster",
   "partagerLien": "Share the link",
-  "afficheIndisponible": "The poster and link will be available as soon as your business is published."
+  "afficheIndisponible": "The poster and link will be available as soon as your business is published.",
+  "champSiteWeb": "Website (optional)",
+  "siteWebExemple": "e.g. myshop.com",
+  "siteWebInvalide": "This website address is not valid.",
+  "siteWeb": "Website"
 }

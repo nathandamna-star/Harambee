@@ -22,6 +22,15 @@ service cloud.firestore {
       return connecte() && request.auth.token.admin == true;
     }
 
+    // Site web facultatif : adresse http(s) complète (voir normaliserSiteWeb).
+    function siteWebValide() {
+      return !('siteWeb' in request.resource.data)
+        || request.resource.data.siteWeb == null
+        || (request.resource.data.siteWeb is string
+          && request.resource.data.siteWeb.size() <= 300
+          && request.resource.data.siteWeb.matches('https?://[^ ]+'));
+    }
+
     function estPro() {
       return connecte()
         && get(/databases/$(database)/documents/users/$(moi())).data.role == 'pro';
@@ -101,6 +110,7 @@ service cloud.firestore {
         && request.resource.data.labelAfricain is bool
         && request.resource.data.labelChretien is bool
         && texte(request.resource.data.nom, 120)
+        && siteWebValide()
         && !request.resource.data.keys().hasAny(['motifRefus', 'verifieLe', 'paiementCarteActif']);
 
       // Le propriétaire modifie sa fiche, sauf les champs réservés.
@@ -109,7 +119,8 @@ service cloud.firestore {
           'statut', 'labelAfricain', 'labelChretien', 'proprietaire',
           'noteMoyenne', 'nbAvis', 'createdAt', 'motifRefus', 'verifieLe',
           'paiementCarteActif'])
-        && texte(request.resource.data.nom, 120);
+        && texte(request.resource.data.nom, 120)
+        && siteWebValide();
 
       // L'admin vérifie : statut, labels, motif de refus.
       allow update: if estAdmin()

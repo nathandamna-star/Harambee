@@ -2721,6 +2721,30 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'L\'affiche et le lien seront disponibles dès que votre commerce sera publié.'**
   String get afficheIndisponible;
+
+  /// No description provided for @champSiteWeb.
+  ///
+  /// In fr, this message translates to:
+  /// **'Site web (facultatif)'**
+  String get champSiteWeb;
+
+  /// No description provided for @siteWebExemple.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ex. monmagasin.be'**
+  String get siteWebExemple;
+
+  /// No description provided for @siteWebInvalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette adresse de site web n\'est pas valide.'**
+  String get siteWebInvalide;
+
+  /// No description provided for @siteWeb.
+  ///
+  /// In fr, this message translates to:
+  /// **'Site web'**
+  String get siteWeb;
 }
 
 class _AppLocalizationsDelegate

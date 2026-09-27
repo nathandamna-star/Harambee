@@ -130,6 +130,16 @@ describe('commerces', () => {
     await assertFails(setDoc(doc(pro(), 'commerces/n5'), commerceValide('pro1', { paiementCarteActif: true })));
   });
 
+  it('site web : adresse http(s) seulement', async () => {
+    await preparer(env, base);
+    const ref = doc(pro(), 'commerces/publie');
+    await assertSucceeds(updateDoc(ref, { siteWeb: 'https://monmagasin.be' }));
+    await assertSucceeds(updateDoc(ref, { siteWeb: null }));
+    await assertFails(updateDoc(ref, { siteWeb: 'javascript:alert(1)' }));
+    await assertFails(updateDoc(ref, { siteWeb: 'https://' + 'a'.repeat(300) + '.be' }));
+    await assertFails(setDoc(doc(pro(), 'commerces/n6'), commerceValide('pro1', { siteWeb: 'ftp://x.be' })));
+  });
+
   it('personne d\'autre ne modifie la fiche', async () => {
     await preparer(env, base);
     await assertFails(updateDoc(doc(autrePro(), 'commerces/publie'), { nom: 'Pirate' }));
