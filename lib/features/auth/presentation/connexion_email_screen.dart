@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/preferences/preferences.dart';
 import '../../../l10n/app_localizations.dart';
 import '../auth_providers.dart';
+import 'liens_legaux.dart';
 import 'message_erreur_auth.dart';
 
 /// Connexion ou création de compte par e-mail et mot de passe.
@@ -198,6 +199,11 @@ class _ConnexionEmailScreenState extends ConsumerState<ConnexionEmailScreen> {
                             _inscription ? l10n.creerCompte : l10n.seConnecter,
                           ),
                   ),
+                  if (_inscription)
+                    const Padding(
+                      padding: EdgeInsets.only(top: 12),
+                      child: LiensLegaux(),
+                    ),
                   if (!_inscription)
                     TextButton(
                       onPressed: _occupe ? null : _motDePasseOublie,

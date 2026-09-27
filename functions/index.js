@@ -4,6 +4,7 @@
 import { initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { getMessaging } from 'firebase-admin/messaging';
+import { getStorage } from 'firebase-admin/storage';
 import { AggregateField, FieldValue, GeoPoint, Timestamp, getFirestore } from 'firebase-admin/firestore';
 import { setGlobalOptions } from 'firebase-functions/v2';
 import { onDocumentCreated, onDocumentUpdated, onDocumentWritten } from 'firebase-functions/v2/firestore';
@@ -471,4 +472,89 @@ export const notifierSuiviCommande = onDocumentUpdated('commandes/{commandeId}',
     notificationCommande({
       commandeId: evenement.params.commandeId, commande: apres, pourPro: cible.pourPro, langue,
     }));
+});
+
+const STATUTS_TERMINES = ['livree', 'retiree', 'refusee', 'annulee'];
+
+/** Supprime tous les documents d'une requête, par lots. */
+async function supprimerRequete(requete) {
+  const db = getFirestore();
+  for (;;) {
+    const s = await requete.limit(400).get();
+    if (s.empty) return;
+    const lot = db.batch();
+    s.docs.forEach((d) => lot.delete(d.ref));
+    await lot.commit();
+  }
+}
+
+async function supprimerFichiers(prefixe) {
+  try {
+    await getStorage().bucket().deleteFiles({ prefix: prefixe });
+  } catch (e) {
+    logger.warn('Suppression de fichiers impossible', { prefixe, message: e.message });
+  }
+}
+
+/**
+ * Suppression du compte (RGPD, et exigence de l'App Store).
+ * - refusée tant qu'une commande est en cours (client ou commerçant) ;
+ * - supprime profil, avis, signalements, conversations, commerces et photos ;
+ * - conserve les commandes terminées, anonymisées (obligations comptables) ;
+ * - supprime enfin le compte de connexion.
+ */
+export const supprimerMonCompte = onCall(async (requete) => {
+  if (!requete.auth) throw new HttpsError('unauthenticated', 'Connexion requise.');
+  const uid = requete.auth.uid;
+  const db = getFirestore();
+
+  const [commeClient, commePro] = await Promise.all([
+    db.collection('commandes').where('clientId', '==', uid).get(),
+    db.collection('commandes').where('proId', '==', uid).get(),
+  ]);
+  const enCours = [...commeClient.docs, ...commePro.docs]
+    .some((d) => !STATUTS_TERMINES.includes(d.data().statut));
+  if (enCours) {
+    throw new HttpsError('failed-precondition', 'commandes-en-cours', { code: 'commandes-en-cours' });
+  }
+
+  // Commandes : anonymisées côté client (le commerce garde sa comptabilité).
+  const lot = db.batch();
+  for (const d of commeClient.docs) {
+    lot.update(d.ref, {
+      clientId: 'compte-supprime',
+      clientNom: '',
+      telephoneClient: '',
+      adresseLivraison: null,
+    });
+  }
+  await lot.commit();
+
+  // Avis et signalements écrits par l'utilisateur.
+  await supprimerRequete(db.collectionGroup('avis').where('auteur', '==', uid));
+  await supprimerRequete(db.collection('signalements').where('auteur', '==', uid));
+
+  // Conversations (et leurs messages et photos) auxquelles il participe.
+  const conversations = await db.collection('conversations').where('participants', 'array-contains', uid).get();
+  for (const c of conversations.docs) {
+    await supprimerRequete(c.ref.collection('messages'));
+    await supprimerFichiers(`conversations/${c.id}/`);
+    await c.ref.delete();
+  }
+
+  // Commerces du professionnel : produits, avis reçus, photos, lien Stripe.
+  const commerces = await db.collection('commerces').where('proprietaire', '==', uid).get();
+  for (const c of commerces.docs) {
+    await supprimerRequete(c.ref.collection('produits'));
+    await supprimerRequete(c.ref.collection('avis'));
+    await supprimerFichiers(`commerces/${c.id}/`);
+    await db.doc(`comptesStripe/${c.id}`).delete();
+    await c.ref.delete();
+  }
+
+  await supprimerFichiers(`users/${uid}/`);
+  await db.doc(`users/${uid}`).delete();
+  await getAuth().deleteUser(uid);
+  logger.info('Compte supprimé', { uid });
+  return { supprime: true };
 });

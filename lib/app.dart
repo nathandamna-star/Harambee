@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'core/preferences/langue.dart';
 import 'core/router/app_router.dart';
 import 'features/auth/auth_providers.dart';
 import 'features/notifications/notifications_providers.dart';
@@ -42,7 +43,9 @@ class _HarambeeAppState extends ConsumerState<HarambeeApp> {
       }
     });
 
+    final langue = ref.watch(langueAppProvider);
     return MaterialApp.router(
+      locale: langue == null ? null : Locale(langue),
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.clair,

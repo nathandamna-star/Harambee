@@ -14,6 +14,7 @@ class Utilisateur {
     this.ville,
     this.pays,
     this.favoris = const [],
+    this.devise,
     this.createdAt,
   });
 
@@ -26,6 +27,9 @@ class Utilisateur {
   final String? ville;
   final String? pays;
   final List<String> favoris;
+
+  /// Devise préférée (code), facultative.
+  final String? devise;
   final DateTime? createdAt;
 
   factory Utilisateur.depuisFirestore(
@@ -42,6 +46,7 @@ class Utilisateur {
       ville: d['ville'] as String?,
       pays: d['pays'] as String?,
       favoris: List<String>.from(d['favoris'] as List? ?? const []),
+      devise: d['devise'] as String?,
       createdAt: (d['createdAt'] as Timestamp?)?.toDate(),
     );
   }

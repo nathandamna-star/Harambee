@@ -83,6 +83,15 @@ class MonEspaceScreen extends ConsumerWidget {
           const SizedBox(height: 12),
           Card(
             child: ListTile(
+              leading: const Icon(Icons.settings_outlined),
+              title: Text(l10n.profilEtReglages),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.push(Routes.profil),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Card(
+            child: ListTile(
               leading: const Icon(Icons.shopping_bag_outlined),
               title: Text(l10n.mesCommandes),
               trailing: const Icon(Icons.chevron_right),

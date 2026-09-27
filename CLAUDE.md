@@ -303,4 +303,11 @@ pose la question au lieu de choisir seul.
   service, écart frais de paiement retenus − réels, « à facturer » par commerce sur les espèces). Pro :
   récapitulatif mensuel (net, versé par Stripe, encaissé en espèces, dû à Harambee) et export CSV partagé
   (`;`, BOM UTF-8). La facturation des sommes dues sur les espèces reste manuelle pour l'instant.
+- Profil (étape 10, `lib/features/profil/`) : nom, langue de l'app (`langueAppProvider`, préférence locale +
+  `users.langue` pour les notifications), devise préférée (`users.devise`, pas encore de conversion de prix),
+  suppression du compte via la Cloud Function `supprimerMonCompte` (refus si commande en cours ; supprime profil,
+  avis, signalements, conversations, commerces, photos, lien Stripe ; anonymise les commandes ; supprime le compte
+  Auth). Index de groupe de collections `avis.auteur` dans `firestore.indexes.json`.
+- Pages légales : modèles FR dans `assets/legal/` (à compléter entre [ ] et à faire relire par un juriste),
+  affichées par `LegalScreen`, accessibles sans compte (`/legal/...`), liens sur l'accueil et à l'inscription.
 - Vérifier avant chaque commit : `flutter analyze` et `flutter test`.

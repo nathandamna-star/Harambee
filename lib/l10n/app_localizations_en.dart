@@ -1347,4 +1347,61 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get csvClient => 'Customer';
+
+  @override
+  String get cgu => 'Terms of use';
+
+  @override
+  String get confidentialite => 'Privacy policy';
+
+  @override
+  String get legalEnFrancais =>
+      'This text is currently only available in French.';
+
+  @override
+  String get enContinuantVousAcceptez => 'By continuing, you accept our:';
+
+  @override
+  String get profilEtReglages => 'Profile and settings';
+
+  @override
+  String get langue => 'Language';
+
+  @override
+  String get langueAuto => 'Phone language';
+
+  @override
+  String get devisePreferee => 'Preferred currency';
+
+  @override
+  String get devisePrefereeAide =>
+      'Prices remain shown in the business\'s currency.';
+
+  @override
+  String get supprimerMonCompte => 'Delete my account';
+
+  @override
+  String get supprimerCompteTitre => 'Delete your account?';
+
+  @override
+  String get supprimerCompteTexte =>
+      'Your profile, favorites, reviews, messages and, if you are a business owner, your pages and catalog will be permanently deleted. Past orders are kept without your name or contact details, for the businesses\' accounting.';
+
+  @override
+  String get motConfirmationSuppression => 'DELETE';
+
+  @override
+  String tapezPourConfirmer(String mot) {
+    return 'Type $mot to confirm';
+  }
+
+  @override
+  String get supprimerDefinitivement => 'Delete permanently';
+
+  @override
+  String get compteSupprime => 'Your account has been deleted.';
+
+  @override
+  String get erreurSuppressionCommandes =>
+      'You have ongoing orders. Wait until they are completed or cancel them before deleting your account.';
 }

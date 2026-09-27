@@ -26,6 +26,8 @@ import 'package:harambee/features/commerce/data/photos_service.dart';
 import 'package:harambee/features/explorer/explorer_providers.dart';
 import 'package:harambee/features/explorer/presentation/carte_resultats.dart';
 import 'package:harambee/features/notifications/notifications_providers.dart';
+import 'package:harambee/features/profil/compte_service.dart';
+import 'package:harambee/features/profil/profil_screen.dart';
 import 'package:harambee/features/revenus/data/partage.dart';
 import 'package:harambee/features/revenus/revenus_providers.dart';
 import 'package:harambee/features/notifications/notifications_service.dart';
@@ -214,6 +216,18 @@ class FaussesFonctionsCommande implements FonctionsCommande {
   }
 }
 
+/// Suppression de compte simulée.
+class FauxCompteService implements CompteService {
+  int appels = 0;
+  ErreurSuppression? erreur;
+
+  @override
+  Future<void> supprimerMonCompte() async {
+    appels++;
+    if (erreur != null) throw erreur!;
+  }
+}
+
 /// Partage de fichier simulé.
 class FauxPartage implements PartageFichier {
   final fichiers = <String, String>{};
@@ -262,6 +276,7 @@ class Banc {
   late final fonctionsCommande = FaussesFonctionsCommande(firestore);
   final paiement = FauxPaiement();
   final partage = FauxPartage();
+  final compte = FauxCompteService();
 
   Future<void> lancer(
     WidgetTester tester, {
@@ -287,6 +302,7 @@ class Banc {
           fonctionsCommandeProvider.overrideWithValue(fonctionsCommande),
           paiementServiceProvider.overrideWithValue(paiement),
           partageFichierProvider.overrideWithValue(partage),
+          compteServiceProvider.overrideWithValue(compte),
           fonctionsAdminProvider.overrideWithValue(fonctionsAdmin),
           lanceurProvider.overrideWithValue(lanceur),
           horlogeProvider.overrideWithValue(() => maintenantTest),

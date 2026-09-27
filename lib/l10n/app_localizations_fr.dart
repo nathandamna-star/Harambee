@@ -1354,4 +1354,61 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get csvClient => 'Client';
+
+  @override
+  String get cgu => 'Conditions d\'utilisation';
+
+  @override
+  String get confidentialite => 'Politique de confidentialité';
+
+  @override
+  String get legalEnFrancais =>
+      'Ce texte n\'existe pour l\'instant qu\'en français.';
+
+  @override
+  String get enContinuantVousAcceptez => 'En continuant, vous acceptez nos :';
+
+  @override
+  String get profilEtReglages => 'Profil et réglages';
+
+  @override
+  String get langue => 'Langue';
+
+  @override
+  String get langueAuto => 'Celle du téléphone';
+
+  @override
+  String get devisePreferee => 'Devise préférée';
+
+  @override
+  String get devisePrefereeAide =>
+      'Les prix restent affichés dans la devise du commerce.';
+
+  @override
+  String get supprimerMonCompte => 'Supprimer mon compte';
+
+  @override
+  String get supprimerCompteTitre => 'Supprimer votre compte ?';
+
+  @override
+  String get supprimerCompteTexte =>
+      'Votre profil, vos favoris, vos avis, vos messages et, si vous êtes commerçant, vos fiches et votre catalogue seront définitivement supprimés. Vos commandes passées sont conservées sans votre nom ni vos coordonnées, pour la comptabilité des commerces.';
+
+  @override
+  String get motConfirmationSuppression => 'SUPPRIMER';
+
+  @override
+  String tapezPourConfirmer(String mot) {
+    return 'Tapez $mot pour confirmer';
+  }
+
+  @override
+  String get supprimerDefinitivement => 'Supprimer définitivement';
+
+  @override
+  String get compteSupprime => 'Votre compte a été supprimé.';
+
+  @override
+  String get erreurSuppressionCommandes =>
+      'Vous avez des commandes en cours. Attendez qu\'elles soient terminées ou annulez-les avant de supprimer votre compte.';
 }

@@ -1348,4 +1348,60 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get csvClient => 'Cliente';
+
+  @override
+  String get cgu => 'Termos de uso';
+
+  @override
+  String get confidentialite => 'Política de privacidade';
+
+  @override
+  String get legalEnFrancais =>
+      'Este texto está disponível apenas em francês por enquanto.';
+
+  @override
+  String get enContinuantVousAcceptez => 'Ao continuar, você aceita nossos:';
+
+  @override
+  String get profilEtReglages => 'Perfil e configurações';
+
+  @override
+  String get langue => 'Idioma';
+
+  @override
+  String get langueAuto => 'Idioma do telefone';
+
+  @override
+  String get devisePreferee => 'Moeda preferida';
+
+  @override
+  String get devisePrefereeAide => 'Os preços continuam na moeda do comércio.';
+
+  @override
+  String get supprimerMonCompte => 'Excluir minha conta';
+
+  @override
+  String get supprimerCompteTitre => 'Excluir sua conta?';
+
+  @override
+  String get supprimerCompteTexte =>
+      'Seu perfil, favoritos, avaliações, mensagens e, se você for comerciante, suas páginas e catálogo serão excluídos definitivamente. Pedidos anteriores são mantidos sem seu nome nem seus contatos, para a contabilidade dos comércios.';
+
+  @override
+  String get motConfirmationSuppression => 'EXCLUIR';
+
+  @override
+  String tapezPourConfirmer(String mot) {
+    return 'Digite $mot para confirmar';
+  }
+
+  @override
+  String get supprimerDefinitivement => 'Excluir definitivamente';
+
+  @override
+  String get compteSupprime => 'Sua conta foi excluída.';
+
+  @override
+  String get erreurSuppressionCommandes =>
+      'Você tem pedidos em andamento. Aguarde a conclusão ou cancele-os antes de excluir sua conta.';
 }

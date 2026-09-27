@@ -8,6 +8,7 @@ import '../../../core/router/routes.dart';
 import '../../../l10n/app_localizations.dart';
 import '../auth_providers.dart';
 import '../domain/role.dart';
+import 'liens_legaux.dart';
 import 'message_erreur_auth.dart';
 
 /// Premier écran : choix client / pro, puis mode de connexion.
@@ -137,6 +138,8 @@ class _BienvenueScreenState extends ConsumerState<BienvenueScreen> {
                     },
                     child: Text(l10n.explorerSansCompte),
                   ),
+                  const SizedBox(height: 16),
+                  const LiensLegaux(),
                 ],
               ],
             ),

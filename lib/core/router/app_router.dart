@@ -22,7 +22,9 @@ import '../../features/explorer/presentation/fiche_publique_screen.dart';
 import '../../features/favoris/favoris_screen.dart';
 import '../../features/messages/presentation/conversation_screen.dart';
 import '../../features/messages/presentation/messages_screen.dart';
+import '../../features/legal/legal_screen.dart';
 import '../../features/mon_espace/mon_espace_screen.dart';
+import '../../features/profil/profil_screen.dart';
 import '../../features/revenus/presentation/recapitulatif_screen.dart';
 import '../../features/revenus/presentation/revenus_screen.dart';
 import '../../shared/models/produit.dart';
@@ -46,6 +48,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       final role = ref.read(roleProvider);
       final lieu = state.matchedLocation;
       final surBienvenue = lieu.startsWith(Routes.bienvenue);
+      // Pages légales : toujours accessibles.
+      if (lieu.startsWith('/legal')) return null;
 
       // Une fois connecté, on quitte les écrans de connexion.
       if (role != null && surBienvenue) {
@@ -68,6 +72,15 @@ final routerProvider = Provider<GoRouter>((ref) {
       return null;
     },
     routes: [
+      GoRoute(
+        path: Routes.cgu,
+        builder: (context, state) => const LegalScreen(page: PageLegale.cgu),
+      ),
+      GoRoute(
+        path: Routes.confidentialite,
+        builder: (context, state) =>
+            const LegalScreen(page: PageLegale.confidentialite),
+      ),
       GoRoute(
         path: Routes.bienvenue,
         builder: (context, state) => const BienvenueScreen(),
@@ -163,6 +176,7 @@ final _routeFiche = GoRoute(
 );
 
 final _routesEspacePro = [
+  GoRoute(path: 'profil', builder: (context, state) => const ProfilScreen()),
   GoRoute(
     path: 'commandes',
     builder: (context, state) => const ListeCommandesScreen(pourPro: false),

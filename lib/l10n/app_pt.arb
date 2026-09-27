@@ -396,5 +396,22 @@
   "telechargerCsv": "Baixar (planilha CSV)",
   "csvDate": "Data",
   "csvNumero": "Número",
-  "csvClient": "Cliente"
+  "csvClient": "Cliente",
+  "cgu": "Termos de uso",
+  "confidentialite": "Política de privacidade",
+  "legalEnFrancais": "Este texto está disponível apenas em francês por enquanto.",
+  "enContinuantVousAcceptez": "Ao continuar, você aceita nossos:",
+  "profilEtReglages": "Perfil e configurações",
+  "langue": "Idioma",
+  "langueAuto": "Idioma do telefone",
+  "devisePreferee": "Moeda preferida",
+  "devisePrefereeAide": "Os preços continuam na moeda do comércio.",
+  "supprimerMonCompte": "Excluir minha conta",
+  "supprimerCompteTitre": "Excluir sua conta?",
+  "supprimerCompteTexte": "Seu perfil, favoritos, avaliações, mensagens e, se você for comerciante, suas páginas e catálogo serão excluídos definitivamente. Pedidos anteriores são mantidos sem seu nome nem seus contatos, para a contabilidade dos comércios.",
+  "motConfirmationSuppression": "EXCLUIR",
+  "tapezPourConfirmer": "Digite {mot} para confirmar",
+  "supprimerDefinitivement": "Excluir definitivamente",
+  "compteSupprime": "Sua conta foi excluída.",
+  "erreurSuppressionCommandes": "Você tem pedidos em andamento. Aguarde a conclusão ou cancele-os antes de excluir sua conta."
 }

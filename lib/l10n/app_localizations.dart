@@ -2481,6 +2481,108 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Client'**
   String get csvClient;
+
+  /// No description provided for @cgu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Conditions d\'utilisation'**
+  String get cgu;
+
+  /// No description provided for @confidentialite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Politique de confidentialité'**
+  String get confidentialite;
+
+  /// No description provided for @legalEnFrancais.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce texte n\'existe pour l\'instant qu\'en français.'**
+  String get legalEnFrancais;
+
+  /// No description provided for @enContinuantVousAcceptez.
+  ///
+  /// In fr, this message translates to:
+  /// **'En continuant, vous acceptez nos :'**
+  String get enContinuantVousAcceptez;
+
+  /// No description provided for @profilEtReglages.
+  ///
+  /// In fr, this message translates to:
+  /// **'Profil et réglages'**
+  String get profilEtReglages;
+
+  /// No description provided for @langue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Langue'**
+  String get langue;
+
+  /// No description provided for @langueAuto.
+  ///
+  /// In fr, this message translates to:
+  /// **'Celle du téléphone'**
+  String get langueAuto;
+
+  /// No description provided for @devisePreferee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Devise préférée'**
+  String get devisePreferee;
+
+  /// No description provided for @devisePrefereeAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les prix restent affichés dans la devise du commerce.'**
+  String get devisePrefereeAide;
+
+  /// No description provided for @supprimerMonCompte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer mon compte'**
+  String get supprimerMonCompte;
+
+  /// No description provided for @supprimerCompteTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer votre compte ?'**
+  String get supprimerCompteTitre;
+
+  /// No description provided for @supprimerCompteTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre profil, vos favoris, vos avis, vos messages et, si vous êtes commerçant, vos fiches et votre catalogue seront définitivement supprimés. Vos commandes passées sont conservées sans votre nom ni vos coordonnées, pour la comptabilité des commerces.'**
+  String get supprimerCompteTexte;
+
+  /// No description provided for @motConfirmationSuppression.
+  ///
+  /// In fr, this message translates to:
+  /// **'SUPPRIMER'**
+  String get motConfirmationSuppression;
+
+  /// No description provided for @tapezPourConfirmer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tapez {mot} pour confirmer'**
+  String tapezPourConfirmer(String mot);
+
+  /// No description provided for @supprimerDefinitivement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer définitivement'**
+  String get supprimerDefinitivement;
+
+  /// No description provided for @compteSupprime.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre compte a été supprimé.'**
+  String get compteSupprime;
+
+  /// No description provided for @erreurSuppressionCommandes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous avez des commandes en cours. Attendez qu\'elles soient terminées ou annulez-les avant de supprimer votre compte.'**
+  String get erreurSuppressionCommandes;
 }
 
 class _AppLocalizationsDelegate

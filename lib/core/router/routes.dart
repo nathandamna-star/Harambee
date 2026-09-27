@@ -1,5 +1,8 @@
 abstract final class Routes {
   static const bienvenue = '/bienvenue';
+  static const cgu = '/legal/cgu';
+  static const confidentialite = '/legal/confidentialite';
+  static const profil = '/mon-espace/profil';
   static const connexionEmail = '/bienvenue/email';
   static const explorer = '/explorer';
   static const favoris = '/favoris';

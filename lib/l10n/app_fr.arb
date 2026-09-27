@@ -583,5 +583,29 @@
   "telechargerCsv": "Télécharger (tableur CSV)",
   "csvDate": "Date",
   "csvNumero": "Numéro",
-  "csvClient": "Client"
+  "csvClient": "Client",
+  "cgu": "Conditions d'utilisation",
+  "confidentialite": "Politique de confidentialité",
+  "legalEnFrancais": "Ce texte n'existe pour l'instant qu'en français.",
+  "enContinuantVousAcceptez": "En continuant, vous acceptez nos :",
+  "profilEtReglages": "Profil et réglages",
+  "langue": "Langue",
+  "langueAuto": "Celle du téléphone",
+  "devisePreferee": "Devise préférée",
+  "devisePrefereeAide": "Les prix restent affichés dans la devise du commerce.",
+  "supprimerMonCompte": "Supprimer mon compte",
+  "supprimerCompteTitre": "Supprimer votre compte ?",
+  "supprimerCompteTexte": "Votre profil, vos favoris, vos avis, vos messages et, si vous êtes commerçant, vos fiches et votre catalogue seront définitivement supprimés. Vos commandes passées sont conservées sans votre nom ni vos coordonnées, pour la comptabilité des commerces.",
+  "motConfirmationSuppression": "SUPPRIMER",
+  "tapezPourConfirmer": "Tapez {mot} pour confirmer",
+  "@tapezPourConfirmer": {
+    "placeholders": {
+      "mot": {
+        "type": "String"
+      }
+    }
+  },
+  "supprimerDefinitivement": "Supprimer définitivement",
+  "compteSupprime": "Votre compte a été supprimé.",
+  "erreurSuppressionCommandes": "Vous avez des commandes en cours. Attendez qu'elles soient terminées ou annulez-les avant de supprimer votre compte."
 }

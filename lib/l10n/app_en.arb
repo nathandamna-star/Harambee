@@ -396,5 +396,22 @@
   "telechargerCsv": "Download (CSV spreadsheet)",
   "csvDate": "Date",
   "csvNumero": "Number",
-  "csvClient": "Customer"
+  "csvClient": "Customer",
+  "cgu": "Terms of use",
+  "confidentialite": "Privacy policy",
+  "legalEnFrancais": "This text is currently only available in French.",
+  "enContinuantVousAcceptez": "By continuing, you accept our:",
+  "profilEtReglages": "Profile and settings",
+  "langue": "Language",
+  "langueAuto": "Phone language",
+  "devisePreferee": "Preferred currency",
+  "devisePrefereeAide": "Prices remain shown in the business's currency.",
+  "supprimerMonCompte": "Delete my account",
+  "supprimerCompteTitre": "Delete your account?",
+  "supprimerCompteTexte": "Your profile, favorites, reviews, messages and, if you are a business owner, your pages and catalog will be permanently deleted. Past orders are kept without your name or contact details, for the businesses' accounting.",
+  "motConfirmationSuppression": "DELETE",
+  "tapezPourConfirmer": "Type {mot} to confirm",
+  "supprimerDefinitivement": "Delete permanently",
+  "compteSupprime": "Your account has been deleted.",
+  "erreurSuppressionCommandes": "You have ongoing orders. Wait until they are completed or cancel them before deleting your account."
 }
