@@ -24,7 +24,7 @@ class CommerceRepository {
   final FirebaseFirestore firestore;
   final PhotosService photos;
 
-  static const maxPhotosFiche = 6;
+  static const maxPhotosFiche = 12;
 
   CollectionReference<Map<String, dynamic>> get _commerces =>
       firestore.collection('commerces');

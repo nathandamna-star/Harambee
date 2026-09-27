@@ -240,7 +240,7 @@ pose la question au lieu de choisir seul.
   les 2 tests Storage qui en dépendent y échouent, mais passent sur GitHub Actions (`.github/workflows/ci.yml`).
 - Espace pro (`lib/features/commerce/`) : fiche en 3 étapes (`fiche_commerce_screen.dart`, sert aussi à la
   modification), catalogue (`catalogue_screen.dart`, `produit_screen.dart`), `CommerceRepository`, `PhotosService`.
-  Photos compressées par image_picker (1600 px, qualité 80), 6 max par fiche, dans Storage `commerces/{id}/…`.
+  Photos compressées par image_picker (1600 px, qualité 80), 12 max par fiche, dans Storage `commerces/{id}/…`.
   Geohash calculé à l'enregistrement (`dart_geohash`, attention : longitude en premier).
   Pays proposés : `lib/features/commerce/data/pays.dart` (continent et devise par défaut en découlent).
 - Charte chrétienne : texte provisoire (`charteTexteProvisoire` dans les ARB), à remplacer par le texte fourni.

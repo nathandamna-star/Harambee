@@ -65,12 +65,12 @@ void main() {
     },
   );
 
-  test('au plus 6 photos par fiche', () async {
+  test('au plus 12 photos par fiche', () async {
     final id = await repo.creer(paris, [
-      for (var i = 0; i < 9; i++) PhotoFiche.nouvelle(imageTest),
+      for (var i = 0; i < 15; i++) PhotoFiche.nouvelle(imageTest),
     ]);
     final c = Commerce.depuisFirestore(await db.doc('commerces/$id').get());
-    expect(c.photos, hasLength(CommerceRepository.maxPhotosFiche));
+    expect(c.photos, hasLength(12));
   });
 
   test('commerces du pro : uniquement les siens', () async {
