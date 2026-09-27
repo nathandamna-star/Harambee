@@ -22,6 +22,13 @@ abstract interface class FonctionsAdmin {
 
   /// Nomme ([admin] = true) ou retire un administrateur.
   Future<void> definirAdmin(String email, {required bool admin});
+
+  /// Charge les commerces de démonstration ; renvoie leur nombre.
+  Future<int> chargerDemo();
+
+  /// Supprime toutes les données de démonstration ; renvoie le nombre de
+  /// commerces supprimés.
+  Future<int> supprimerDemo();
 }
 
 class FonctionsAdminFirebase implements FonctionsAdmin {
@@ -37,9 +44,17 @@ class FonctionsAdminFirebase implements FonctionsAdmin {
   Future<void> definirAdmin(String email, {required bool admin}) =>
       _appeler('definirAdmin', {'email': email.trim(), 'admin': admin});
 
-  Future<void> _appeler(String nom, Object? donnees) async {
+  @override
+  Future<int> chargerDemo() async =>
+      ((await _appeler('chargerDemo', null)) as Map)['commerces'] as int;
+
+  @override
+  Future<int> supprimerDemo() async =>
+      ((await _appeler('supprimerDemo', null)) as Map)['commerces'] as int;
+
+  Future<Object?> _appeler(String nom, Object? donnees) async {
     try {
-      await fonctions.httpsCallable(nom).call<Object?>(donnees);
+      return (await fonctions.httpsCallable(nom).call<Object?>(donnees)).data;
     } on FirebaseFunctionsException catch (e) {
       throw ExceptionAdmin(switch (e.code) {
         'permission-denied' || 'unauthenticated' => ErreurAdmin.nonAutorise,

@@ -607,5 +607,25 @@
   },
   "supprimerDefinitivement": "Supprimer définitivement",
   "compteSupprime": "Votre compte a été supprimé.",
-  "erreurSuppressionCommandes": "Vous avez des commandes en cours. Attendez qu'elles soient terminées ou annulez-les avant de supprimer votre compte."
+  "erreurSuppressionCommandes": "Vous avez des commandes en cours. Attendez qu'elles soient terminées ou annulez-les avant de supprimer votre compte.",
+  "donneesDemo": "Données de démonstration",
+  "donneesDemoAide": "Dix commerces fictifs à Bruxelles, avec produits et avis, pour les essais et les captures d'écran. ⚠️ À supprimer avant le lancement.",
+  "chargerDemo": "Charger",
+  "supprimerDemo": "Tout supprimer",
+  "demoChargee": "{n} commerces de démonstration chargés.",
+  "@demoChargee": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "demoSupprimee": "{n} commerces de démonstration supprimés.",
+  "@demoSupprimee": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  }
 }

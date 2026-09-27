@@ -1404,4 +1404,27 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get erreurSuppressionCommandes =>
       'Você tem pedidos em andamento. Aguarde a conclusão ou cancele-os antes de excluir sua conta.';
+
+  @override
+  String get donneesDemo => 'Dados de demonstração';
+
+  @override
+  String get donneesDemoAide =>
+      'Dez comércios fictícios em Bruxelas, com produtos e avaliações, para testes e capturas de tela. ⚠️ Exclua antes do lançamento.';
+
+  @override
+  String get chargerDemo => 'Carregar';
+
+  @override
+  String get supprimerDemo => 'Excluir tudo';
+
+  @override
+  String demoChargee(int n) {
+    return '$n comércios de demonstração carregados.';
+  }
+
+  @override
+  String demoSupprimee(int n) {
+    return '$n comércios de demonstração excluídos.';
+  }
 }

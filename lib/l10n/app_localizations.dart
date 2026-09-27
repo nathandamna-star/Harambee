@@ -2583,6 +2583,42 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Vous avez des commandes en cours. Attendez qu\'elles soient terminées ou annulez-les avant de supprimer votre compte.'**
   String get erreurSuppressionCommandes;
+
+  /// No description provided for @donneesDemo.
+  ///
+  /// In fr, this message translates to:
+  /// **'Données de démonstration'**
+  String get donneesDemo;
+
+  /// No description provided for @donneesDemoAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dix commerces fictifs à Bruxelles, avec produits et avis, pour les essais et les captures d\'écran. ⚠️ À supprimer avant le lancement.'**
+  String get donneesDemoAide;
+
+  /// No description provided for @chargerDemo.
+  ///
+  /// In fr, this message translates to:
+  /// **'Charger'**
+  String get chargerDemo;
+
+  /// No description provided for @supprimerDemo.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tout supprimer'**
+  String get supprimerDemo;
+
+  /// No description provided for @demoChargee.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n} commerces de démonstration chargés.'**
+  String demoChargee(int n);
+
+  /// No description provided for @demoSupprimee.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n} commerces de démonstration supprimés.'**
+  String demoSupprimee(int n);
 }
 
 class _AppLocalizationsDelegate

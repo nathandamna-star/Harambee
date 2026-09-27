@@ -413,5 +413,11 @@
   "tapezPourConfirmer": "Type {mot} to confirm",
   "supprimerDefinitivement": "Delete permanently",
   "compteSupprime": "Your account has been deleted.",
-  "erreurSuppressionCommandes": "You have ongoing orders. Wait until they are completed or cancel them before deleting your account."
+  "erreurSuppressionCommandes": "You have ongoing orders. Wait until they are completed or cancel them before deleting your account.",
+  "donneesDemo": "Demo data",
+  "donneesDemoAide": "Ten fictitious businesses in Brussels, with products and reviews, for testing and screenshots. ⚠️ Delete before launch.",
+  "chargerDemo": "Load",
+  "supprimerDemo": "Delete all",
+  "demoChargee": "{n} demo businesses loaded.",
+  "demoSupprimee": "{n} demo businesses deleted."
 }

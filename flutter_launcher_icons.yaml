@@ -1,0 +1,10 @@
+# Icône provisoire (assets/icone/). Régénérer après modification :
+#   dart run flutter_launcher_icons
+flutter_launcher_icons:
+  image_path: "assets/icone/icone.png"
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  adaptive_icon_background: "#B4451F"
+  adaptive_icon_foreground: "assets/icone/icone_premier_plan.png"
+  min_sdk_android: 24

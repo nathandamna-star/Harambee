@@ -4,7 +4,9 @@
 import { initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { getMessaging } from 'firebase-admin/messaging';
-import { getStorage } from 'firebase-admin/storage';
+import { getDownloadURL, getStorage } from 'firebase-admin/storage';
+import { readFileSync } from 'node:fs';
+import { construireCommerce } from './demo/construire.js';
 import { AggregateField, FieldValue, GeoPoint, Timestamp, getFirestore } from 'firebase-admin/firestore';
 import { setGlobalOptions } from 'firebase-functions/v2';
 import { onDocumentCreated, onDocumentUpdated, onDocumentWritten } from 'firebase-functions/v2/firestore';
@@ -557,4 +559,60 @@ export const supprimerMonCompte = onCall(async (requete) => {
   await getAuth().deleteUser(uid);
   logger.info('Compte supprimé', { uid });
   return { supprime: true };
+});
+
+function exigerAdmin(requete) {
+  if (requete.auth?.token.admin !== true) {
+    throw new HttpsError('permission-denied', 'Réservé aux administrateurs.');
+  }
+}
+
+/**
+ * Charge (ou recharge) les commerces de démonstration à Bruxelles, pour les
+ * essais et les captures d'écran. À supprimer avant le lancement.
+ */
+export const chargerDemo = onCall({ timeoutSeconds: 120 }, async (requete) => {
+  exigerAdmin(requete);
+  const db = getFirestore();
+  const bucket = getStorage().bucket();
+  const donnees = JSON.parse(readFileSync(new URL('./demo/commerces.json', import.meta.url)));
+  const maintenant = Timestamp.now();
+
+  for (const [i, c] of donnees.entries()) {
+    const d = construireCommerce(c, i, maintenant);
+    const ref = db.doc(`commerces/${d.id}`);
+    // Photo générée (functions/demo/photos), envoyée dans Storage.
+    const fichier = bucket.file(`commerces/${d.id}/photos/couverture.jpg`);
+    await fichier.save(readFileSync(new URL(`./demo/photos/${c.slug}.jpg`, import.meta.url)), {
+      contentType: 'image/jpeg',
+    });
+    const photo = await getDownloadURL(fichier);
+    await ref.set({ ...d.commerce, geo: new GeoPoint(d.lat, d.lng), photos: [photo] });
+    const lot = db.batch();
+    for (const p of d.produits) lot.set(ref.collection('produits').doc(p.id), p.data);
+    for (const a of d.avis) lot.set(ref.collection('avis').doc(a.id), a.data);
+    await lot.commit();
+  }
+  return { commerces: donnees.length };
+});
+
+/** Supprime toutes les données de démonstration (commerces, commandes, conversations). */
+export const supprimerDemo = onCall({ timeoutSeconds: 120 }, async (requete) => {
+  exigerAdmin(requete);
+  const db = getFirestore();
+  const commerces = await db.collection('commerces').where('demo', '==', true).get();
+  for (const c of commerces.docs) {
+    await supprimerRequete(c.ref.collection('produits'));
+    await supprimerRequete(c.ref.collection('avis'));
+    await supprimerRequete(db.collection('commandes').where('commerceId', '==', c.id));
+    const conversations = await db.collection('conversations').where('commerceId', '==', c.id).get();
+    for (const conv of conversations.docs) {
+      await supprimerRequete(conv.ref.collection('messages'));
+      await supprimerFichiers(`conversations/${conv.id}/`);
+      await conv.ref.delete();
+    }
+    await supprimerFichiers(`commerces/${c.id}/`);
+    await c.ref.delete();
+  }
+  return { commerces: commerces.size };
 });

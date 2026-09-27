@@ -51,6 +51,16 @@ class AdminScreen extends ConsumerWidget {
               icon: const Icon(Icons.manage_accounts_outlined),
               onPressed: () => context.push(Routes.administrateurs),
             ),
+            PopupMenuButton<String>(
+              tooltip: l10n.actions,
+              onSelected: (_) => showDialog<void>(
+                context: context,
+                builder: (_) => const _DialogueDemo(),
+              ),
+              itemBuilder: (_) => [
+                PopupMenuItem(value: 'demo', child: Text(l10n.donneesDemo)),
+              ],
+            ),
           ],
           bottom: TabBar(
             isScrollable: true,
@@ -275,6 +285,78 @@ class _TuileSignalement extends ConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// Chargement ou suppression des commerces de démonstration.
+class _DialogueDemo extends ConsumerStatefulWidget {
+  const _DialogueDemo();
+
+  @override
+  ConsumerState<_DialogueDemo> createState() => _DialogueDemoState();
+}
+
+class _DialogueDemoState extends ConsumerState<_DialogueDemo> {
+  bool _occupe = false;
+  String? _resultat;
+
+  Future<void> _faire(
+    Future<int> Function() action,
+    String Function(int) message,
+  ) async {
+    final l10n = AppLocalizations.of(context);
+    setState(() {
+      _occupe = true;
+      _resultat = null;
+    });
+    try {
+      final n = await action();
+      if (mounted) setState(() => _resultat = message(n));
+    } catch (_) {
+      if (mounted) setState(() => _resultat = l10n.erreurInconnue);
+    } finally {
+      if (mounted) setState(() => _occupe = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final fonctions = ref.read(fonctionsAdminProvider);
+    return AlertDialog(
+      title: Text(l10n.donneesDemo),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(l10n.donneesDemoAide),
+          if (_occupe) ...[
+            const SizedBox(height: 16),
+            Center(
+              child: CircularProgressIndicator(semanticsLabel: l10n.chargement),
+            ),
+          ],
+          if (_resultat != null) ...[
+            const SizedBox(height: 16),
+            Text(_resultat!, style: Theme.of(context).textTheme.titleSmall),
+          ],
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: _occupe
+              ? null
+              : () => _faire(fonctions.supprimerDemo, l10n.demoSupprimee),
+          child: Text(l10n.supprimerDemo),
+        ),
+        FilledButton(
+          onPressed: _occupe
+              ? null
+              : () => _faire(fonctions.chargerDemo, l10n.demoChargee),
+          child: Text(l10n.chargerDemo),
+        ),
+      ],
     );
   }
 }

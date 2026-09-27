@@ -1411,4 +1411,27 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get erreurSuppressionCommandes =>
       'Vous avez des commandes en cours. Attendez qu\'elles soient terminées ou annulez-les avant de supprimer votre compte.';
+
+  @override
+  String get donneesDemo => 'Données de démonstration';
+
+  @override
+  String get donneesDemoAide =>
+      'Dix commerces fictifs à Bruxelles, avec produits et avis, pour les essais et les captures d\'écran. ⚠️ À supprimer avant le lancement.';
+
+  @override
+  String get chargerDemo => 'Charger';
+
+  @override
+  String get supprimerDemo => 'Tout supprimer';
+
+  @override
+  String demoChargee(int n) {
+    return '$n commerces de démonstration chargés.';
+  }
+
+  @override
+  String demoSupprimee(int n) {
+    return '$n commerces de démonstration supprimés.';
+  }
 }

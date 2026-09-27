@@ -1404,4 +1404,27 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get erreurSuppressionCommandes =>
       'You have ongoing orders. Wait until they are completed or cancel them before deleting your account.';
+
+  @override
+  String get donneesDemo => 'Demo data';
+
+  @override
+  String get donneesDemoAide =>
+      'Ten fictitious businesses in Brussels, with products and reviews, for testing and screenshots. ⚠️ Delete before launch.';
+
+  @override
+  String get chargerDemo => 'Load';
+
+  @override
+  String get supprimerDemo => 'Delete all';
+
+  @override
+  String demoChargee(int n) {
+    return '$n demo businesses loaded.';
+  }
+
+  @override
+  String demoSupprimee(int n) {
+    return '$n demo businesses deleted.';
+  }
 }

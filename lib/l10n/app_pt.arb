@@ -413,5 +413,11 @@
   "tapezPourConfirmer": "Digite {mot} para confirmar",
   "supprimerDefinitivement": "Excluir definitivamente",
   "compteSupprime": "Sua conta foi excluída.",
-  "erreurSuppressionCommandes": "Você tem pedidos em andamento. Aguarde a conclusão ou cancele-os antes de excluir sua conta."
+  "erreurSuppressionCommandes": "Você tem pedidos em andamento. Aguarde a conclusão ou cancele-os antes de excluir sua conta.",
+  "donneesDemo": "Dados de demonstração",
+  "donneesDemoAide": "Dez comércios fictícios em Bruxelas, com produtos e avaliações, para testes e capturas de tela. ⚠️ Exclua antes do lançamento.",
+  "chargerDemo": "Carregar",
+  "supprimerDemo": "Excluir tudo",
+  "demoChargee": "{n} comércios de demonstração carregados.",
+  "demoSupprimee": "{n} comércios de demonstração excluídos."
 }

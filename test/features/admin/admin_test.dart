@@ -187,4 +187,23 @@ void main() {
     await banc.lancer(tester);
     expect(find.text('Admin'), findsNothing);
   });
+
+  testWidgets('données de démonstration : charger puis supprimer', (
+    tester,
+  ) async {
+    ecranTelephone(tester, grand: true);
+    final banc = await bancAdmin();
+    await banc.lancer(tester);
+    await ouvrirAdmin(tester);
+    await toucher(tester, find.byTooltip('Actions'));
+    await toucher(tester, find.text('Données de démonstration'));
+    await toucher(tester, find.text('Charger'));
+    expect(find.text('10 commerces de démonstration chargés.'), findsOneWidget);
+    await toucher(tester, find.text('Tout supprimer'));
+    expect(
+      find.text('10 commerces de démonstration supprimés.'),
+      findsOneWidget,
+    );
+    expect(banc.fonctionsAdmin.appels, ['chargerDemo', 'supprimerDemo']);
+  });
 }

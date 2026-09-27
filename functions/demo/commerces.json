@@ -1,0 +1,92 @@
+[
+  {
+    "slug": "maquis-chez-awa", "nom": "Maquis Chez Awa", "categorie": "restaurant",
+    "description": "Cuisine ivoirienne généreuse : attiéké, alloco, poulet braisé. Ambiance familiale au cœur de Matonge.",
+    "adresse": "Chaussée de Wavre 42", "ville": "Bruxelles", "lat": 50.8339, "lng": 4.3663,
+    "telephone": "+32 2 000 00 01", "africain": true, "chretien": false,
+    "horaires": "11:30-22:30", "fermeLe": ["lundi"],
+    "commande": true,
+    "produits": [["Attiéké poisson braisé", 14.5], ["Poulet braisé", 13], ["Alloco", 5], ["Garba", 9.5], ["Jus de bissap", 3]]
+  },
+  {
+    "slug": "kinshasa-market", "nom": "Kinshasa Market", "categorie": "magasin",
+    "description": "Épicerie congolaise : foufou, pondu, chikwangue, huile de palme et produits frais chaque semaine.",
+    "adresse": "Rue de la Longue Vie 12", "ville": "Bruxelles", "lat": 50.8347, "lng": 4.3661,
+    "telephone": "+32 2 000 00 02", "africain": true, "chretien": false,
+    "horaires": "09:00-20:00", "fermeLe": ["dimanche"],
+    "commande": true,
+    "produits": [["Farine de foufou 1 kg", 4.5], ["Pondu surgelé", 3.9], ["Chikwangue", 3.2], ["Huile de palme 1 L", 5.5]]
+  },
+  {
+    "slug": "librairie-grace-et-paix", "nom": "Librairie Grâce & Paix", "categorie": "magasin",
+    "description": "Librairie chrétienne : Bibles, livres de prière, cantiques et cadeaux de baptême.",
+    "adresse": "Rue Haute 150", "ville": "Bruxelles", "lat": 50.8387, "lng": 4.3471,
+    "telephone": "+32 2 000 00 03", "africain": false, "chretien": true,
+    "horaires": "10:00-18:30", "fermeLe": ["dimanche", "lundi"],
+    "commande": true,
+    "produits": [["Bible Segond 21", 29.9], ["Recueil de cantiques", 12], ["Carte de baptême", 3.5]]
+  },
+  {
+    "slug": "salon-beaute-d-ebene", "nom": "Salon Beauté d'Ébène", "categorie": "service",
+    "description": "Tresses, tissages, soins des cheveux crépus et bouclés. Sur rendez-vous ou sans rendez-vous.",
+    "adresse": "Chaussée d'Ixelles 120", "ville": "Bruxelles", "lat": 50.8336, "lng": 4.3685,
+    "telephone": "+32 2 000 00 04", "africain": true, "chretien": false,
+    "horaires": "09:30-19:00", "fermeLe": ["dimanche"],
+    "commande": false,
+    "produits": [["Tresses (à partir de)", 60], ["Coupe homme", 18], ["Soin hydratant", 25]]
+  },
+  {
+    "slug": "restaurant-le-baobab", "nom": "Restaurant Le Baobab", "categorie": "restaurant",
+    "description": "Saveurs du Sénégal : mafé, yassa, thiéboudienne. Grande salle pour les fêtes de famille et d'église.",
+    "adresse": "Rue de Brabant 75", "ville": "Bruxelles", "lat": 50.8605, "lng": 4.3569,
+    "telephone": "+32 2 000 00 05", "africain": true, "chretien": true,
+    "horaires": "12:00-23:00", "fermeLe": [],
+    "commande": true,
+    "produits": [["Mafé", 15], ["Poulet yassa", 15], ["Thiéboudienne", 16], ["Pastels (6)", 6]]
+  },
+  {
+    "slug": "patisserie-benediction", "nom": "Pâtisserie Bénédiction", "categorie": "magasin",
+    "description": "Beignets, gâteaux de fête et pains maison. Commandes pour mariages et baptêmes.",
+    "adresse": "Avenue Clémenceau 18", "ville": "Bruxelles", "lat": 50.8363, "lng": 4.3263,
+    "telephone": "+32 2 000 00 06", "africain": false, "chretien": true,
+    "horaires": "07:00-19:00", "fermeLe": ["lundi"],
+    "commande": true,
+    "produits": [["Beignets (6)", 4.5], ["Gâteau de fête 8 parts", 18], ["Pain maison", 3]]
+  },
+  {
+    "slug": "studio-ubuntu", "nom": "Studio Ubuntu", "categorie": "logement",
+    "description": "Studio meublé au calme, idéal pour un séjour à Bruxelles. Accueil chaleureux et conseils du quartier.",
+    "adresse": "Rue de Laeken 90", "ville": "Bruxelles", "lat": 50.856, "lng": 4.35,
+    "telephone": "+32 2 000 00 07", "africain": true, "chretien": false,
+    "horaires": "08:00-21:00", "fermeLe": [],
+    "commande": false,
+    "produits": [["Nuit (2 personnes)", 75], ["Semaine", 420]]
+  },
+  {
+    "slug": "wax-et-style", "nom": "Wax & Style", "categorie": "service",
+    "description": "Couture sur mesure en wax et bazin : robes, chemises, tenues de cérémonie. Retouches rapides.",
+    "adresse": "Rue du Midi 55", "ville": "Bruxelles", "lat": 50.8455, "lng": 4.349,
+    "telephone": "+32 2 000 00 08", "africain": true, "chretien": false,
+    "horaires": "10:00-19:00", "fermeLe": ["dimanche"],
+    "commande": false,
+    "produits": [["Robe sur mesure (à partir de)", 120], ["Chemise en wax", 55], ["Retouche", 15]]
+  },
+  {
+    "slug": "centre-esperance", "nom": "Centre Espérance", "categorie": "service",
+    "description": "Accompagnement administratif, aide aux démarches et soutien scolaire, dans un esprit chrétien.",
+    "adresse": "Rue de Mérode 30", "ville": "Bruxelles", "lat": 50.833, "lng": 4.34,
+    "telephone": "+32 2 000 00 09", "africain": false, "chretien": true,
+    "horaires": "09:00-17:00", "fermeLe": ["samedi", "dimanche"],
+    "commande": false,
+    "produits": [["Aide administrative (1 h)", 20], ["Soutien scolaire (1 h)", 15]]
+  },
+  {
+    "slug": "accra-foods", "nom": "Accra Foods", "categorie": "magasin",
+    "description": "Produits du Ghana et du Nigeria : kenkey, shito, igname, épices et boissons.",
+    "adresse": "Chaussée de Mons 200", "ville": "Bruxelles", "lat": 50.835, "lng": 4.32,
+    "telephone": "+32 2 000 00 10", "africain": true, "chretien": false,
+    "horaires": "09:00-21:00", "fermeLe": [],
+    "commande": true,
+    "produits": [["Kenkey", 3], ["Sauce shito", 4.5], ["Igname 1 kg", 3.8], ["Malta", 1.5]]
+  }
+]

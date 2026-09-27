@@ -107,6 +107,18 @@ class FaussesFonctionsAdmin implements FonctionsAdmin {
     appels.add('definir:$email:$admin');
     if (erreur != null) throw ExceptionAdmin(erreur!);
   }
+
+  @override
+  Future<int> chargerDemo() async {
+    appels.add('chargerDemo');
+    return 10;
+  }
+
+  @override
+  Future<int> supprimerDemo() async {
+    appels.add('supprimerDemo');
+    return 10;
+  }
 }
 
 class FauxLanceur implements Lanceur {
