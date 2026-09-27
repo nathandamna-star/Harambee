@@ -318,3 +318,6 @@ pose la question au lieu de choisir seul.
 - Pages légales en ligne : fonction HTTP `legal` (`?page=confidentialite|cgu|support`), textes dans
   `functions/legal/` (copies exactes de `assets/legal/`, vérifiées par un test).
 - Textes des stores : `docs/fiches-stores.md` ; démarche complète : `docs/publication.md`.
+- Connexion Google : fournisseur activé dans Firebase ; identifiants OAuth publics dans
+  `lib/core/firebase/firebase_options.dart` (client Web = serverClientId, client iOS = clientId,
+  schéma inversé dans `ios/Runner/Info.plist`). Android : ajouter l'empreinte SHA-1 dans Firebase.

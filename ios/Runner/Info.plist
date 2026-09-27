@@ -32,6 +32,12 @@
 				<string>harambee</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.456682666828-1nnj79g1rkvj4iv6lg2v8temrvft60qf</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleDisplayName</key>
 	<string>Harambee</string>

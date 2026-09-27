@@ -11,14 +11,17 @@ abstract interface class ConnexionGoogle {
 }
 
 class ConnexionGoogleNative implements ConnexionGoogle {
-  ConnexionGoogleNative({this.serverClientId});
+  ConnexionGoogleNative({this.clientId, this.serverClientId});
+
+  /// Identifiant « client iOS » (null sur Android).
+  final String? clientId;
 
   /// Identifiant « client Web » du projet Firebase, requis sur Android.
   final String? serverClientId;
   Future<void>? _initialisation;
 
   Future<void> _initialiser() => _initialisation ??= GoogleSignIn.instance
-      .initialize(serverClientId: serverClientId);
+      .initialize(clientId: clientId, serverClientId: serverClientId);
 
   @override
   Future<String> obtenirIdToken() async {

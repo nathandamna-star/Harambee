@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/firebase/firebase_options.dart';
@@ -17,7 +18,12 @@ final firestoreProvider = Provider<FirebaseFirestore>(
 );
 
 final connexionGoogleProvider = Provider<ConnexionGoogle>(
-  (ref) => ConnexionGoogleNative(serverClientId: googleServerClientId),
+  (ref) => ConnexionGoogleNative(
+    clientId: defaultTargetPlatform == TargetPlatform.iOS
+        ? googleIosClientId
+        : null,
+    serverClientId: googleServerClientId,
+  ),
 );
 
 final authRepositoryProvider = Provider<AuthRepository>(

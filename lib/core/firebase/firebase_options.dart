@@ -32,5 +32,11 @@ abstract final class DefaultFirebaseOptions {
 }
 
 /// Identifiant « client Web » OAuth (client_type 3), requis pour Google sur Android.
-/// À compléter depuis google-services.json une fois la connexion Google activée.
-const String? googleServerClientId = null;
+/// Ces identifiants OAuth sont publics (ce ne sont pas des secrets).
+const String googleServerClientId =
+    '456682666828-tqtjcu1ic7up5fhgqam2ojj686mbti4v.apps.googleusercontent.com';
+
+/// Identifiant « client iOS » OAuth. Son schéma inversé est déclaré dans
+/// ios/Runner/Info.plist (CFBundleURLSchemes) pour le retour de Google.
+const String googleIosClientId =
+    '456682666828-1nnj79g1rkvj4iv6lg2v8temrvft60qf.apps.googleusercontent.com';
