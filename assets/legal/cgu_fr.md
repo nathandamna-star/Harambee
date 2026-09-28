@@ -1,12 +1,10 @@
 # Conditions générales d'utilisation
 
-> MODÈLE À COMPLÉTER — Les passages entre crochets [ ] sont à remplir. Ce texte doit être relu par un juriste avant la publication de l'application.
-
-Dernière mise à jour : [DATE]
+Dernière mise à jour : 28 septembre 2026
 
 ## 1. Objet
 
-Les présentes conditions encadrent l'utilisation de l'application Harambee, éditée par [NOM DE LA SOCIÉTÉ], [FORME JURIDIQUE], [ADRESSE], numéro d'entreprise [NUMÉRO BCE] (« Harambee »).
+Les présentes conditions encadrent l'utilisation de l'application Harambee, éditée par Nathan's all in one, Rue de la Fraternité 16, 1030 Schaerbeek (Belgique) (« Harambee »).
 
 Harambee répertorie des commerces, restaurants, logements et services africains et chrétiens, et met en relation des clients et des professionnels. En utilisant l'application, vous acceptez ces conditions.
 
@@ -35,7 +33,7 @@ Harambee répertorie des commerces, restaurants, logements et services africains
 - Le prix total (produits, frais de livraison éventuels, frais de service Harambee) est affiché avant la validation. Il est calculé par Harambee au moment de la commande à partir du catalogue du professionnel.
 - Le professionnel peut accepter ou refuser une commande. Le client peut annuler une commande tant qu'elle n'a pas été acceptée.
 - La livraison, lorsqu'elle est proposée, est assurée par le professionnel lui-même.
-- [Préciser les règles de rétractation : pour les denrées alimentaires et produits périssables, le droit de rétractation ne s'applique généralement pas. À adapter selon les produits vendus.]
+- Le droit de rétractation de 14 jours ne s'applique pas aux denrées alimentaires, aux produits périssables ni aux biens confectionnés sur mesure. Pour les autres produits, il s'exerce auprès du professionnel, qui vend en son nom propre.
 
 ## 6. Paiement
 
@@ -57,6 +55,6 @@ Harambee peut modifier ces conditions. Les modifications importantes vous seront
 
 ## 10. Droit applicable
 
-Ces conditions sont soumises au droit belge. En cas de litige, et à défaut d'accord amiable, les tribunaux de [VILLE] sont compétents, sans préjudice des règles protectrices des consommateurs.
+Ces conditions sont soumises au droit belge. En cas de litige, et à défaut d'accord amiable, les tribunaux de Bruxelles sont compétents, sans préjudice des règles protectrices des consommateurs.
 
-Contact : [ADRESSE E-MAIL DE CONTACT]
+Contact : nathansallinone@gmail.com

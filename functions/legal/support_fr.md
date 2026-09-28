@@ -1,10 +1,8 @@
 # Aide et contact
 
-> MODÈLE À COMPLÉTER — Les passages entre crochets [ ] sont à remplir.
-
 ## Une question, un problème ?
 
-Écrivez-nous à [ADRESSE E-MAIL DE CONTACT]. Nous répondons sous [DÉLAI, par exemple 2 jours ouvrables].
+Écrivez-nous à nathansallinone@gmail.com. Nous répondons en général sous 2 jours ouvrables.
 
 ## Questions fréquentes
 

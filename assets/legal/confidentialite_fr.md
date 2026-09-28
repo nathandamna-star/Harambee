@@ -1,16 +1,14 @@
 # Politique de confidentialité
 
-> MODÈLE À COMPLÉTER — Les passages entre crochets [ ] sont à remplir. Ce texte doit être relu par un juriste avant la publication de l'application.
-
-Dernière mise à jour : [DATE]
+Dernière mise à jour : 28 septembre 2026
 
 ## 1. Qui sommes-nous ?
 
 Harambee est une application qui répertorie des commerces, restaurants, logements et services africains et chrétiens, et permet aux clients de les contacter, de les noter et de leur commander des produits.
 
-Le responsable du traitement de vos données est [NOM DE LA SOCIÉTÉ], [FORME JURIDIQUE], dont le siège est situé [ADRESSE], inscrite à la Banque-Carrefour des Entreprises sous le numéro [NUMÉRO BCE].
+Le responsable du traitement de vos données est Nathan's all in one, Rue de la Fraternité 16, 1030 Schaerbeek (Belgique).
 
-Pour toute question sur vos données : [ADRESSE E-MAIL DE CONTACT].
+Pour toute question sur vos données : nathansallinone@gmail.com.
 
 ## 2. Quelles données collectons-nous ?
 
@@ -41,12 +39,12 @@ Nous n'utilisons aucun traceur publicitaire et ne vendons aucune donnée.
 ## 5. Combien de temps ?
 
 - Votre compte et ses données : tant que votre compte existe.
-- Les commandes : [DURÉE, par exemple 7 ans] après la commande, pour respecter nos obligations comptables ; si vous supprimez votre compte, elles sont conservées sans votre nom, votre téléphone ni votre adresse.
+- Les commandes : 7 ans après la commande, pour respecter nos obligations comptables ; si vous supprimez votre compte, elles sont conservées sans votre nom, votre téléphone ni votre adresse.
 - Les messages : tant que la conversation existe ; ils sont supprimés avec votre compte.
 
 ## 6. Vos droits
 
-Vous pouvez à tout moment accéder à vos données, les corriger, les faire effacer, en demander une copie (portabilité), vous opposer à certains traitements ou en demander la limitation, en écrivant à [ADRESSE E-MAIL DE CONTACT].
+Vous pouvez à tout moment accéder à vos données, les corriger, les faire effacer, en demander une copie (portabilité), vous opposer à certains traitements ou en demander la limitation, en écrivant à nathansallinone@gmail.com.
 
 Vous pouvez supprimer vous-même votre compte dans l'application : Mon espace → Profil et réglages → Supprimer mon compte.
 
@@ -58,7 +56,7 @@ Les échanges avec nos serveurs sont chiffrés. L'accès aux données est limit�
 
 ## 8. Mineurs
 
-L'application est destinée aux personnes âgées d'au moins [ÂGE MINIMUM] ans.
+L'application est destinée aux personnes âgées d'au moins 16 ans.
 
 ## 9. Modifications
 
